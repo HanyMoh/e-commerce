@@ -1,0 +1,117 @@
+<!--Page Title -->
+<div class="page-title-bar">
+  <div class="row">
+    <div class="col-xs-6"><h2>App Tokens</h2></div>
+    <div class="col-xs-6">
+      <div class="add-new-btn">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Page Breadcrumb -->
+<div class="page-breadcrumb">
+  <div class="row">
+    <div class="col-sm-7">
+      <a href="<%= admin_path %>" class="back-angle"><i class="fa fa-long-arrow-left"></i> Back To Dashboard</a>
+    </div>
+    <div class="col-sm-5">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<%= admin_path %>">Dashboard</a></li>
+        <li class="breadcrumb-item active">AppTokens</li>
+      </ol>
+    </div>
+  </div>
+</div>
+<div class="start-content">
+  <div class="view-category">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="main-view-item">
+          <div class="view-header">
+            <span>Navbox Token</span>
+          </div>
+          <div class="view-body">
+            <ul>
+              <li><p>Token</p> <span><%= @navbox_token&.token %></span></li>
+              <% if @navbox_token %>
+                <li class="toggleActivation <%= @navbox_token&.active? ? "active": "unactive" %>">
+                  <p>Status</p>
+                  <span>
+                    <%= link_to toggle_activation_admin_app_token_path(@navbox_token), method: :put do  %>
+                      <i class="active-icon" ></i>
+                    <% end%>
+                  </span>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <div class="view-footer">
+            <% if @navbox_token %>
+              <a href="<%= edit_admin_app_token_path(@navbox_token, platform: @navbox_token.platform) %>" class="edit"><i class="fa fa-pencil"></i>Update</a>
+            <% else %>
+              <a href="<%= new_admin_app_token_path(platform: 'navbox') %>" class="edit"><i class="fa fa-pencil"></i>Create</a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="main-view-item">
+          <div class="view-header">
+            <span>Dashboard Token</span>
+          </div>
+          <div class="view-body">
+            <ul>
+              <li><p>Token</p> <span><%= @dashboard_token&.token %></span></li>
+              <% if @dashboard_token %>
+                <li class="toggleActivation <%= @dashboard_token&.active? ? "active": "unactive" %>">
+                  <p>Status</p>
+                  <span>
+                    <%= link_to toggle_activation_admin_app_token_path(@dashboard_token), method: :put do  %>
+                      <i class="active-icon" ></i>
+                    <% end%>
+                  </span>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <div class="view-footer">
+            <% if @dashboard_token %>
+              <a href="<%= edit_admin_app_token_path(@dashboard_token, platform: @dashboard_token.platform) %>" class="edit"><i class="fa fa-pencil"></i>Update</a>
+            <% else %>
+              <a href="<%= new_admin_app_token_path(platform: 'dashboard') %>" class="edit"><i class="fa fa-pencil"></i>Create</a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="main-view-item">
+          <div class="view-header">
+            <span>Mobile Token</span>
+          </div>
+          <div class="view-body">
+            <ul>
+              <li><p>Token</p> <span><%= @mobile_token&.token %></span></li>
+              <% if @mobile_token %>
+                <li class="toggleActivation <%= @mobile_token&.active? ? "active": "unactive" %>">
+                  <p>Status</p>
+                  <span>
+                    <%= link_to toggle_activation_admin_app_token_path(@mobile_token), method: :put do  %>
+                      <i class="active-icon" ></i>
+                    <% end%>
+                  </span>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+          <div class="view-footer">
+            <% if @mobile_token %>
+              <a href="<%= edit_admin_app_token_path(@mobile_token, platform: @mobile_token.platform) %>" class="edit"><i class="fa fa-pencil"></i>Update</a>
+            <% else %>
+              <a href="<%= new_admin_app_token_path(platform: 'mobile') %>" class="edit"><i class="fa fa-pencil"></i>Create</a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,266 @@
+<% content_for :bc_title do %>
+  Shops
+<% end %>
+
+<% content_for :bc_current do %>
+  Shop
+<% end %>
+
+<% content_for :bc_buttons do %>
+  <a href="<%= admin_shops_path %>"><button type="button" class="btn btn-info"><i class="fa fa-plus-circle"></i> All Shop</button></a>
+<% end %>
+
+<%= render 'shared/breadcrumb' %>
+
+<%= render 'shared/error_messages', object: @shop %>
+
+<div class="row">
+  <div class="col-6">
+    <div class="card">
+      <div class="card-header bg-info">
+        <% if @shop.new_record? %>
+          <h4 class="m-b-0 text-white">Add new shop</h4>
+        <% else %>
+          <h4 class="m-b-0 text-white">Edit shop</h4>
+        <% end %>
+      </div>
+      <div class="card-body">  
+        <br/>
+        <%= form_for [:admin, @shop], html: {  help: :block } do |f| %>
+
+          <%= f.hidden_field :lng, id: 'shop_longitude' %>
+          <%= f.hidden_field :lat, id: 'shop_latitude' %>
+
+          <div class="row">
+            <div class="col-md-12">          
+              <div class="form-group">        
+                <label class="control-label">Name</label>
+                <%= f.text_field :name, required: true, class:"form-control"%>
+              </div>
+            </div>
+
+            <div class="col-md-6">          
+              <div class="form-group">        
+                <label class="control-label">Country</label>
+                <%= f.country_select 'country', { selected: 'EG' }, { class: 'form-control select2' } %>
+              </div>
+            </div>
+            
+            <div class="col-md-6">          
+              <div class="form-group">        
+                <label class="control-label">City</label>
+                <%= f.text_field :city, required: true, class:"form-control"%>
+              </div>
+            </div>
+
+            <div class="col-md-12">          
+              <div class="form-group">        
+                <label class="control-label">Brand</label>
+                <%= f.select :brand_id, options_from_collection_for_select(current_organization_manager.organization.brands.all, :id, :name, @shop.try(:brand_id)), {prompt: 'Please select ...' }, required:true, class:"form-control select2" %>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <input onclick="insideBuilding()" type="radio" name="in-out-building" value="inside-building" id="inside-building-select"
+                <%= "checked" if @shop.new_record? || @shop.building_id %>>
+                <label for="inside-building-select" class="control-label">Inside Building</label>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <input onclick="outsideBuilding()" type="radio" name="in-out-building" value="outside-building" id="outside-building-select"
+                <%= "checked" if (@shop.id && !@shop.building_id) %>>
+                <label for="outside-building-select" class="control-label">Outside Building</label>
+              </div>
+            </div>
+
+            <div id="inside-building">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="control-label">Building</label>
+                  <%= f.select :mall_id, options_from_collection_for_select(Mall.all, :id, :name, @shop.try(:mall_id)), {include_blank: 'Please select ...'}, class:"form-control select2"%>
+                </div>
+              </div>
+            </div>
+
+            <div id="outside-building" style="display:none;">
+              <div class="col-md-6">
+                <input type="text" id="pac-input" class="form-control">
+              </div>
+              <div class="col-md-12">
+                <div class="form-group">
+                  <div id="shop-map" style="height:400px; width:400px;"></div>
+                </div>
+              </div>
+
+              <div class="col-md-12">          
+                <div class="form-group">        
+                  <label class="control-label">Address</label>
+                  <%= f.text_field :street, class:"form-control"%>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Area</label>
+                  <%= f.text_field :street, class:"form-control"%>
+                </div>
+              </div>
+              <div class="col-md-6">          
+                <div class="form-group">        
+                  <label class="control-label">Zip</label>
+                  <%= f.text_field :zip, class:"form-control"%>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="form-group">
+                <%= f.submit 'Submit', class: 'btn btn-lg btn-primary' %>
+              </div>
+          </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<script>
+  var insideCheck = document.getElementById("inside-building-select");
+  var outsideCheck = document.getElementById("outside-building-select");
+  var insideDiv = document.getElementById("inside-building");
+  var outsideDiv = document.getElementById("outside-building");
+  var mapDiv = document.getElementById("shop-map");
+
+  if (insideCheck.checked === true) {
+    insideDiv.style.display = "block";
+    outsideDiv.style.display = "none";
+    mapDiv.style.display = "none";
+  }
+
+  if (outsideCheck.checked === true) {
+    insideDiv.style.display = "none";
+    outsideDiv.style.display = "block";
+    mapDiv.style.display = "block";
+  }
+
+  function insideBuilding() {
+    var y = document.getElementById("inside-building-select");
+    var x = document.getElementById("inside-building");
+    var z = document.getElementById("outside-building");
+    var m = document.getElementById("shop-map");
+      
+    if (y.checked === true) {
+      x.style.display = "block";
+      z.style.display = "none";
+      m.style.display = "none";
+    } else {
+      x.style.display = "none";
+    }
+  }
+
+  function outsideBuilding() {
+    var y = document.getElementById("outside-building-select");
+    var x = document.getElementById("inside-building");
+    var z = document.getElementById("outside-building");
+    var m = document.getElementById("shop-map");
+    if (y.checked === true) {
+      z.style.display = "block";
+      x.style.display = "none";
+      m.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+
+  // map code
+  function initMap() {
+    var myLatlng = {lat: 30.0444, lng: 31.2357};
+    var map = new google.maps.Map(document.getElementById('shop-map'), {
+      zoom: 8,
+      center: myLatlng
+    });
+
+    google.maps.event.addListener(map, 'click', function(event) {
+      // if the previousMarker exists, remove it
+      if (marker)
+        marker.setMap(null);
+        marker = new google.maps.Marker({
+        position: event.latLng,
+        map: map,
+        draggable: true
+      });
+      updateLocation(event.latLng);
+      marker.addListener('dragend', function(event) {
+        updateLocation(event.latLng);
+      });
+    });
+
+    map.addListener('center_changed', function() {
+      // 3 seconds after the center of the map has changed, pan back to the
+      // marker.
+      window.setTimeout(function() {
+        map.panTo(marker.getPosition());
+      }, 100000);
+    });
+
+    // get places auto-complete when user type in location-text-box
+    var input = (document.getElementById('pac-input'));
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.bindTo('bounds', map);
+    var infowindow = new google.maps.InfoWindow();
+
+    marker = new google.maps.Marker({
+      map: map,
+      anchorPoint: new google.maps.Point(0, -29),
+      draggable: true
+    });
+
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+      infowindow.close();
+      // marker.setVisible(false);
+      var place = autocomplete.getPlace();
+      if (!place.geometry) {
+        return;
+      }
+      // If the place has a geometry, then present it on a map.
+      if (place.geometry.viewport) {
+        map.fitBounds(place.geometry.viewport);
+      } else {
+        map.setCenter(place.geometry.location);
+      map.setZoom(17); // Why 17? Because it looks good.
+      }
+      marker.setPosition(place.geometry.location);
+      // marker.setVisible(true);
+      // update location
+      updateLocation(place.geometry.location);
+    });
+
+    function updateLocation(evt){
+      $('#shop_longitude').val(evt.lng());
+      $('#shop_latitude').val(evt.lat());
+      $('#shop_longitude').trigger('change');
+      $('#shop_latitude').trigger('change');
+    }
+  }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDB5wrYxVqgRMSf8i204K6Fx65Ra2bPIYc&libraries=geometry,places&callback=initMap" async defer></script>
+
+<script>
+  $(function() {
+    // For select 2
+    $(".select2").select2();
+  });
+
+  $("form").on("keypress", function (e) {
+    if (e.keyCode == 13) {
+      return false;
+    }
+  });
+</script>

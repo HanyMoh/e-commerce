@@ -1,0 +1,207 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "products",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/one/products/product_availability.json",
+      "operations": [
+        {
+          "summary": "Product availability in stores",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "product_name",
+              "type": "string",
+              "description": "Product Name",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::Products#product_availability",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/products/product_shops.json",
+      "operations": [
+        {
+          "summary": "Product availability in shops",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "product_id",
+              "type": "integer",
+              "description": "Product ID",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "barcode",
+              "type": "string",
+              "description": "Product Barcode",
+              "required": false
+            }
+          ],
+          "nickname": "Api::V1::Products#product_shops",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/products/shop_products.json",
+      "operations": [
+        {
+          "summary": "Shop Products",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "shop_id",
+              "type": "integer",
+              "description": "Shop ID",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "category_id",
+              "type": "integer",
+              "description": "Category ID",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "page",
+              "type": "integer",
+              "description": "Page number",
+              "required": false
+            }
+          ],
+          "nickname": "Api::V1::Products#shop_products",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/products/last_product_images.json",
+      "operations": [
+        {
+          "summary": "Get VR Slider images of last product",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::V1::Products#last_product_images",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/products.json",
+      "operations": [
+        {
+          "summary": "All products",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "category_id",
+              "type": "string",
+              "description": "Category ID, comma separated array",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "brand_id",
+              "type": "integer",
+              "description": "Brand ID",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "page",
+              "type": "integer",
+              "description": "Page number",
+              "required": false
+            }
+          ],
+          "nickname": "Api::V1::Products#index",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/products/{id}.json",
+      "operations": [
+        {
+          "summary": "Get Product details",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Product ID",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::V1::Products#show",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

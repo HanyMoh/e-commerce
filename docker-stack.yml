@@ -1,0 +1,103 @@
+version: '3.5'
+
+# Required env vars:
+#   - NASNAV_VERSION: image version to use
+#   - NASNAV_HOST: ex.: master.nasnav.com
+#   - SENTRY_CURRENT_ENV: sentry env
+
+secrets:
+  nasnav:
+    external: true
+    # Format:
+    #   POSTGRES_PASSWORD=...
+    #   SECRET_KEY_BASE=...
+  nasnav.postgres_password:
+    external: true
+
+services:
+  postgres:
+    image: postgres:9.5
+    volumes:
+      - /data/nasnav/postgres/data:/var/lib/postgresql/data
+      - /data/nasnav/postgres/backups:/backups
+    ports:
+      - "5432:5432"
+    secrets:
+      - source: nasnav.postgres_password
+    environment:
+      POSTGRES_DB: nasnav
+      POSTGRES_USER: nasnav
+      POSTGRES_PASSWORD_FILE: /run/secrets/nasnav.postgres_password
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+      restart_policy:
+        condition: none
+
+  backend:
+    image: registry.gitlab.com/nasorgeg/nasnav:${NASNAV_VERSION}
+    volumes:
+      - /data/nasnav/public/system:/srv/nasnav/backend/public/system
+      - /data/nasnav/public/uploads:/srv/nasnav/backend/public/uploads
+      - /data/nasnav/shop360/pannellum:/srv/nasnav/backend/public/pannellum
+      - /data/nasnav/shop360/shop360ms-edit:/srv/nasnav/backend/public/shop360ms-edit
+    secrets:
+      - source: nasnav
+    environment:
+      RAILS_ENV: production
+      POSTGRES_HOST: postgres
+      POSTGRES_DB: nasnav
+      POSTGRES_USER: nasnav
+      SECRET_NAME: nasnav
+      SENTRY_CURRENT_ENV: ${SENTRY_CURRENT_ENV}
+    command: "app:server"
+    depends_on:
+      - postgres
+    networks:
+      - default
+      - traefik
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+      restart_policy:
+        condition: on-failure
+      labels:
+        - "traefik.port=3000"
+        - "traefik.backend=nasnav"
+        - "traefik.frontend.rule=Host:${NASNAV_HOST};PathPrefix:/ipa,/api,/developer_check,/admin,/organization_managers,/employee,/upload,/asset,/pannellum,/dashboard,/shop360"
+        - "traefik.frontend.priority=10"
+        - "traefik.enable=true"
+
+  backend_migrator:
+    image: registry.gitlab.com/nasorgeg/nasnav:${NASNAV_VERSION}
+    volumes:
+      - /data/nasnav/public/system:/srv/nasnav/backend/public/system
+      - /data/nasnav/public/uploads:/srv/nasnav/backend/public/uploads
+      - /data/nasnav/shop360/pannellum:/srv/nasnav/backend/public/pannellum
+      - /data/nasnav/shop360/shop360ms-edit:/srv/nasnav/backend/public/shop360ms-edit
+    secrets:
+      - source: nasnav
+    environment:
+      RAILS_ENV: production
+      POSTGRES_HOST: postgres
+      POSTGRES_DB: nasnav
+      POSTGRES_USER: nasnav
+      SECRET_NAME: nasnav
+      SENTRY_CURRENT_ENV: ${SENTRY_CURRENT_ENV}
+    command: "app:migrate"
+    depends_on:
+      - postgres
+    networks:
+      - default
+    deploy:
+      replicas: 1
+      placement:
+        constraints: [node.role == manager]
+      restart_policy:
+        condition: none
+
+networks:
+  traefik:
+    external: true

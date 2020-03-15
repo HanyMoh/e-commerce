@@ -1,0 +1,347 @@
+<div class="wrapper brand-intro">
+  <!-- Sidebar Holder -->
+  <nav id="sidebar" class="">
+    <div class="sidebar-header">
+      <div class="logo">
+        <a href="#">
+          <img src="/dashboard/images/logo.png" alt="Logo">
+        </a>
+      </div>
+    </div>
+  </nav>
+  <!-- Page Content Holder -->
+  <div id="content">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <img src="/dashboard/images/logo-dark.png" alt="">
+        </div>
+        <div class="nav-item">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><img src="/dashboard/images/logout-icon.png" alt="">Logout</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="main-content">
+      <!-- Create Forms -->
+      <div class="nav-item">
+        <ul class="nav navbar-nav navbar-right">
+        <%= link_to destroy_employee_user_session_path, method: :delete do %>
+          <li><img src="/dashboard/images/logout-icon.png" alt="">Logout</li>
+        <% end %>
+        </ul>
+      </div>
+      <div class="start-content">
+        <div class="create-intro-brand">
+          <div class="container">
+            <div class="welcome-intro-text">
+              <img src="/dashboard/images/smile-face.png" alt="">
+              <h2>Welcome <span><%= current_active_user.name.titleize if current_active_user.present? %></span></h2>
+              <p>You are now creating your first brand, To start a new experience with us!</p>
+            </div>
+            <div class="row">
+              <%= render 'shared/error_messages', object: @brand %>
+              <%= form_for [:admin, @brand], html: { class: 'group-border-dashed', help: :block } do |f| %>
+                <% if current_organization_manager %>
+                  <%= f.hidden_field :following_standards, value: current_organization_manager.following_standards? ? "true" : "false" %>
+                  <%= f.hidden_field :organization_manager_id, value: current_organization_manager.id %>
+                <% end %>
+                <div class="col-md-6 col-md-offset-3">
+                  <div class="form-group">
+                    <label>Name</label>
+                    <%= f.text_field :name, required: true , class: "form-control", placeholder: "Enter name here" %>
+                  </div>
+                  <div class="form-group">
+                    <label>Display Name</label>
+                    <%= f.text_field :display_name, required: true , class: "form-control", placeholder: "Enter name here" %>
+                    <small>This will appear on NavBox and Mobile App</small>
+                  </div>
+                  <div class="form-group">
+                    <label>Category</label>
+                    <%= f.select :category_id, options_from_collection_for_select(@categories, :id, :name, @brand.try(:category_id)), {prompt: 'Please select ...' }, required: true, class:"form-control select2" %>
+                  </div>
+                  <div class="form-group">
+                    <label>Brand Logo</label>
+                    <%= f.file_field :logo,class: "dropify",'data-allowed-file-extensions':"png jpg", required: true%>
+                  </div>
+                  <div class="form-group">
+                    <label>Brand Cover</label>
+                    <%= f.file_field :banner_image, required: true,class: "dropify",'data-allowed-file-extensions':"png jpg"%>
+                  </div>
+                  <div class="https-forms">
+                    <div class="form-group">
+                      <label>Website</label>
+                      <div class="input-group">
+                        <div class="input-group-btn">
+                          <button type="button" class="btn btn-default">http:// </button>
+                        </div><!-- /btn-group -->
+												<input type="text" name="brand[websites][]" data-role="tagsinput" class="form-control"> 
+                        <%#= f.text_field :websites, class:"form-control" , 'aria-label': "..." %>
+                        <!--
+                          <button class="add_field_button"><i class="fa fa-plus"></i> add more</button>
+                        -->
+                      </div><!-- /input-group -->
+                    </div>
+                  </div>
+                  <div class="phone-numbers">
+                    <div class="form-group">
+                      <label>Phone Numbers</label>
+                      <div class="input-group">
+                        <div class="input-group-btn">
+                          <select>
+                            <option value="">002</option>
+                          </select>
+                        </div><!-- /btn-group -->
+												<input type="text" name="brand[phone_numbers][]" data-role="tagsinput" class="form-control"> 
+                        <%#= f.text_field :phone_numbers, required: true,'aria-label': "...",class:"form-control"%>
+                        <!--
+                          <button class="add_field_button_numbers"><i class="fa fa-plus"></i> add more</button>
+                        -->
+                      </div><!-- /input-group -->
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Social Channels</label>
+                    <div class="social-profile">
+                      <div class="pretty p-svg p-curve">
+                        <input type="checkbox" />
+                        <div class="state p-success">
+                          <!-- svg path -->
+                          <svg class="svg svg-icon" viewBox="0 0 20 20">
+                            <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z" style="stroke: white;fill:white;"></path>
+                          </svg>
+                          <label>Facebook</label>
+                        </div>
+                      </div>
+                      <div class="check-input">
+                        <div class="input-group">
+                          <div class="input-group-btn">
+                            <button type="button" class="btn btn-default">http:// </button>
+                          </div><!-- /btn-group -->
+                          <%= f.text_field :facebook, class:"form-control",'aria-label': "..."%>
+                        </div><!-- /input-group -->
+                      </div>
+                    </div>
+                    <div class="social-profile">
+                      <div class="pretty p-svg p-curve">
+                        <input type="checkbox" />
+                        <div class="state p-success">
+                          <!-- svg path -->
+                          <svg class="svg svg-icon" viewBox="0 0 20 20">
+                            <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z" style="stroke: white;fill:white;"></path>
+                          </svg>
+                          <label>Instagram</label>
+                        </div>
+                      </div>
+                      <div class="check-input">
+                      <div class="input-group">
+                        <div class="input-group-btn">
+                          <button type="button" class="btn btn-default">http:// </button>
+                        </div><!-- /btn-group -->
+                        <%= f.text_field :instagram, class:"form-control",'aria-label': "..."%>
+                      </div><!-- /input-group -->
+                    </div>
+                  </div>
+                  <div class="social-profile">
+                    <div class="pretty p-svg p-curve">
+                      <input type="checkbox" />
+                      <div class="state p-success">
+                        <!-- svg path -->
+                        <svg class="svg svg-icon" viewBox="0 0 20 20">
+                          <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z" style="stroke: white;fill:white;"></path>
+                        </svg>
+                        <label>Pinterest</label>
+                      </div>
+                    </div>
+                    <div class="check-input">
+                      <div class="input-group">
+                        <div class="input-group-btn">
+                          <button type="button" class="btn btn-default">http:// </button>
+                        </div><!-- /btn-group -->
+                        <input type="text" class="form-control" aria-label="...">
+                      </div><!-- /input-group -->
+                    </div>
+                  </div>
+                  <div class="social-profile">
+                    <div class="pretty p-svg p-curve">
+                      <input type="checkbox" />
+                      <div class="state p-success">
+                        <!-- svg path -->
+                        <svg class="svg svg-icon" viewBox="0 0 20 20">
+                          <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z" style="stroke: white;fill:white;"></path>
+                        </svg>
+                        <label>Youtube</label>
+                      </div>
+                    </div>
+                    <div class="check-input">
+                      <div class="input-group">
+                        <div class="input-group-btn">
+                          <button type="button" class="btn btn-default">http:// </button>
+                        </div><!-- /btn-group -->
+                        <input type="text" class="form-control" aria-label="...">
+                      </div><!-- /input-group -->
+                    </div>
+                  </div>
+                  <div class="social-profile">
+                    <div class="pretty p-svg p-curve">
+                      <input type="checkbox" />
+                      <div class="state p-success">
+                        <!-- svg path -->
+                        <svg class="svg svg-icon" viewBox="0 0 20 20">
+                          <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z" style="stroke: white;fill:white;"></path>
+                        </svg>
+                        <label>Google +</label>
+                      </div>
+                    </div>
+                    <div class="check-input">
+                      <div class="input-group">
+                        <div class="input-group-btn">
+                          <button type="button" class="btn btn-default">http:// </button>
+                        </div><!-- /btn-group -->
+                        <input type="text" class="form-control" aria-label="...">
+                      </div><!-- /input-group -->
+                    </div>
+                  </div>
+                  <div class="social-profile">
+                    <div class="pretty p-svg p-curve">
+                      <input type="checkbox" />
+                      <div class="state p-success">
+                        <!-- svg path -->
+                        <svg class="svg svg-icon" viewBox="0 0 20 20">
+                          <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z" style="stroke: white;fill:white;"></path>
+                        </svg>
+                        <label>Snapchat</label>
+                      </div>
+                    </div>
+                    <div class="check-input">
+                      <div class="input-group">
+                        <div class="input-group-btn">
+                          <button type="button" class="btn btn-default">http:// </button>
+                        </div><!-- /btn-group -->
+                        <input type="text" class="form-control" aria-label="...">
+                      </div><!-- /input-group -->
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Description</label>
+                  <%= f.text_area :description,rows: 10,cols: 30, required: true , class:"form-control",placeholder: "Description here"%>
+                </div>
+                <div class="form-group">
+                  <label>Times Work</label>
+                  <div class="days">
+                    <div class="pretty p-svg p-curve">
+                      <input type="checkbox" />
+                        <div class="state p-success">
+                          <!-- svg path -->
+                          <svg class="svg svg-icon" viewBox="0 0 20 20">
+                            <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z" style="stroke: white;fill:white;"></path>
+                          </svg>
+                          <label>Sat</label>
+                        </div>
+                      </div>
+                      <div class="pretty p-svg p-curve">
+                        <input type="checkbox" />
+                        <div class="state p-success">
+                          <!-- svg path -->
+                          <svg class="svg svg-icon" viewBox="0 0 20 20">
+                            <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z" style="stroke: white;fill:white;"></path>
+                          </svg>
+                          <label>Sun</label>
+                        </div>
+                      </div>
+                      <div class="pretty p-svg p-curve">
+                        <input type="checkbox" />
+                          <div class="state p-success">
+                            <!-- svg path -->
+                            <svg class="svg svg-icon" viewBox="0 0 20 20">
+                              <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z" style="stroke: white;fill:white;"></path>
+                            </svg>
+                            <label>Mon</label>
+                          </div>
+                        </div>
+                        <div class="pretty p-svg p-curve">
+                          <input type="checkbox" />
+                            <div class="state p-success">
+                              <!-- svg path -->
+                              <svg class="svg svg-icon" viewBox="0 0 20 20">
+                                <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z" style="stroke: white;fill:white;"></path>
+                              </svg>
+                              <label>Tue</label>
+                            </div>
+                          </div>
+                          <div class="pretty p-svg p-curve">
+                            <input type="checkbox" />
+                            <div class="state p-success">
+                              <!-- svg path -->
+                              <svg class="svg svg-icon" viewBox="0 0 20 20">
+                                <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z" style="stroke: white;fill:white;"></path>
+                              </svg>
+                              <label>Wed</label>
+                            </div>
+                          </div>
+                          <div class="pretty p-svg p-curve">
+                            <input type="checkbox" />
+                            <div class="state p-success">
+                              <!-- svg path -->
+                              <svg class="svg svg-icon" viewBox="0 0 20 20">
+                                <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z" style="stroke: white;fill:white;"></path>
+                              </svg>
+                              <label>Thu</label>
+                            </div>
+                          </div>
+                          <div class="pretty p-svg p-curve">
+                            <input type="checkbox" />
+                            <div class="state p-success">
+                              <!-- svg path -->
+                              <svg class="svg svg-icon" viewBox="0 0 20 20">
+                                <path d="M7.629,14.566c0.125,0.125,0.291,0.188,0.456,0.188c0.164,0,0.329-0.062,0.456-0.188l8.219-8.221c0.252-0.252,0.252-0.659,0-0.911c-0.252-0.252-0.659-0.252-0.911,0l-7.764,7.763L4.152,9.267c-0.252-0.251-0.66-0.251-0.911,0c-0.252,0.252-0.252,0.66,0,0.911L7.629,14.566z" style="stroke: white;fill:white;"></path>
+                              </svg>
+                              <label>Fri</label>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- End Days -->
+                        <div class="shop-work-times">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="time-item">
+                                <label>From</label>
+                                <%= f.time_field :from, class: "form-control" %>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="time-item">
+                                <label>To</label>
+                                <%= f.time_field :to, class: "form-control" %>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div> 
+                    <!-- End Form -->
+                    <div class="col-md-12">
+                      <div class="save-all">
+                        <button class="#">Save <i class="fa fa-check"></i></button>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $("form").on("keypress", function (e) {
+    if (e.keyCode == 13) {
+      return false;
+    }
+  });
+</script>

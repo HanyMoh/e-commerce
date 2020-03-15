@@ -1,0 +1,146 @@
+<div class="page-title-bar">
+  <div class="row">
+    <div class="col-xs-6"><h2>SEO</h2></div>
+    <div class="col-xs-6">
+      <div class="add-new-btn">
+        <a href="<%= new_admin_meta_tag_path %>"><img src="/dashboard/images/add-new-icon.png" alt="Add">New MetaTag</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-breadcrumb">
+  <div class="row">
+    <div class="col-sm-7">
+      <!-- 
+      <a href="javascript:void(0)" class="back-angle"><i class="fa fa-long-arrow-left"></i> Back To My Brand</a>
+      -->
+    </div>
+    <div class="col-sm-5">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<%= admin_path %>">Dashboard</a></li>
+        <li class="breadcrumb-item active">SEO</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<% if current_admin %>
+  <div class="row">
+    <div class="col-md-12">
+      <br/>
+      <% if @general_meta_tags %>
+        <h2>General meta tags</h2>
+        <div class="tables">
+          <div class="data-table basic-table">
+            <div class="table-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Content</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @general_meta_tags.each do |meta_tag| %>
+                    <tr>
+                      <td><%= meta_tag.shop ? meta_tag.shop.name : "Nasnav homepage" %></td>
+                      <td><%= meta_tag.name %></td>
+                      <td><%= meta_tag.content %></td>
+                      <td>
+                        <a href="<%= edit_admin_meta_tag_path(meta_tag) %>" class="edit"><i class="fa fa-pencil"></i></a>
+                        <%= link_to admin_meta_tag_path(meta_tag), method: :delete, data: {confirm: "Are you sure?"} do %>
+                          <i class="fa fa-trash"></i>
+                        <% end %>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<div class="start-content">
+  <div class="row">
+    <div class="col-md-12">
+      <br/>
+      <h2>Shops meta tags</h2>
+      <div class="tables">
+        <div class="data-table basic-table">
+          <div class="table-body">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Shop</th>
+                  <th>Name</th>
+                  <th>Content</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @shops_meta_tags.each do |meta_tag| %>
+                  <tr>
+                    <td><%= meta_tag.shop ? meta_tag.shop.name : "Nasnav homepage" %></td>
+                    <td><%= meta_tag.name %></td>
+                    <td><%= meta_tag.content %></td>
+                    <td>
+                      <a href="<%= edit_admin_meta_tag_path(meta_tag) %>" class="btn btn-sm btn-success"><i class="fa fa-pencil"></i></a>
+                      <%= link_to admin_meta_tag_path(meta_tag), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-sm btn-danger' do %>
+                        <i class="fa fa-trash"></i>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--
+<br/>
+<h2>Products meta tags</h2>
+<div class="tables">
+  <div class="data-table basic-table">
+    <div class="table-body">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Brand</th>
+            <th>Name</th>
+            <th>Content</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%# @products_meta_tags.each do |meta_tag| %>
+            <tr>
+              <td><%#= meta_tag.product ? meta_tag.product.name : "Nasnav homepage" %></td>
+              <td><%#= meta_tag.product ? meta_tag.product.brand.name : "Nasnav homepage" %></td>
+              <td><%#= meta_tag.name %></td>
+              <td><%#= meta_tag.content %></td>
+              <td>
+                <a href="<%#= edit_admin_meta_tag_path(meta_tag) %>" class="edit"><i class="fa fa-pencil"></i></a>
+                <%#= link_to admin_meta_tag_path(meta_tag), method: :delete, data: {confirm: "Are you sure?"} do %>
+                  <i class="fa fa-trash"></i>
+                <%# end %>
+              </td>
+            </tr>
+          <%# end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+-->

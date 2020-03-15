@@ -1,0 +1,54 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "distances",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/one/distances/get_nearest_brands.json",
+      "operations": [
+        {
+          "summary": "Gets nearest brands to a point within 70 meters",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "lat",
+              "type": "float",
+              "description": "Latitude",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "lng",
+              "type": "float",
+              "description": "Longitude",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            },
+            {
+              "code": 406,
+              "responseModel": null,
+              "message": "Not Acceptable"
+            }
+          ],
+          "nickname": "Api::V1::Distances#get_nearest_brands",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

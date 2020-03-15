@@ -1,0 +1,65 @@
+<div class="page-title-bar">
+  <div class="row">
+    <div class="col-xs-6"><h2><img src="/dashboard/images/icon3.png" alt="">Theme</h2></div>
+    <div class="col-xs-6">
+      <div class="add-new-btn">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-breadcrumb">
+  <div class="row">
+    <div class="col-sm-7">
+      <!-- 
+      <a href="javascript:void(0)" class="back-angle"><i class="fa fa-long-arrow-left"></i> Back To My Brand</a>
+      -->
+    </div>
+    <div class="col-sm-5">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<%= admin_path %>">Dashboard</a></li>
+        <li class="breadcrumb-item active">Theme</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="start-content">
+  <div class="all-staff">
+    <div class="row">
+      <% @brands.each do |brand| %>
+        <div class="col-md-3 col-sm-6">
+          <div class="main-view-item">
+            <div class="view-header">
+              <span>
+                <%= link_to brand.name,admin_brand_path(brand.id) %>
+              </span>
+            </div>
+            <div class="view-body">
+              <ul>
+                <li><p>Name</p> <span><%= brand.try(:name) %></span></li>
+                <li><p>Category</p> <span><%= brand.category.try(:name) %></span></li>
+                <li><p>Theme</p> <span><%= brand.organization.organization_theme ? 'Custom' : 'Default' %></span></li>
+                <% unless current_admin%>
+                <li>
+                  <p>Actions</p>
+                 <% end %>
+                </li>
+              </ul>
+            </div>
+            <div class="view-footer">
+              <% if brand.organization.organization_theme %>
+                <a href="<%= edit_admin_organization_theme_path(brand.organization.organization_theme, brand: brand) %>" class="edit"><i class="fa fa-pencil"></i>Edit</a>
+                <%= link_to admin_organization_theme_path(brand.organization.organization_theme), method: :delete, class: 'delete', data: { confirm: 'Are you sure?' } do %>
+                  <i class="fa fa-trash"></i>Restore Default
+                <% end %>
+              <% else %>
+                <a href="<%= new_admin_organization_theme_path(brand: brand) %>" class="btn btn-sm btn-primary"></i>New Theme</a>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

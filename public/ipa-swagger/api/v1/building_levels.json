@@ -1,0 +1,75 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "building_levels",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/one/building_levels.json",
+      "operations": [
+        {
+          "summary": "All building levels",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "building_id",
+              "type": "integer",
+              "description": "Building id",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::BuildingLevels#index",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/building_levels/{id}.json",
+      "operations": [
+        {
+          "summary": "Get building level",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "building_id",
+              "type": "integer",
+              "description": "Building id",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Building Level id",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::V1::BuildingLevels#show",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

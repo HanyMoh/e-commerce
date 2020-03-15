@@ -1,0 +1,77 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "sitemaps",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/two/dev/generate_fortune_sitemap.json",
+      "operations": [
+        {
+          "summary": "Generate Sitemap",
+          "notes": "      This let you generate links for<br/>\n      <strong>Fortune including it's shops and products</strong><br/>\n      which exists on the server<br/>\n",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "organization_id",
+              "type": "integer",
+              "description": "Organization ID",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::V2::Dev::Sitemaps#generate_fortune_sitemap",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/two/dev/generate_alimage_sitemap.json",
+      "operations": [
+        {
+          "summary": "Generate Sitemap",
+          "notes": "      This let you generate links for<br/>\n      <strong>AlImage including it's shops and products</strong><br/>\n      which exists on the server<br/>\n",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "organization_id",
+              "type": "integer",
+              "description": "Organization ID",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::V2::Dev::Sitemaps#generate_alimage_sitemap",
+          "method": "post"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

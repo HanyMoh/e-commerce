@@ -1,0 +1,1 @@
+json.extract! manager, :id,:name, :email, :phone_number, :organization_id, :job_title, :authentication_token

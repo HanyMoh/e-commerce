@@ -1,0 +1,183 @@
+<% content_for :bc_title do %>
+  Shop 360
+<% end %>
+
+<% content_for :bc_current do %>
+  Manage Virtual Store
+<% end %>
+
+<% content_for :bc_buttons do %>
+  <button onclick="gameInstance.SetFullscreen(1)" class="btn btn-success"> Go Full Screen</button>
+
+  <%= link_to publish_admin_shop360s_path(shop_id: params[:id]), method: :post, data: { confirm: 'This will overwrite the current data! Proceed?' } do %>
+    <button class="btn btn-warning">Publish</button>
+  <% end %>
+
+  <%= link_to preview_admin_shop360s_path(shop_id: params[:id]), target: :_blank do %>
+    <button class="btn btn-primary">Preview</button>
+  <% end %>
+
+  <a href="<%= admin_shops_path %>"><button type="button" class="btn btn-info"><i class="fa fa-plus-circle"></i> All Shops</button></a>
+<% end %>
+
+<%= render 'shared/breadcrumb' %>
+<style>
+  html {
+  box-sizing: border-box;
+  }
+  *, *:before, *:after {
+  box-sizing: inherit;
+  }
+  body {
+  margin: 0;
+  background: #444;
+  }
+
+  #gameContainer {
+  width: 100%;
+  height: 100%;
+  }
+
+  canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  }
+
+  .logo {
+  display: block;
+  max-width: 100vw;
+  max-height: 70vh;
+  }
+
+  .progress {
+  margin: 1.5em;
+  border: 1px solid white;
+  width: 90%;
+  height:auto;
+  display: none;
+  }
+
+  .progress .full {
+  margin: 2px;
+  background: white;
+  height: 1em;
+  transform-origin: top left;
+  }
+
+  #loader {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  }
+  .spinner,
+  .spinner:after {
+  border-radius: 50%;
+  width: 5em;
+  height: 5em;
+  }
+  .spinner {
+  margin: 10px;
+  font-size: 10px;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-right: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1.1em solid rgba(255, 255, 255, 0.2);
+  border-left: 1.1em solid #ffffff;
+  transform: translateZ(0);
+  animation: spinner-spin 1.1s infinite linear;
+  }
+  @keyframes spinner-spin {
+  0% {
+  transform: rotate(0deg);
+  }
+  100% {
+  transform: rotate(360deg);
+  }
+  }
+  #Unity360Container {
+  width:100%;
+  height:100%;
+  position:relative;
+  }
+  .fullscreen {
+  background-image: url('/shop360ms-edit/fullscreen.png'); width: 38px; float: right;
+  }
+  .fullscreen {
+  margin-top: 5px; height: 38px;
+  background-image: url('/shop360ms-edit/fullscreen.png'); width: 38px; float: right;
+  }
+</style>
+
+<div class="row">
+  <div class="col-md-12">
+    <div id="Unity360Container">
+      <div id="gameContainer">
+      </div>
+      <div class="fullscreen" onclick="gameInstance.SetFullscreen(1)"></div>
+      <div id="loader" >
+        <img class="logo" src="/shop360ms-edit/logo.png">
+        <div class="spinner"></div>
+        <div class="progress"><div class="full"></div></div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2">
+  </div>
+</div>
+
+<script src="/shop360ms-edit/Build/UnityLoader.js"></script>
+
+<script>
+  var gameInstance = UnityLoader.instantiate("gameContainer", "/shop360ms-edit/Build/StoreEdit.json", {onProgress: UnityProgress});
+  function UnityProgress(gameInstance, progress) {
+  if (!gameInstance.Module) {
+  return;
+  }
+  const loader = document.querySelector("#loader");
+  if (!gameInstance.progress) {
+  const progress = document.querySelector("#loader .progress");
+  progress.style.display = "block";
+  gameInstance.progress = progress.querySelector(".full");
+  loader.querySelector(".spinner").style.display = "none";
+  }
+  gameInstance.progress.style.transform = `scaleX(${progress})`;
+  if (progress === 1 && !gameInstance.removeTimeout) {
+  gameInstance.removeTimeout = setTimeout(function() {
+  loader.style.display = "none";
+  }, 2000);
+  }
+  }
+</script>
+
+<script type="text/javascript" language="javascript">
+  function getCookie(cname) {
+  //console.log(cname);
+  //try{cname=cname.toLowerCase();}catch(e){console.log("cname:"+cname);}
+
+      var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i < ca.length; i++) {
+  var c = ca[i];
+  while (c.charAt(0) == ' ') {
+  c = c.substring(1);
+  }
+  if (c.indexOf(name) == 0) {
+  var cookieValue = c.substring(name.length, c.length);
+  console.log("getCookie("+name+")="+cookieValue);
+  return cookieValue
+  }
+  }
+
+  console.log("getCookie("+name+")=Not found");
+  return "";
+  }
+</script>

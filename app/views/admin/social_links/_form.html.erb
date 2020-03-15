@@ -1,0 +1,18 @@
+<div class="start-content">
+  <div class="row">
+    <div class="col-md-12">
+      <%= form_for [:admin, @social_link] do |f| %>
+        facebook:
+        <%= f.text_field :facebook %>
+        <br>
+        twitter:
+        <%= f.text_field :twitter %>
+        <br>
+        Instagram:
+        <%= f.text_field :instagram %>
+        <br>
+        <%= f.submit %>
+      <% end %>
+    </div>
+  </div>
+</div>

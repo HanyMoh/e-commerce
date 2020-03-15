@@ -1,0 +1,292 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "shop360s",
+  "apis": [
+    {
+      "path": "/ipa-shop360/ver/sion/one/shop360_images.json",
+      "operations": [
+        {
+          "summary": "Shop 360 images",
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "shop_id",
+              "type": "integer",
+              "description": "Shop ID",
+              "required": true
+            }
+          ],
+          "nickname": "Shop360Api::V1::Shop360s#shop360_images",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa-shop360/ver/sion/one/download_sections_images.json",
+      "operations": [
+        {
+          "summary": "Download sections images",
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "shop_id",
+              "type": "integer",
+              "description": "Shop ID",
+              "required": true
+            }
+          ],
+          "nickname": "Shop360Api::V1::Shop360s#download_sections_images",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa-shop360/ver/sion/one/download_view_image.json",
+      "operations": [
+        {
+          "summary": "Download view Image",
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "shop_id",
+              "type": "integer",
+              "description": "Shop ID",
+              "required": true
+            }
+          ],
+          "nickname": "Shop360Api::V1::Shop360s#download_view_image",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa-shop360/ver/sion/one/download_json_data.json",
+      "operations": [
+        {
+          "summary": "Download JSON Data",
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "type",
+              "type": "string",
+              "description": "Type web or mobile",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "shop_id",
+              "type": "integer",
+              "description": "Shop ID",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "published",
+              "type": "string",
+              "description": "Published?",
+              "required": false
+            }
+          ],
+          "nickname": "Shop360Api::V1::Shop360s#download_json_data",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa-shop360/ver/sion/one/download_products_positions.json",
+      "operations": [
+        {
+          "summary": "Download products positions",
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "shop_id",
+              "type": "integer",
+              "description": "Shop ID",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "published",
+              "type": "string",
+              "description": "Published?",
+              "required": false
+            }
+          ],
+          "nickname": "Shop360Api::V1::Shop360s#download_products_positions",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa-shop360/ver/sion/one/upload_json_data.json",
+      "operations": [
+        {
+          "summary": "Upload JSON Data",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "type",
+              "type": "string",
+              "description": "Type web or mobile",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "shop_id",
+              "type": "integer",
+              "description": "Shop ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "json_data",
+              "type": "string",
+              "description": "Web/Mobile 360 JSON Data",
+              "required": true
+            }
+          ],
+          "nickname": "Shop360Api::V1::Shop360s#upload_json_data",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/ipa-shop360/ver/sion/one/upload_products_positions.json",
+      "operations": [
+        {
+          "summary": "Upload shop products positions",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "shop_id",
+              "type": "integer",
+              "description": "Shop ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "json_data",
+              "type": "string",
+              "description": "Web/Mobile 360 JSON Data",
+              "required": true
+            }
+          ],
+          "nickname": "Shop360Api::V1::Shop360s#upload_products_positions",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/ipa-shop360/ver/sion/one/vr_filtered_products.json",
+      "operations": [
+        {
+          "summary": "Get VR Filtered Products",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "shop_id",
+              "type": "integer",
+              "description": "Shop ID",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "barcode",
+              "type": "string",
+              "description": "Enter Product Barcode",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "name",
+              "type": "string",
+              "description": "Enter Product Name",
+              "required": false
+            }
+          ],
+          "nickname": "Shop360Api::V1::Shop360s#vr_filtered_products",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa-shop360/ver/sion/one/fe_filtered_products.json",
+      "operations": [
+        {
+          "summary": "Front-end Filtered Products",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "shop_id",
+              "type": "integer",
+              "description": "Shop ID",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "search",
+              "type": "string",
+              "description": "Enter part of name, description",
+              "required": false
+            }
+          ],
+          "nickname": "Shop360Api::V1::Shop360s#fe_filtered_products",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

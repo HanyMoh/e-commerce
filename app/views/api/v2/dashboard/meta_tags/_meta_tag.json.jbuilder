@@ -1,0 +1,1 @@
+json.extract! meta_tag, :id, :name, :content, :shop_id, :organization_id, :product_id

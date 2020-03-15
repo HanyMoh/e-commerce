@@ -1,0 +1,1 @@
+!function(){function i(){var i=$("#building_form").find("#building_longitude").val(),n=$("#building_form").find("#building_latitude").val();$("#building_form").find("#building_coordinates").val(""===i||""===n?"":"true")}$("#building_longitude, #building_latitude").on("change",function(){i()}),$(document).ready(i)}();

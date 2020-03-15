@@ -1,0 +1,70 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "social_media",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/one/social-media-registration.json",
+      "operations": [
+        {
+          "summary": "Signup, or signin using Social Media",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "user[email]",
+              "type": "email",
+              "description": "User Email",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "user[user_name]",
+              "type": "name",
+              "description": "User Name",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "user[provider]",
+              "type": "provider",
+              "description": "User provider",
+              "required": true,
+              "allowableValues": {
+                "valueType": "LIST",
+                "values": [
+                  "facebook",
+                  "gmail"
+                ]
+              }
+            },
+            {
+              "paramType": "form",
+              "name": "user[uid]",
+              "type": "uid",
+              "description": "User Identifier on Social Media",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 406,
+              "responseModel": null,
+              "message": "Not Acceptable"
+            }
+          ],
+          "nickname": "Api::V1::SocialMedia#create",
+          "method": "post"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

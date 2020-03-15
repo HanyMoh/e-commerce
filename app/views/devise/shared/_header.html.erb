@@ -1,0 +1,99 @@
+<header class="navbox-header header-style2">
+    <div class="container">
+        <div class="logo">
+          <% if @brand_theme && @brand_theme.header_logo.present? %> 
+            <a href="<%= @navbox_url %>"><img src="<%= @brand_theme.header_logo %>" alt="Logo" draggable="false"></a>
+          <% else %>
+            <a href="<%= @navbox_url %>"><img src="<%= @brand.logo %>" alt="Logo" draggable="false"></a>
+          <% end %>
+        </div>
+        <nav class="nav-inner-links">
+            <ul>
+                <li class=""><a href="<%= @navbox_url + "/section/" + @brand.categories.first.to_s + "?all_products=1" %>">All</a></li>
+                <% @brand.categories.take(6).map do |cat| %>
+                  <li><a href="<%= @navbox_url + "/section/" + find_cat(cat, "id").to_s %>"><%= find_cat(cat, "name") %></a></li>
+                <% end %>
+                <% if @brand.categories.count > 6 %>
+                  <li>
+                      <div class="list-holder dropdown-select links-dropdown">
+                          <label class="selected-item"><span class="icon fa fa-ellipsis-h"></span></label>
+                          <ul class="list">
+                            <% @brand.categories.drop(6).map do |cat| %>
+                              <li class="list-item"><a href="<%= @navbox_url + "/section/" + find_cat(cat, "id").to_s %>"><%= find_cat(cat, "name") %></a></li>
+                            <% end %>
+                          </ul>
+                      </div>
+                  </li>
+                <% end %>
+            </ul>
+        </nav>
+        <div class="navbox-toggle-nav">
+            <button class="toggle-btn" id="toggle-navbox-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="navbox-mobile">
+                <nav class="nav-inner-links navbox-menu-mobile">
+                    <ul>
+                        <li class="active"><a href="#">Home</a></li>
+                        <% @brand.categories.map do |cat| %>
+                          <li><a href="<%= @navbox_url + "/section/" + find_cat(cat, "id").to_s %>"><%= find_cat(cat, "name") %></a></li>
+                        <% end %>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <div class="right-side">
+            <!--
+            <div class="list-holder dropdown-select currency-dropdown">
+                <label class="selected-item"><span class="item-text"></span><span class="icon fa fa-angle-down"></span></label>
+                <ul class="list">
+                  <li class="list-item"><a href="?currency=EGP"><span class="icon fa fa-usd"></span><%#= cookies[:currency] ? cookies[:currency] : "EGP" %></a></li>
+                  <%# @currencies.each do |currency| %>
+                    <li class="list-item"><a href="?currency=<%#= currency.currency %>"><span class="icon fa fa-eur"></span><%#= currency.currency %></a></li>
+                  <%# end %>
+                </ul>
+              </div>
+              -->
+            <div class="cart"><a class="cart-icon" href="#"><span class="cart-count">0</span><span class="fa fa-shopping-cart"></span></a>
+                <div class="cart-content">
+                    <div class="cart-items">
+                        <ul class="items-list">
+                            <li class="item act-table">
+                                <div class="item-img-cell image-ratio vertical-top">
+                                    <div class="ratio"></div>
+                                    <a class="ratio-inner cart-item" href="#"><img class="item-img" src="/navbox/images/navbox-images/cart-img.png" alt="item" draggable="false"></a>
+                                </div>
+                                <div class="item-content-cell act-table-cell vertical-top">
+                                    <h4 class="item-title"><a href="#">BASKET</a></h4>
+                                    <p class="paragraph"><span class="item-count">1</span><span class="x">x</span><span class="item-price">$10.00</span></p>
+                                    <button class="close-btn" type="button"><span class="icon fa fa-times"></span></button>
+                                </div>
+                            </li>
+                            <li class="item act-table">
+                                <div class="item-img-cell image-ratio vertical-top">
+                                    <div class="ratio"></div>
+                                    <a class="ratio-inner cart-item" href="#"><img class="item-img" src="/navbox/images/navbox-images/cart-img.png" alt="item" draggable="false"></a>
+                                </div>
+                                <div class="item-content-cell act-table-cell vertical-top">
+                                    <h4 class="item-title"><a href="#">BASKET</a></h4>
+                                    <p class="paragraph"><span class="item-count">1</span><span class="x">x</span><span class="item-price">$10.00</span></p>
+                                    <button class="close-btn" type="button"><span class="icon fa fa-times"></span></button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="cart-fotter">
+                        <p class="paragraph cart-total">TOTAL : <span class="black">$60.00</span></p>
+                        <div class="cart-actions">
+                            <div class="row no-margin">
+                                <div class="action col-xs-12"><a class="btn" href="#">View Cart</a></div>
+<!--                                    <div class="action col-xs-6"><a class="btn" href="#">Checkout</a></div>-->                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,18 @@
+.pretty.block {
+    display: block;
+    margin: 20px 0 0 0;
+}
+
+.pretty {
+    margin-bottom: 15px;
+    margin-right: 10px;
+    .state {
+        label {
+            margin-left: 5px;
+        }
+    }
+}
+
+.pretty .state label:after, .pretty .state label:before {
+    top: calc((0% - (100% - 1em)) - 15%);
+}

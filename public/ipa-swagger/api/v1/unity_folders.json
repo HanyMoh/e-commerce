@@ -1,0 +1,35 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "unity_folders",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/one/unity_folders/get_product_ar_folder.json",
+      "operations": [
+        {
+          "summary": "All files of AR view in order (Texture .jpg or .png - .obj - .mtl)",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "product_id",
+              "type": "integer",
+              "description": "Product ID",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::UnityFolders#get_product_ar_folder",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

@@ -1,0 +1,195 @@
+<% content_for :bc_title do %>
+  Products
+<% end %>
+
+<% content_for :bc_current do %>
+  New Product
+<% end %>
+
+<% content_for :bc_buttons do %>
+  <a href="<%= admin_products_path %>"><button type="button" class="btn btn-info"><i class="fa fa-plus-circle"></i> All Products</button></a>
+<% end %>
+
+<%= render 'shared/breadcrumb' %>
+
+<%= render 'shared/error_messages', object: @product %>
+
+<% if params[:brand] || action_name == 'edit' %>
+  <div class="row">
+    <div class="col-6">
+      <div class="card">
+        <div class="card-header bg-info">
+          <% if @product.new_record? %>
+            <h4 class="m-b-0 text-white">Add new product</h4>
+          <% else %>
+            <h4 class="m-b-0 text-white">Edit product</h4>
+          <% end %>
+        </div>
+        <div class="card-body">  
+          <br/>
+          <%= nested_form_for [:admin, @product], html: { help: :block } do |f| %>
+            <%= f.hidden_field :organization_id, value: current_organization_manager.organization.id %>
+
+            <div class="row">
+              <div class="col-md-12">          
+                <div class="form-group">        
+                  <label class="control-label">Name</label>
+                  <%= f.text_field :name, required: true, class: "form-control" %>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">          
+                <div class="form-group">        
+                  <label class="control-label">Description</label>
+                  <%= f.text_area :description, class:"form-control"%>
+                </div>           
+              </div>             
+            </div> 
+
+            <div class="row">
+              <div class="col-md-12">          
+                <div class="form-group">        
+                  <label class="control-label">Brand</label>
+                  <%= f.select :brand_id, options_from_collection_for_select(current_organization_manager.brands, :id, :name, @product.try(:brand_id)), { prompt: 'Please select ...' }, required: true, class: "form-control select2" %>
+                </div>           
+              </div>             
+            </div> 
+
+            <div class="row">
+              <div class="col-md-12">          
+                <div class="form-group">        
+                  <label class="control-label">Category</label>
+                  <%= f.select :category_id, options_from_collection_for_select(Category.where.not(parent_id: nil), :id, :name, @product.try(:category_id)), { prompt: 'Please select ...' }, required: true, class: "form-control select2" %>
+                </div>           
+              </div>             
+            </div> 
+
+            <div class="row">
+              <div class="col-md-12">          
+                <div class="form-group">        
+                  <label class="control-label">Cover</label>
+                  <%= f.file_field :cover_image, class:"form-control"%>
+                </div>           
+              </div>             
+            </div> 
+
+            <br/><br/>
+            
+            <div class="row" style="padding-left: 100px;">
+              <div class="col-md-12">          
+                <div class='form-group'>
+                  <label style="font-size: 30px"><b>Sub Products</b></label>
+                  <%= f.fields_for :sub_products do |sub_product| %>
+                      <%= sub_product.hidden_field :brand_id, value: @brand.id %>
+                      <%= sub_product.hidden_field :organization_id, value: current_organization_manager.organization_id %>
+                    <div class="form-group">
+                      <%= sub_product.text_field :barcode, placeholder: 'Enter sub product barcode...', class: 'form-control' %>
+                    </div>
+                    <div class="form-group">
+                      <%= sub_product.text_field :color, placeholder: 'Enter Color...', class: 'form-control' %>
+                    </div>
+                    <div class="form-group">
+                      <%= sub_product.text_field :size, placeholder: 'Enter Size...', class: 'form-control' %>
+                    </div>
+                    <div class="form-group">
+                      <% if sub_product.object.cover_image.present? %>
+                        <%= image_tag(sub_product.object.cover_image.thumb.url, style: 'max-width: 100px;') %>
+                        <%= sub_product.file_field :cover_image, class: 'form-control', required: false, 'data-allowed-file-extensions': "png jpg jpeg" %>
+                      <% else %>
+                        <%= sub_product.file_field :cover_image, class: 'form-control', required: false, 'data-allowed-file-extensions': "png jpg jpeg" %>
+                      <% end %>
+                    </div>
+                    <div class="form-group">
+                      <%= sub_product.file_field :gallery, multiple: true, class: 'form-control' %>
+                    </div>
+
+                    <div class="row" style="padding-left: 100px;">
+                      <div class="col-md-12">          
+                        <div class='form-group'>
+                          <label style="font-size: 30px;"><b>Stocks</b></label>
+                          <%= sub_product.fields_for :stocks do |stock| %>
+                            <%= stock.hidden_field :organization_id, value: current_organization_manager.organization_id %>
+                            <div class="form-group">
+                              <%= stock.number_field :quantity, placeholder: 'Enter Quantity...', class: 'form-control' %>
+                            </div>
+                            <div class="form-group">
+                              <%= stock.number_field :price, placeholder: 'Enter sub product barcode...', class: 'form-control' %>
+                            </div>
+                            <div class="form-group">
+                              <%= stock.number_field :discount, placeholder: 'Enter sub product barcode...', class: 'form-control' %>
+                            </div>
+                            <div class="form-group">
+                              <%= stock.select :shop_id, options_from_collection_for_select(@brand.shops.all, :id, :name, stock.try(:shop_id)), {prompt: 'Please select ...' }, required:true, class:"form-control select2" %>
+                            </div>
+                            <div class="form-group">
+                              <%= stock.link_to_remove "Remove Stock", class:"btn btn-danger pull-right" %>
+                            </div>
+                            <br/><br/>
+                          <% end %>
+                          <div class="form-group">
+                            <%= sub_product.link_to_add "Add more stocks", :stocks, class:"btn btn-info" %>
+                          </div>
+                          <!--
+                          <small>You can add sub categories of sub categories from indexing page after submitting your new sub categories</small>
+                          -->
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <%= sub_product.link_to_remove "Remove Sub Product", class:"btn btn-danger pull-right" %>
+                    </div>
+                    <br/><br/>
+                  <% end %>
+                  <div class="form-group">
+                    <%= f.link_to_add "Add more sub products", :sub_products, class:"btn btn-info" %>
+                  </div>
+                  <!--
+                  <small>You can add sub categories of sub categories from indexing page after submitting your new sub categories</small>
+                  -->
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <%= f.submit 'Submit', class: 'btn btn-lg btn-primary' %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <%= form_tag new_admin_product_path, method: :get, html: { help: :block } do %>
+    <div class="row">
+      <div class="col-md-12">          
+        <div class="form-group">        
+          <label class="control-label">Brand</label>
+          <%= select_tag :brand, options_from_collection_for_select(current_organization_manager.brands, :id, :name), class: "form-control select2" %>
+        </div>           
+      </div>             
+    </div> 
+
+    <div class="row">
+      <div class="col-md-12">          
+        <div class="form-group">        
+          <%= submit_tag 'Next', class: "btn btn-primary" %>
+        </div>           
+      </div>             
+    </div> 
+  <% end %>
+<% end %>
+
+<script>
+  $(function() {
+    // For select 2
+    $(".select2").select2();
+  });
+</script>
+

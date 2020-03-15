@@ -1,0 +1,530 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "brands",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/two/dashboard/brands.json",
+      "operations": [
+        {
+          "summary": "Get all brands for admin or current manager",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Token",
+              "required": true
+            }
+          ],
+          "notes": "      Sending `admin token` as <b>X-User-Token</b> will return all brands in the system.<br />\n      Sending `manager token` as <b>X-User-Token</b> will return all brands of current manager organization.<br />\n",
+          "nickname": "Api::V2::Dashboard::Brands#index",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/two/dashboard/brands.json",
+      "operations": [
+        {
+          "summary": "Create Brand",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Token",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[name]",
+              "type": "string",
+              "description": "Brand Name",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[display_name]",
+              "type": "string",
+              "description": "Brand display Name",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[following_standards]",
+              "type": "boolean",
+              "description": "Following Standards",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[category_id]",
+              "type": "integer",
+              "description": "Category ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[organization_id]",
+              "type": "integer",
+              "description": "Organization ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[organization_manager_id]",
+              "type": "integer",
+              "description": "Organization Manager ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[logo]",
+              "type": "string",
+              "description": "Brand Logo",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[dark_logo]",
+              "type": "string",
+              "description": "Brand dark logo",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[description]",
+              "type": "string",
+              "description": "Brand description",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[youtube]",
+              "type": "string",
+              "description": "Youtube Link",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[instagram]",
+              "type": "string",
+              "description": "Instagram Link",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[facebook]",
+              "type": "string",
+              "description": "Facebook Link",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[twitter]",
+              "type": "string",
+              "description": "Twitter Link",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[banner_image]",
+              "type": "string",
+              "description": "Brand banner image",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[sat]",
+              "type": "boolean",
+              "description": "sat",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[sun]",
+              "type": "boolean",
+              "description": "sun",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[mon]",
+              "type": "boolean",
+              "description": "mon",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[tue]",
+              "type": "boolean",
+              "description": "tue",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[wed]",
+              "type": "boolean",
+              "description": "wed",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[thu]",
+              "type": "boolean",
+              "description": "thu",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[fri]",
+              "type": "boolean",
+              "description": "fri",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[from]",
+              "type": "string",
+              "description": "from",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[to]",
+              "type": "string",
+              "description": "to",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[websites]",
+              "type": "array",
+              "description": "websites",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[phone_numbers]",
+              "type": "array",
+              "description": "phone numbers",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V2::Dashboard::Brands#create",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/two/dashboard/brands/{id}.json",
+      "operations": [
+        {
+          "summary": "Show a brand by id",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Brand ID",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::V2::Dashboard::Brands#show",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/two/dashboard/brands/{id}.json",
+      "operations": [
+        {
+          "summary": "update Brand",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Brand ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[name]",
+              "type": "string",
+              "description": "Brand Name",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[display_name]",
+              "type": "string",
+              "description": "Brand display Name",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[following_standards]",
+              "type": "boolean",
+              "description": "Following Standards",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[category_id]",
+              "type": "integer",
+              "description": "Category ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[organization_id]",
+              "type": "integer",
+              "description": "Organization ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[organization_manager_id]",
+              "type": "integer",
+              "description": "Organization Manager ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[logo]",
+              "type": "string",
+              "description": "Brand Logo",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[dark_logo]",
+              "type": "string",
+              "description": "Brand dark logo",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[description]",
+              "type": "string",
+              "description": "Brand description",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[youtube]",
+              "type": "string",
+              "description": "Youtube Link",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[instagram]",
+              "type": "string",
+              "description": "Instagram Link",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[facebook]",
+              "type": "string",
+              "description": "Facebook Link",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[twitter]",
+              "type": "string",
+              "description": "Twitter Link",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[banner_image]",
+              "type": "string",
+              "description": "Brand banner image",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[sat]",
+              "type": "boolean",
+              "description": "sat",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[sun]",
+              "type": "boolean",
+              "description": "sun",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[mon]",
+              "type": "boolean",
+              "description": "mon",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[tue]",
+              "type": "boolean",
+              "description": "tue",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[wed]",
+              "type": "boolean",
+              "description": "wed",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[thu]",
+              "type": "boolean",
+              "description": "thu",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[fri]",
+              "type": "boolean",
+              "description": "fri",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[from]",
+              "type": "string",
+              "description": "from",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[to]",
+              "type": "string",
+              "description": "to",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[websites]",
+              "type": "array",
+              "description": "websites",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "brand[phone_numbers]",
+              "type": "array",
+              "description": "phone numbers",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V2::Dashboard::Brands#update",
+          "method": "patch"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/two/dashboard/brands/{id}.json",
+      "operations": [
+        {
+          "summary": "Deletes an existing Brand",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Brand Id",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::V2::Dashboard::Brands#destroy",
+          "method": "delete"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

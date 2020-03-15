@@ -1,0 +1,1 @@
+json.extract! building_level, :id, :name, :level, :image, '3d_image', :image_latitude, :image_longitude, :corridors, :gates, :beacons, :image_position, :image_rotation

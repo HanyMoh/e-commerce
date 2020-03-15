@@ -1,0 +1,76 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "subscribed_users",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/two/dashboard/subscribed_users.json",
+      "operations": [
+        {
+          "summary": "Get all subscribed users for current admin or manager",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Token",
+              "required": true
+            }
+          ],
+          "notes": "      Sending `manager token` as <b>X-User-Token</b> will return all subscribed users of the current manager organization.<br />\n      Sending `admin token` as <b>X-User-Token</b> will return all subscribed users in the system.<br />\n",
+          "nickname": "Api::V2::Dashboard::SubscribedUsers#index",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/two/dashboard/subscribed_users/{id}.json",
+      "operations": [
+        {
+          "summary": "Show a subscribed user by id",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Subscribed user ID",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::V2::Dashboard::SubscribedUsers#show",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

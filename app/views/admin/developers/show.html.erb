@@ -1,0 +1,53 @@
+<!------------------------------------------------------------
+Page Title
+------------------------------------------------------->
+<div class="page-title-bar">
+  <div class="row">
+    <div class="col-xs-6"><h2><%=@developer.try(:name)%></h2></div>
+  </div>
+</div>
+<!------------------------------------------------------------
+Page Breadcrumb
+------------------------------------------------------->
+<div class="page-breadcrumb">
+  <div class="row">
+    <div class="col-sm-7">
+      <a href="<%= admin_developers_path %>" class="back-angle"><i class="fa fa-long-arrow-left"></i> Back To Developers</a>
+    </div>
+    <div class="col-sm-5">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<%= admin_path %>">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="<%= admin_developers_path %>">Developers</a></li>
+        <li class="breadcrumb-item active"><a href="javascript:void(0)"><%= @developer.try(:name) %></a></li>
+      </ol>
+    </div>
+  </div>
+</div>
+<div class="start-content">
+  <div class="view-brand">
+    <div class="brand-item">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-2"><h4 class="item-title">ID</h4></div>
+          <div class="col-md-10"><p class="item-info"><%=@developer.try(:id)%></p></div>
+        </div>
+      </div>
+    </div>
+    <div class="brand-item">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-2"><h4 class="item-title">Name</h4></div>
+          <div class="col-md-10"><p class="item-info"><%=@developer.try(:name)%></p></div>
+        </div>
+      </div>
+    </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="save-all">
+        <a href="<%= edit_admin_developer_path(@developer.id) %>" class="#">
+          <button class="#">Edit Developer <i class="fa fa-mouse-pointer"></i></button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

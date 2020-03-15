@@ -1,0 +1,106 @@
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.1&appId=676193852752854&autoLogAppEvents=1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- Navbox breadcrumb -->
+<div class="navbox-breadcrumb">
+  <div class="container">
+    <div class="back-line"> <a href="#">Back</a>
+      <div class="line"></div>
+    </div>
+    <ul class="breadcrumb">
+      <li><a href="#">Home</a></li>
+      <li>Login</li>
+    </ul>
+  </div>
+</div>
+
+<%= render partial: "devise/shared/flash_messages", flash: flash %>
+
+<div class="sign-big-section">
+  <div class="sign-box">
+    <div class="row">
+      <div class="col-md-7">
+        <div class="sign-up-side">
+          <h2>Login now !</h2>
+          <div class="sign-forms">
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {}) do |f| %>
+              <%= devise_error_messages! %>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <%= f.email_field :email,placeholder: "Email", autofocus: true, class:"form-control", required:"true"%>
+                    <span class="icon"><img src="images/navbox-images/sending.png" alt=""></span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <%= f.password_field :password, autofocus: true, class:"form-control password" , required:"true", placeholder:"password", autocomplete: "off"%>
+                    <span class="icon"><img src="images/navbox-images/lock.png" alt=""></span>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <div class="terms">
+                      <div class="pretty p-default p-round">
+                        <% if devise_mapping.rememberable? -%>
+                          <%= f.check_box :remember_me %>
+                          <div class="state p-success-o">
+                            <label>remember me</label>
+                          </div>
+                        <% end %>
+                      </div>
+                      <a href="#" class="forget-password">Forget My Password</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="create-btns">
+                    <input type="submit" value="Login now">
+                    <div class="or-line">or</div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <div class="row">
+            <div class="sign-big-section">
+              <div class="sign-forms">
+                <div class="create-btns">
+                  <div class="col-md-6">
+                    <div class="continue-with-btn">
+                      <%= link_to user_facebook_omniauth_authorize_path do %>
+                        <button class="face">Continue with facebook</button>
+                      <% end %>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="continue-with-btn">
+                      <%= link_to user_google_oauth2_omniauth_authorize_path do %>
+                        <button class="google-plus">Continue with google</button>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="having-account">
+          <div class="having-account__content">
+            <i class="demo-icon icon-shield_accept"></i>
+            <p>Don't have an account?</p> 
+            <a href="<%= new_user_registration_path %>">Register now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

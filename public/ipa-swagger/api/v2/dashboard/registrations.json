@@ -1,0 +1,77 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "registrations",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/two/dashboard/registrations.json",
+      "operations": [
+        {
+          "summary": "sign up",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "organization_manager[email]",
+              "type": "email",
+              "description": "Organization Manager Email",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "organization_manager[name]",
+              "type": "name",
+              "description": "Organization Manager Name",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "organization_manager[password]",
+              "type": "password",
+              "description": "Organization Manager password",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "organization_manager[password_confirmation]",
+              "type": "password",
+              "description": "Confirm password",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "organization_manager[avatar]",
+              "type": "avatar",
+              "description": "Organization Manager Avatar",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "organization[name]",
+              "type": "avatar",
+              "description": "Organization Name",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 406,
+              "responseModel": null,
+              "message": "Not Acceptable"
+            }
+          ],
+          "nickname": "Api::V2::Dashboard::Registrations#create",
+          "method": "post"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

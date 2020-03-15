@@ -1,0 +1,61 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "mall_levels",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/one/mall_levels.json",
+      "operations": [
+        {
+          "summary": "All mall levels",
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "mall_id",
+              "type": "integer",
+              "description": "Mall id",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::MallLevels#index",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/mall_levels/{id}.json",
+      "operations": [
+        {
+          "summary": "Get mall level",
+          "parameters": [
+            {
+              "paramType": "query",
+              "name": "mall_id",
+              "type": "integer",
+              "description": "Mall id",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Mall Level id",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::V1::MallLevels#show",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

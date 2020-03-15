@@ -1,0 +1,1 @@
+json.extract! organization_manager, :id, :email, :name, :avatar, :job_title, :authentication_token, :seo, :following_standards, :tutorial, :service_type, :phone_number

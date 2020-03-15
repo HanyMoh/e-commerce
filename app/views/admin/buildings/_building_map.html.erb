@@ -1,0 +1,20 @@
+<div id="building-map"></div>
+<script>
+  // map code
+  function initMap() {
+    var myLatlng = {lat: <%= lat %>, lng: <%= lng %>};
+    var map = new google.maps.Map(document.getElementById('building-map'), {
+        // need to add mathmatical function to handle zoom level 
+      zoom: 10,
+      center: myLatlng
+    });
+    var marker = new google.maps.Marker({
+       position: myLatlng,
+       map: map,
+    });
+  }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDB5wrYxVqgRMSf8i204K6Fx65Ra2bPIYc&libraries=geometry,places&callback=initMap"
+async defer></script>
+

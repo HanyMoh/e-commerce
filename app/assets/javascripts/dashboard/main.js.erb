@@ -1,0 +1,192 @@
+$(document).ready(function () {
+    'use strict';
+    $('.side-nav .collapse').on("show.bs.collapse", function () {
+        $(this).prev().find(".fa").eq(1).removeClass("fa-angle-down").addClass("fa-angle-right");
+    });
+    $("#sidebar").mCustomScrollbar({
+        theme: "minimal"
+    });
+    $("#wizard").steps();
+    $('#sidebarCollapse').on('click', function () {
+        $('#sidebar, #content').toggleClass('active');
+        $('.collapse.in').toggleClass('in');
+        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+    });
+    $('.navbar .navbar-nav li').on('click', function () {
+        $(this).toggleClass('show').siblings().removeClass('show');
+    });
+    $('.page-title-bar .filter-btn').on('click', function () {
+        $('.page-title-bar .filter-dropdwon').fadeToggle();
+    });
+    var max_fields = 10; //maximum input boxes allowed
+    var wrapper_forms = $(".add-products .size-inputs .row"); //Fields wrapper
+    var add_button = $("#sizeInput"); //Add button ID
+    var x = 1; //initlal text box count
+    $(add_button).click(function (e) { //on add input button click
+        e.preventDefault();
+        if (x < max_fields) { //max input box allowed
+            x++; //text box increment
+            $(wrapper_forms).append('<div class="input"> <div class="col-md-4"> <input type="text" class="form-control" placeholder="UK 4/6"> </div> <div class="col-md-4"> <input type="text" class="form-control" placeholder="UK /8"> </div> <div class="col-md-4"> <input type="text" class="form-control" placeholder="UK 10/12"> </div> </div>'); //add input box
+        }
+    });
+    $('.dropify').dropify({
+        messages: {
+            'default': 'File here or clik to upload you photo (jpg or png only)'
+            , 'replace': 'Drag and drop or click to replace'
+            , 'remove': 'Remove'
+            , 'error': 'Ooops, something wrong happended.'
+        }
+        , tpl: {
+            message: '<div class="dropify-message"><span class="fa fa-file-image-o" /> <p>{{ default }}</p></div>'
+        , }
+    });
+    $('.image-360').dropify({
+        messages: {
+            'default': 'File here or clik to upload you photo (360 image only )'
+            , 'replace': 'Drag and drop or click to replace'
+            , 'remove': 'Remove'
+            , 'error': 'Ooops, something wrong happended.'
+        }
+        , tpl: {
+            message: '<div class="dropify-message"><span class="fa fa-file-image-o" /> <p>{{ default }}</p></div>'
+        , }
+    });
+    $('.upload-panoramas-input').dropify({
+        messages: {
+            'default': 'Drag & Drop File here or click to upload'
+            , 'replace': 'Drag and drop or click to replace'
+            , 'remove': 'Remove'
+            , 'error': 'Ooops, something wrong happended.'
+        }
+        , tpl: {
+            message: '<div class="dropify-message"><span /> <p>{{ default }}</p></div>'
+        , }
+    });
+    $('.dd').nestable('serialize');
+    var searchResultItem = $('.search-result-wrapper .main-view-item');
+    searchResultItem.on('click', function () {
+        $(this).toggleClass('checked');
+    });
+    $('select').niceSelect();
+    $('.timeDrop').timeDropper({
+        format: 'h:mm A'
+        , meridians: true
+        , minutesInterval: '15'
+        , setCurrentTime: true
+    });
+    
+    $('.toggleActivation').on('click', function() {
+        
+        if($(this).hasClass('active')) {
+            $(this).removeClass('active').addClass('unactive');
+        } else {
+            $(this).removeClass('unactive').addClass('active');
+        }
+        
+    });
+    
+    var max_fields = 10; //maximum input boxes allowed
+    var wrapper_forms = $(".https-forms"); //Fields wrapper
+    var add_button = $(".add_field_button"); //Add button ID
+    var x = 1; //initlal text box count
+    $(add_button).click(function (e) { //on add input button click
+        e.preventDefault();
+        if (x < max_fields) { //max input box allowed
+            x++; //text box increment
+            $(wrapper_forms).append('<div class="form-group"><div class="input-group"> <div class="input-group-btn"> <button type="button" class="btn btn-default">http:// </button> </div><!-- /btn-group --> <input type="text" name="websites[]" class="form-control" aria-label="..."> </div></div>'); //add input box
+        }
+    });
+    var max_fields = 10; //maximum input boxes allowed
+    var wrapper_numbers = $(".phone-numbers"); //Fields wrapper
+    var add_button = $(".add_field_button_numbers"); //Add button ID
+    var x = 1; //initlal text box count
+    $(add_button).click(function (e) { //on add input button click
+        e.preventDefault();
+        if (x < max_fields) { //max input box allowed
+            x++; //text box increment
+            $(wrapper_numbers).append('<div class="form-group"> <div class="input-group"> <div class="input-group-btn"> <div class="nice-select" tabindex="0"><span class="current">002</span><ul class="list"><li data-value="" class="option selected">002</li></ul></div> </div><!-- /btn-group --> <input type="text" name="phone_numbers[]" class="form-control" aria-label="..."> </div><!-- /input-group --> </div>'); //add input box
+        }
+    });
+    var checkBox = $('.pretty input[type="checkbox"]');
+    checkBox.on('change', function () {
+        $(this).parent().parent().toggleClass('active');
+    })
+    $('.list-group .list-group-item').on('click', function () {
+        $(this).toggleClass('active').siblings().removeClass('active');
+    });
+    $(".product-carousel").owlCarousel({
+        dots: false
+        , autoplay: false
+        , autoplayTimeout: 3000
+        , autoplayHoverPause: true
+        , nav: true
+    });
+    var owl = $('.reviews-careousel');
+    owl.owlCarousel({
+        loop: false
+        , nav: false
+        , margin: 0
+        , mouseDrag: true
+        , autoWidth: true
+        , responsive: {
+            0: {
+                items: 1
+            }
+            , 600: {
+                items: 3
+            }
+            , 960: {
+                items: 5
+            }
+            , 1200: {
+                items: 6
+            }
+        }
+    });
+    owl.on('mousewheel', '.owl-stage', function (e) {
+        if (e.deltaY > 0) {
+            owl.trigger('next.owl');
+        }
+        else {
+            owl.trigger('prev.owl');
+        }
+        e.preventDefault();
+    });
+    $("input[name='increase-btn']").TouchSpin({
+        verticalbuttons: true
+    });
+    
+    $("input[name='increase-btn-persent']").TouchSpin({
+        verticalbuttons: true
+        , min: 0
+        , max: 100
+        , step: 1
+        , decimals: 2
+        , boostat: 5
+        , maxboostedstep: 10
+        , postfix: '%'
+    });
+        
+    $('.customize-header .photoUpload').on('click',function() {
+        $('.customize-header .upload-images').fadeToggle();
+    })
+    $('.dateDrop').dateDropper();
+	
+//    function newItemsHeight() {
+//        var maxHeight = 375;
+//        $('.main-view-item').each(function() {
+//            maxHeight = Math.max(maxHeight, $(this).height());
+//        });
+//        $('.main-view-item').css({height:maxHeight + 'px'});
+//    }
+//    newItemsHeight();
+});
+
+//    var rangeSlider = document.getElementById("myRangeSlider");
+//    var output = document.getElementById("demo");
+//    output.innerHTML = slider.value; // Display the default slider value
+//
+//    // Update the current slider value (each time you drag the slider handle)
+//    slider.oninput = function() {
+//        output.innerHTML = this.value;
+//    }

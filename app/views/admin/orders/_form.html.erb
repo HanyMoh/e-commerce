@@ -1,0 +1,49 @@
+<div class="page-title-bar">
+  <div class="row">
+  </div>
+</div>
+<!-- Page Breadcrumb -->
+<div class="page-breadcrumb">
+  <div class="row">
+    <div class="col-sm-7">
+      <%= link_to admin_orders_path ,class: 'back-angle' do  %>
+        <i class="fa fa-long-arrow-left"></i> Back To My Orders
+      <% end %>
+    </div>
+    <div class="col-sm-5">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <%= link_to 'Dashboard',admin_path %>
+        </li>
+        <li class="breadcrumb-item">
+          <%= link_to 'Orders',admin_orders_path %>
+        </li>
+        <li class="breadcrumb-item active">Edit Brand</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="start-content">
+  <div class="create-brand">
+    <div class="row">
+      <%= render 'shared/error_messages', object: @order %>
+      <%= form_for [:admin, @order], html: { class: 'group-border-dashed', help: :block } do |f| %>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Name</label>
+            <%= f.select :status, Order.statuses.keys.map { |w| [w.humanize, w] }, required: true , class:"form-control",placeholder: "Enter name here"%>
+          </div>
+        </div>
+        <!-- End Form -->
+        <div class="col-md-12">
+          <div class="save-all">
+            <%= button_tag do %>
+              <i class='fa fa-check'></i> Update
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

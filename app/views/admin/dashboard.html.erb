@@ -1,0 +1,59 @@
+<% if current_admin %>
+  <div class="container-fluid">
+    <div class="col-md-12">
+      <h1>Welcome <%= current_admin.name.titleize %></h1>
+      <p>You're almost there!</p>
+      <p>Just few more steps before launching your first navbox page for your clients</p>
+      <br/>
+      <% unless any_organization_exists? %>
+        <p>
+          First: You need to make sure you have at least 1 organization created
+          &nbsp;<%= link_to 'Create first organization', new_admin_organization_path, class: 'btn btn-md btn-info' %>
+        </p>
+      <% end %>
+      <% unless any_category_exists? %>
+        <p>
+          Second: You need to make sure you have at least 1 category created
+          <% if any_organization_exists? %>
+            &nbsp;<%= link_to 'Create first category', new_admin_category_path, class: 'btn btn-md btn-info' %>
+          <% else %>
+            <%= link_to 'Create organization first', new_admin_organization_path, class: 'btn btn-md btn-info', style: 'background-color: grey;' %>
+          <% end %>
+        </p>
+      <% end %>
+      <% unless any_building_exists? %>
+        <p>
+          Third (Optional): Maybe you need to create a mall so Managers can place their stores inside it
+          <% if any_organization_exists? %>
+            &nbsp;<%= link_to 'Create first building', new_admin_building_path, class: 'btn btn-md btn-info' %>
+          <% else %>
+            <%= link_to 'Create organization first', new_admin_organization_path, class: 'btn btn-md btn-info', style: 'background-color: grey;' %>
+          <% end %>
+        </p>
+      <% end %>
+      <% unless any_manager_exists? %>
+        <p>
+          Final Step: You need to create a manager so he can start his experience with Nasnav
+          <% if any_organization_exists? && any_category_exists? %>
+            &nbsp;<%= link_to 'Create first manager', new_admin_organization_manager_path, class: 'btn btn-md btn-info' %>
+          <% else %>
+            <small style='color: red;'> (1 organization and 1 category are required)</small>
+          <% end %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  Welcome to Nasnav
+<% end %>
+<script>                       
+  $.toast({                    
+    heading: 'Welcome to Nasnav', 
+    text: 'Whole new world for you to explore',
+    position: 'top-right',     
+    loaderBg: '#f33c49',       
+    icon: 'info',
+    hideAfter: 6000,           
+    stack: 6
+  });
+</script>

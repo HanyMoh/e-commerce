@@ -1,0 +1,81 @@
+<%# content_for :search_bar do %>
+  <%#= render partial: './shared/search_bar', locals: { search_title: 'Facebook Pixel', q: @q, path: admin_facebook_pixels_path } %>
+<%# end %>
+
+<div class="page-title-bar">
+  <div class="row">
+    <div class="col-xs-6">
+      <h2>
+        <img src="/dashboard/images/icon2.png" alt=""> Shops
+      </h2>
+    </div>
+    <div class="col-xs-6">
+      <div class="add-new-btn">
+        <% if @general_pixel == 'true' %>
+          <a href="" data-toggle="tooltip" data-placement="bottom" title="You can't add new pixels since you're using a general one, Please remove it first!"><img src="/dashboard/images/add-new-icon.png" alt="Add"> Add New</a>
+        <% else %>
+          <a href="<%= new_admin_facebook_pixel_path %>"><img src="/dashboard/images/add-new-icon.png" alt="Add"> Add New</a>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-breadcrumb">
+  <div class="row">
+    <div class="col-sm-7">
+      <!--
+        <a href="javascript:void(0)" class="back-angle"><i class="fa fa-long-arrow-left"></i> Back to Point Manager</a>>
+      -->
+    </div>
+    <div class="col-sm-5">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<%= admin_path %>">Dashboard</a></li>
+        <li class="breadcrumb-item active">Facebook Pixel</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="start-content">
+  <div class="shops">
+    <div class="row">
+      <% @facebook_pixels.order(id: :asc).each do |fb_pixel| %>
+        <div class="col-md-3 col-sm-6">
+          <div class="main-view-item centerd">
+            <div class="view-header">
+              <% if @general_pixel == 'true' %>
+                <span><%= link_to 'General Pixel', admin_facebook_pixel_path(fb_pixel) %></span>
+              <% else %>
+                <span><%= link_to fb_pixel.shop.name, admin_facebook_pixel_path(fb_pixel) %></span>
+              <% end %>
+            </div>
+            <div class="view-body">
+              <ul>
+                <li><p>Shop</p> <span><%= fb_pixel.general? ? 'All Stores' : fb_pixel.shop.name %></span></li>
+                <li><p>Pixel ID</p> <span><%= fb_pixel.pixel_id %></span></li>
+                <li><p>Created</p> <span><%= time_ago_in_words(fb_pixel.created_at) %> ago.</span></li>
+              </ul>
+            </div>
+            <div class="view-footer">
+              <a href="<%= edit_admin_facebook_pixel_path(fb_pixel) %>" class="edit"><i class="fa fa-pencil"></i>Edit</a>
+                <%= link_to admin_facebook_pixel_path(fb_pixel), method: :delete, data: {confirm: "Are you sure?"}, class: "delete" do %>
+                <i class="fa fa-trash"></i>Delete
+                <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(window).on('load', function () {
+    $('#createBrand').modal('show');
+  });
+
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  });
+</script>

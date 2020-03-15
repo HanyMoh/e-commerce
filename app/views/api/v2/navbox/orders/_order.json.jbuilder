@@ -1,0 +1,1 @@
+json.extract! order, :id, :name, :address, :payment_type, :user_id, :date_delivery, :organization_id, :status

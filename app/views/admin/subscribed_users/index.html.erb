@@ -1,0 +1,52 @@
+<div class="main-content">
+  <!------------------------------------------------------------
+  Page Title
+  ------------------------------------------------------->
+  <div class="page-title-bar">
+    <div class="row">
+      <div class="col-xs-6"><h2>Subscribed Users</h2></div>
+      <div class="col-xs-6">
+      </div>
+    </div>
+  </div>
+  <!------------------------------------------------------------
+  Page Breadcrumb
+  ------------------------------------------------------->
+  <div class="page-breadcrumb">
+    <div class="row">
+      <div class="col-sm-7">
+      </div>
+      <div class="col-sm-5">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+          <li class="breadcrumb-item active">Subscribed Users</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <!------------------------------------------------------------
+  View Subscribed Users
+  ------------------------------------------------------->
+  <div class="start-content">
+    <div class="view-buildings">
+      <div class="row">
+        <% @subscribed_users.each do |subscribed_user| %>
+        <div class="col-md-3 col-sm-6">
+          <div class="main-view-item">
+            <div class="view-header">
+              <%= link_to format_name(subscribed_user.email),admin_subscribed_user_path(subscribed_user) %>
+            </div>
+            <div class="view-body">
+              <ul>
+                <li><p>Email</p> <span><a href="#" class="show"><%= subscribed_user.email %></a></span></li>
+                <li><p>Shop</p> <span><%= subscribed_user.shop&.name %></span></li>
+                <li><p>Subscribed At</p> <span><%= subscribed_user.created_at.strftime('%Y-%m-%d %H:%M %p') %></span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+    <%= render partial: 'shared/pagination_section',locals: { collection: @subscribed_users }  %>
+  </div>

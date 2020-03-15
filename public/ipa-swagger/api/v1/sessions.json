@@ -1,0 +1,100 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "sessions",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/one/sessions.json",
+      "operations": [
+        {
+          "summary": "sign in To NASNAV ",
+          "notes": "      Signin should give you `authentication_token`.<br />\n      You should add `authentication_token` and `email` to all upgoing requests\n      in header to authenticate your self!<br />\n      Header should be like this:</br>\n      <b>X-User-Email</b> alice@example.com<br />\n      <b>X-User-Token</b> 1G8_s7P-V-4MGojaKD7a<br />\n      <br /><br />\n",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "user[email]",
+              "type": "email",
+              "description": "User Email",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "user[password]",
+              "type": "password",
+              "description": "User password",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 500,
+              "responseModel": null,
+              "message": "Not Processable"
+            }
+          ],
+          "nickname": "Api::V1::Sessions#create",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/sessions/{id}.json",
+      "operations": [
+        {
+          "summary": "Sign out",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-User-Email",
+              "type": "email",
+              "description": "User Email",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 500,
+              "responseModel": null,
+              "message": "Not Processable"
+            }
+          ],
+          "nickname": "Api::V1::Sessions#destroy",
+          "method": "delete"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

@@ -1,0 +1,35 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "product_points",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/one/product_points/{id}.json",
+      "operations": [
+        {
+          "summary": "Products Scan and Buy points",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "product_id",
+              "type": "integer",
+              "description": "Product ID",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::ProductPoints#show",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

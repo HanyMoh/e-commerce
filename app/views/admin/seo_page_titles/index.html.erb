@@ -1,0 +1,98 @@
+<%# content_for :search_bar do %>
+  <%#= render partial: './shared/search_bar', locals: { search_title: 'Facebook Pixel', q: @q, path: admin_facebook_pixels_path } %>
+<%# end %>
+
+<div class="page-title-bar">
+  <div class="row">
+    <div class="col-xs-6">
+      <h2>
+        <img src="/dashboard/images/icon2.png" alt=""> Shops
+      </h2>
+    </div>
+    <div class="col-xs-6">
+      <div class="add-new-btn">
+        <a href="<%= new_admin_seo_page_title_path %>"><img src="/dashboard/images/add-new-icon.png" alt="Add"> Add New</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-breadcrumb">
+  <div class="row">
+    <div class="col-sm-7">
+      <!--
+        <a href="javascript:void(0)" class="back-angle"><i class="fa fa-long-arrow-left"></i> Back to Point Manager</a>>
+      -->
+    </div>
+    <div class="col-sm-5">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<%= admin_path %>">Dashboard</a></li>
+        <li class="breadcrumb-item active">Navbox Page Title</li>
+      </ol>
+    </div>
+  </div>
+</div>
+<div class="start-content">
+  <div class="shops">
+    <div class="row">
+      <div class="col-md-12">
+        <h3>Improve your visibility on Google by adding better titles for your Navbox pages</h3>
+      </div>
+    </div>
+    <br/>
+    <div class="row">
+      <% @shops.each do |shop| %>
+        <% if shop.seo_page_title %>
+          <div class="col-md-3 col-sm-6">
+            <div class="main-view-item centerd">
+              <div class="view-header">
+                <span><%= link_to shop.name, admin_seo_page_title_path(shop.seo_page_title) %></span>
+              </div>
+              <div class="view-body">
+                <ul>
+                  <li><p>Shop</p> <span><%= shop.name %></span></li>
+                  <li><p>Page title</p> <span><%= shop.seo_page_title.title %></span></li>
+                  <li><p>Created</p> <span><%= time_ago_in_words(shop.seo_page_title.created_at) %> ago.</span></li>
+                </ul>
+              </div>
+              <div class="view-footer">
+                <a href="<%= edit_admin_seo_page_title_path(shop.seo_page_title, shop: shop) %>" class="edit"><i class="fa fa-pencil"></i>Edit</a>
+                  <%= link_to admin_seo_page_title_path(shop.seo_page_title), method: :delete, data: {confirm: "Are you sure?"}, class: "delete" do %>
+                  <i class="fa fa-trash"></i>Delete
+                  <% end %>
+              </div>
+            </div>
+          </div>
+        <% else %>
+          <div class="col-md-3 col-sm-6">
+            <div class="main-view-item centerd">
+              <div class="view-header">
+                <span><%= shop.name %> (Default title)</span>
+              </div>
+              <div class="view-body">
+                <ul>
+                  <li><p>Shop</p> <span><%= shop.name %></span></li>
+                  <li><p>Page title</p> <span>Default title</span></li>
+                  <li><p>Created</p> <span>Not set yet.</span></li>
+                </ul>
+              </div>
+              <div class="view-footer">
+                <%= link_to 'Add', new_admin_seo_page_title_path(shop: shop), class: 'btn btn-sm btn-success' %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(window).on('load', function () {
+    $('#createBrand').modal('show');
+  });
+
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  });
+</script>

@@ -1,0 +1,209 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "products",
+  "apis": [
+    {
+      "path": "/ipa-employee/ver/sion/one/products/scan_logs.json",
+      "operations": [
+        {
+          "summary": "Get Scan Logs",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            }
+          ],
+          "nickname": "EmployeeApi::V1::Products#scan_logs",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa-employee/ver/sion/one/products.json",
+      "operations": [
+        {
+          "summary": "Get Employee's Products",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            }
+          ],
+          "nickname": "EmployeeApi::V1::Products#index",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa-employee/ver/sion/one/products.json",
+      "operations": [
+        {
+          "summary": "Create Product",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "barcode",
+              "type": "string",
+              "description": "Barcode",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "shop_id",
+              "type": "integer",
+              "description": "Shop ID",
+              "required": true
+            }
+          ],
+          "nickname": "EmployeeApi::V1::Products#create",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/ipa-employee/ver/sion/one/products/{id}.json",
+      "operations": [
+        {
+          "summary": "Show Product",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Product ID",
+              "required": true
+            }
+          ],
+          "nickname": "EmployeeApi::V1::Products#show",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa-employee/ver/sion/one/products/{id}.json",
+      "operations": [
+        {
+          "summary": "Update Product",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "string",
+              "description": "Product ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "product[name]",
+              "type": "string",
+              "description": "Product Name",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "product[category_id]",
+              "type": "integer",
+              "description": "Product Category",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "product[description]",
+              "type": "text",
+              "description": "Product Description",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "product[price]",
+              "type": "string",
+              "description": "Product Price",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "product[discount]",
+              "type": "string",
+              "description": "Product Discount",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "product[number]",
+              "type": "integer",
+              "description": "Product Quantity",
+              "required": false
+            }
+          ],
+          "nickname": "EmployeeApi::V1::Products#update",
+          "method": "patch"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

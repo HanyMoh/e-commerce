@@ -1,0 +1,112 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "products",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/two/navbox/products.json",
+      "operations": [
+        {
+          "summary": "Get products by attributes",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "organization_id",
+              "type": "integer",
+              "description": "Organization ID",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "shop_id",
+              "type": "integer",
+              "description": "Shop ID",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "category_id",
+              "type": "integer",
+              "description": "Category ID",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "search",
+              "type": "string",
+              "description": "Search",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "page",
+              "type": "integer",
+              "description": "Page Number",
+              "required": true
+            }
+          ],
+          "notes": "",
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::V2::Navbox::Products#index",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/two/navbox/products/{id}.json",
+      "operations": [
+        {
+          "summary": "Get product by ID",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Product ID",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "shop_id",
+              "type": "integer",
+              "description": "Shop ID",
+              "required": false
+            }
+          ],
+          "notes": "",
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::V2::Navbox::Products#show",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

@@ -1,0 +1,236 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "google_analytics",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/two/dashboard/google_analytics.json",
+      "operations": [
+        {
+          "summary": "Get all google_analytics for admin or current manager",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Token",
+              "required": true
+            }
+          ],
+          "notes": "      Sending `admin token` as <b>X-User-Token</b> will return all google_analytics in the system.<br />\n      Sending `manager token` as <b>X-User-Token</b> will return all google_analytics of current manager organization.<br />\n",
+          "nickname": "Api::V2::Dashboard::GoogleAnalytics#index",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/two/dashboard/google_analytics.json",
+      "operations": [
+        {
+          "summary": "Create Google Analytic",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Token",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "google_analytic[tracking_id]",
+              "type": "integer",
+              "description": "Google Tracking ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "google_analytic[shop_id]",
+              "type": "integer",
+              "description": "Shop ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "google_analytic[employee_user_id]",
+              "type": "integer",
+              "description": "Employee User ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "google_analytic[organization_id]",
+              "type": "integer",
+              "description": "Organization ID",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V2::Dashboard::GoogleAnalytics#create",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/two/dashboard/google_analytics/{id}.json",
+      "operations": [
+        {
+          "summary": "Show a google_analytic by id",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "GoogleAnalytic ID",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::V2::Dashboard::GoogleAnalytics#show",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/two/dashboard/google_analytics/{id}.json",
+      "operations": [
+        {
+          "summary": "Update Google Analytic",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "GoogleAnalytic ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "google_analytic[tracking_id]",
+              "type": "integer",
+              "description": "Google Tracking ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "google_analytic[shop_id]",
+              "type": "integer",
+              "description": "Shop ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "google_analytic[employee_user_id]",
+              "type": "integer",
+              "description": "Employee User ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "google_analytic[organization_id]",
+              "type": "integer",
+              "description": "Organization ID",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V2::Dashboard::GoogleAnalytics#update",
+          "method": "patch"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/two/dashboard/google_analytics/{id}.json",
+      "operations": [
+        {
+          "summary": "Deletes an existing GoogleAnalytic",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "GoogleAnalytic Id",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::V2::Dashboard::GoogleAnalytics#destroy",
+          "method": "delete"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

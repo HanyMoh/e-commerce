@@ -1,0 +1,54 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "user_codes",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/one/user_codes.json",
+      "operations": [
+        {
+          "summary": "Generate new User Code.",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Email",
+              "type": "email",
+              "description": "User Email",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 406,
+              "responseModel": null,
+              "message": "Not Acceptable"
+            }
+          ],
+          "nickname": "Api::V1::UserCodes#create",
+          "method": "post"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

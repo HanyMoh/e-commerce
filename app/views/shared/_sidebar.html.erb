@@ -1,0 +1,181 @@
+<ul class="list-unstyled components">
+  <!-- Brand -->
+  <% if can? :read, Brand %>
+    <li>
+      <% if check_num_of_brands(current_active_user) > 1 || current_admin %>
+        <%= link_to admin_brands_path do %>
+          <%= image_tag '/dashboard/images/sidebar-icons/brands.png',alt: '' %>Brands
+        <% end %>
+      <% else %>
+        <% if !current_admin && current_active_user.brands.any? %>
+          <%= link_to admin_brand_path(current_active_user.brands.first) do %>
+            <%= image_tag '/dashboard/images/sidebar-icons/brands.png',alt: '' %>My Brand
+          <% end %>
+        <% else %>
+          <%= link_to intro_form_admin_brands_path do %>
+            <%= image_tag '/dashboard/images/sidebar-icons/brands.png',alt: ''%>Create First Brand
+          <% end %>
+        <% end %>
+      <% end  %>
+    </li>
+  <% end %>
+
+  <!-- Shops -->
+  <% if !check_num_of_brands(current_active_user).zero? || current_admin %>
+    <% if can? :read, Shop %>
+      <li>
+        <%= link_to admin_shops_path do %>
+          <%= image_tag '/dashboard/images/sidebar-icons/scale_1 copy.png' %>Shops
+        <% end %>
+      </li>
+    <% end %>
+  <% end %>
+
+  <% if current_admin || current_active_user.both? || current_active_user.navbox? %>
+    <% if any_shop_exists? %>
+
+    <li>
+      <%= link_to (image_tag('/dashboard/images/sidebar-icons/pic_big_1 copy.png') + '360 Store'), admin_shops_path(store_360: 't'), class: 'img-responsive', draggable: false %>
+    </li>
+
+    <li>
+      <!-- <a href="<%#= root_path %>"><img src="/dashboard/images/sidebar-icons/pic_big_1 copy.png"> Sections</a> -->
+    </li>
+
+    <li>
+        <%= link_to admin_subscribed_users_path do %>
+          <%= image_tag '/dashboard/images/sidebar-icons/pic_big_1 copy.png',alt: '' %>Subscribed Users
+        <% end %>
+    </li>
+
+    <% if current_admin || current_organization_manager %>
+      <li>
+          <%= link_to admin_organization_themes_path do %>
+            <%= image_tag '/dashboard/images/sidebar-icons/pic_big_1 copy.png',alt: '' %>Theme
+          <% end %>
+      </li>
+
+      <li>
+          <%= link_to admin_social_links_path do %>
+            <%= image_tag '/dashboard/images/sidebar-icons/pic_big_1 copy.png',alt: '' %>Social Links
+          <% end %>
+      </li>
+    <% end %>
+
+      <% if can? :read, Product %>
+        <li>
+          <%= link_to admin_data_entry_path do %>
+            <%= image_tag '/dashboard/images/sidebar-icons/bag_4 copy.png',alt: '' %>Data Entry
+          <% end %>
+        </li>
+        <li>
+          <%= link_to admin_products_path do %>
+            <%= image_tag '/dashboard/images/sidebar-icons/bag_4 copy.png',alt: '' %>Products
+          <% end %>
+        </li>
+        <%# if current_admin %>
+          <!--
+          <li>
+            <a href="<%#= admin_products_info_path %>"><i class="fa fa-long-arrow-right"></i> Update Products Info</a>
+            <a href="<%#= admin_products_missing_info_path %>"><i class="fa fa-long-arrow-right"></i> Products Missing Info</a>
+          </li>
+          -->
+        <%# end %>
+      <% end %>
+    <% end %>
+
+    <li>
+        <%= link_to '' do %>
+          <%= image_tag '/dashboard/images/sidebar-icons/card_1_add copy.png',alt: '' %>Payments
+        <% end %>
+    </li>
+
+    <li>
+    <%= link_to admin_orders_path do %>
+        <%= image_tag "/dashboard/images/sidebar-icons/bag_3_open copy.png" %>Orders
+    <% end %>
+    </li>
+
+    <% if any_organization_exists? && any_category_exists? %>
+      <% if current_admin || current_organization_manager %>
+        <li>
+          <%= link_to admin_employee_users_path do %>
+            <%= image_tag "/dashboard/images/sidebar-icons/profile_close_add copy.png" %>Staff
+          <% end %>
+        </li>
+      <% end %>
+    <% end %>
+
+
+    <!-- Services -->
+    <li>
+      <a href="#services" data-toggle="collapse" aria-expanded="false"><img src="/dashboard/images/sidebar-icons/connection_2 copy.png" alt="">Services</a>
+      <ul class="collapse list-unstyled" id="services">
+        <li>
+          <%= link_to 'Shop MetaTags', admin_meta_tags_path %>
+        </li>
+        <% unless current_admin %>
+          <li>
+            <%= link_to 'Facebook Pixel', admin_facebook_pixels_path %>
+          </li>
+          <li>
+            <%= link_to 'Google Analytics', admin_google_analytics_path %>
+          </li>
+        <% end %>
+        <li>
+          <%= link_to 'Navbox Page Title', admin_seo_page_titles_path %>
+        </li>
+      </ul>
+    </li>
+
+    <% unless current_admin %>
+      <%= link_to manage_360_admin_shops_path do %>
+        <i class="fa fa-long-arrow-right"></i> 360 Management
+      <% end%>
+    <% end %>
+
+    <% if any_organization_exists? %>
+      <% if can? :read, Building %>
+        <li>
+          <%= link_to admin_buildings_path do %>
+            <%= image_tag '/dashboard/images/sidebar-icons/brands.png',alt: '' %> Buildings
+          <% end%>
+        </li>
+      <% end %>
+    <% end %>
+
+    <% if current_admin %>
+      <li>
+          <%= link_to admin_app_tokens_path do %>
+            <%= image_tag '/dashboard/images/sidebar-icons/product-repository.png',alt: '' %> AppTokens
+          <% end%>
+      </li>
+      <li>
+          <%= link_to admin_developers_path do %>
+            <%= image_tag '/dashboard/images/sidebar-icons/product-repository.png',alt: '' %> Developers
+          <% end%>
+      </li>
+      <li>
+        <%= link_to admin_organizations_path do %>
+          <%= image_tag '/dashboard/images/sidebar-icons/brands.png',alt: '' %> Organizations
+        <% end%>
+      </li>
+      <% if any_organization_exists? %>
+        <li>
+          <%= link_to admin_categories_path do %>
+            <%= image_tag '/dashboard/images/sidebar-icons/categories.png',alt: '' %> Categories
+          <% end%>
+        </li>
+      <% end %>
+    <% end %>
+
+    <% if current_organization_manager %>
+      <li>
+        <!-- comment roles -->
+          <%= link_to admin_roles_path do %>
+            <%= image_tag '/dashboard/images/sidebar-icons/staf_icon.png',alt: '' %> Roles
+          <% end%>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

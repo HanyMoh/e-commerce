@@ -1,0 +1,26 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require bootstrap/css/bootstrap.min.css
+ *= require bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css
+ *= require perfect-scrollbar/css/perfect-scrollbar.css 
+ *= require c3-master/c3.min.css
+ *= require select2/dist/css/select2.min.css 
+ *= require toast-master/css/jquery.toast.css
+ *= require admin_dashboard/css/style.css
+ *= require admin_dashboard/css/pages/dashboard1.css
+ *= require admin_dashboard/css/custom.css
+ *= require admin_dashboard/css/colors/default.css
+ *= require admin_dashboard/css/animate.css
+ *= require admin_dashboard/scss/icons/font-awesome/css/font-awesome.min.css
+ *= require dashboard/bootstrap-tagsinput.css
+*/

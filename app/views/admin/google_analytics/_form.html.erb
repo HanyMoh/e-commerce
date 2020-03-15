@@ -1,0 +1,134 @@
+<div class="page-title-bar">
+	<div class="row">
+		<div class="col-xs-6"><h2>Google Analytics</h2></div>
+		<div class="col-xs-6">
+			<div class="add-new-btn dark-btn">
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="page-breadcrumb">
+	<div class="row">
+		<div class="col-sm-7">
+			<a href="<%= admin_google_analytics_path %>" class="back-angle"><i class="fa fa-long-arrow-left"></i> Back to main page</a>
+		</div>
+		<div class="col-sm-5">
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="<%= admin_path %>">Dashboard</a></li>
+				<li class="breadcrumb-item"><a href="<%= admin_google_analytics_path %>"> Main </a></li>
+				<li class="breadcrumb-item active">New Google Analytic</li>
+			</ol>
+		</div>
+	</div>
+</div>
+<br/>
+<%= render 'shared/error_messages', object: @google_analytic %>
+<div class="start-content">
+	<div class="create-shop">
+		<div class="row">
+			<%= form_for [:admin, @google_analytic], html: { help: :block } do |f| %>
+        <%= f.hidden_field :employee_user_id, value: current_employee_user.id %>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="col-md-12 form-group">
+              <label class="control-label">Google Analytic Tracking ID</label>
+              <%= f.text_field :tracking_id, required: true, class:"form-control" %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-4 form-group">
+              <input type="radio" name="fbp_radio" value="all_stores" id="all_stores_radio" onclick="showAllStores();" <%= (!@google_analytic.new_record? && @google_analytic.general?) ? 'checked' : '' %> required> <label for="all_stores_radio">Use it for all stores (Beta)</label>
+            </div>
+            <div class="col-md-4 form-group">
+              <input type="radio" name="fbp_radio" value="one_store" id="one_store_radio" onclick="showOneStore();" <%= (!@google_analytic.new_record? && !@google_analytic.general?) ? 'checked' : '' %> required> <label for="one_store_radio"><%= @google_analytic.new_record? ? 'Use it for one store' : 'Use it for different store' %></label>
+            </div>
+            <% if !@google_analytic.new_record? %>
+              <div class="col-md-4 form-group">
+                <input type="radio" name="fbp_radio" value="same_store" id="same_store_radio" onclick="hideBoth();" <%= (!@google_analytic.new_record? && !@google_analytic.general?) ? 'checked' : '' %> required> <label for="same_store_radio">Use it for same store</label>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="row" id="all_stores_div" style="display: none;">
+          <div class="col-md-6">
+            <div class="col-md-12 form-group">
+              Your Google Analytic Tracking ID will be used to controll all your stores, You won't be able to setup or use another tracking IDs until you remove this analytic.
+            </div>
+          </div>
+        </div>
+        <div class="row" id="one_store_div" style="display: none;">
+          <div class="col-md-6">
+            <div class="col-md-6 form-group">
+              <%= f.select :shop_id, options_from_collection_for_select(@shops, 'id', 'name') %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="save-all">
+              <button type="submit" name="popup" value="show">Save<i class="fa fa-mouse-check"></i></button>
+            </div>
+          </div>
+        </div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<script>
+    var allStoresRadio = document.getElementById("all_stores_radio");
+    var OneStoreRadio = document.getElementById("one_store_radio");
+    var allStoresDiv = document.getElementById("all_stores_div");
+    var oneStoreDiv = document.getElementById("one_store_div");
+
+    if (allStoresRadio.checked === true) {
+      allStoresDiv.style.display = "block";
+      oneStoreDiv.style.display = "none";
+    }
+
+    
+    if (oneStoreDiv.checked === true) {
+      allStoresDiv.style.display = "none";
+      oneStoreDiv.style.display = "block";
+    }
+
+    function showAllStores() {
+      var allStoresRadio = document.getElementById("all_stores_radio");
+      var allStoresDiv = document.getElementById("all_stores_div");
+      var oneStoreDiv = document.getElementById("one_store_div");
+      if (allStoresRadio.checked === true) {
+        allStoresDiv.style.display = "block";            
+        oneStoreDiv.style.display = "none";
+      } else {
+        allStoresDiv.style.display = "none";            
+      }
+    }
+
+
+    function showOneStore() {
+      var oneStoreRadio = document.getElementById("one_store_radio");
+      var allStoresDiv = document.getElementById("all_stores_div");
+      var oneStoreDiv = document.getElementById("one_store_div");
+      if (oneStoreRadio.checked === true) {
+        oneStoreDiv.style.display = "block";
+        allStoresDiv.style.display = "none";            
+      } else {
+        oneStoreDiv.style.display = "none";            
+      }
+    }
+
+    function hideBoth() {
+      var sameStoreRadio = document.getElementById("same_store_radio");
+      var allStoresDiv = document.getElementById("all_stores_div");
+      var oneStoreDiv = document.getElementById("one_store_div");
+      if (sameStoreRadio.checked === true) {
+        oneStoreDiv.style.display = "none";
+        allStoresDiv.style.display = "none";            
+      } else {
+        oneStoreDiv.style.display = "none";            
+      }
+    }
+</script>

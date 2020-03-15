@@ -1,0 +1,64 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "malls",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/one/malls/{id}/shops.json",
+      "operations": [
+        {
+          "summary": "Get mall shops",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Mall id",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::Malls#shops",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/malls.json",
+      "operations": [
+        {
+          "summary": "All malls on the earth!",
+          "nickname": "Api::V1::Malls#index",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/malls/{id}.json",
+      "operations": [
+        {
+          "summary": "Get a mall",
+          "parameters": [
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Mall id",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::V1::Malls#show",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

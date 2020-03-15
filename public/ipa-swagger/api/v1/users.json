@@ -1,0 +1,273 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "users",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/one/users/update_firebase_token.json",
+      "operations": [
+        {
+          "summary": "Update user firebase token",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "firebase_token",
+              "type": "string",
+              "description": "User Firebase Token",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::Users#update_firebase_token",
+          "method": "put"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/users/employee_profile_data.json",
+      "operations": [
+        {
+          "summary": "Get employee profile data",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::Users#employee_profile_data",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/users/profile.json",
+      "operations": [
+        {
+          "summary": "Get user profile details ",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Email",
+              "type": "email",
+              "description": "User Email",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 406,
+              "responseModel": null,
+              "message": "Not Acceptable"
+            }
+          ],
+          "nickname": "Api::V1::Users#profile",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/users/update_password.json",
+      "operations": [
+        {
+          "summary": "Update user password",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "new_password",
+              "type": "string",
+              "description": "New password",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "confirm_password",
+              "type": "string",
+              "description": "Confirm new password",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::Users#update_password",
+          "method": "put"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/users/update_profile.json",
+      "operations": [
+        {
+          "summary": "update user profile details ",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Email",
+              "type": "email",
+              "description": "User Email",
+              "required": false
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "user[email]",
+              "type": "email",
+              "description": "User Email",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "user[phone_number]",
+              "type": "phone_number",
+              "description": "User Phone Number",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "user[user_name]",
+              "type": "user_name",
+              "description": "User Name",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "user[avatar]",
+              "type": "avatar",
+              "description": "User Avatar",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "user[gender]",
+              "type": "gender",
+              "description": "User Gender",
+              "required": false,
+              "allowableValues": {
+                "valueType": "LIST",
+                "values": [
+                  "Male",
+                  "Female"
+                ]
+              }
+            },
+            {
+              "paramType": "form",
+              "name": "user[birth_date]",
+              "type": "birth_date",
+              "description": "User Birth Date",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 406,
+              "responseModel": null,
+              "message": "Not Acceptable"
+            }
+          ],
+          "nickname": "Api::V1::Users#update_profile",
+          "method": "put"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/users/search.json",
+      "operations": [
+        {
+          "summary": "search for products, brands, collecions, and users",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "queryString",
+              "type": "string",
+              "description": "search query",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::Users#search",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

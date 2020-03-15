@@ -1,0 +1,188 @@
+<% content_for :page_title do %>
+  Dashboard - Nasnav
+<% end %>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Page title -->
+    <!-- /Page title -->
+    <!-- CSS Files -->
+    <!-- Place favicon.ico in the root directory -->
+    <%= stylesheet_link_tag 'old_dashboard', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'old_dashboard', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+    <%= yield :stylesheets_includes %>
+</head>
+<div class="wrapper">
+    <div id="" class="active intro-style">
+        <nav class="navbar navbar-default transparent">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <img src="/dashboard/images/logo-nasnav.png" alt="">
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-left">
+                        <form>
+                            <input type="text" class="form-control nav-search" placeholder="Serach in Dashboard">
+                        </form>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li>
+                            <a href="<%= admin_guides_path %>" class="toggle-dropdown"><img src="/dashboard/images/info-icon.png" alt="">Guides</a>
+                            <div class="dropdown-menu dropdown-menu-right animated bounceInDown">
+                                <ul>
+                                    <li>
+                                        <div class="drop-title">Notifications</div>
+                                    </li>
+                                    <li>
+                                        <div class="message-center">
+                                            <!-- Message -->
+                                            <a href="#">
+                                                <div class="btn btn-danger btn-circle"><i class="fa fa-link"></i></div>
+                                                <div class="mail-contnet">
+                                                    <h5>Luanch Admin</h5> <span class="mail-desc">Just see the my new admin!</span> <span class="time">9:30 AM</span> </div>
+                                                </a>
+                                                <!-- Message -->
+                                                <a href="#">
+                                                    <div class="btn btn-success btn-circle"><i class="fa fa-link"></i></div>
+                                                    <div class="mail-contnet">
+                                                        <h5>Luanch Admin</h5> <span class="mail-desc">Just see the my new admin!</span> <span class="time">9:30 AM</span> </div>
+                                                    </a>
+                                                    <!-- Message -->
+                                                    <a href="#">
+                                                        <div class="btn btn-info btn-circle"><i class="fa fa-link"></i></div>
+                                                        <div class="mail-contnet">
+                                                            <h5>Luanch Admin</h5> <span class="mail-desc">Just see the my new admin!</span> <span class="time">9:30 AM</span> </div>
+                                                        </a>
+                                                        <!-- Message -->
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <a class="nav-link text-center" href="javascript:void(0);"> <strong>Check all notifications</strong> <i class="fa fa-angle-right"></i> </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <% if current_admin %>
+                                        <%= link_to destroy_admin_session_path, method: :delete do %>
+                                        <img src="/dashboard/images/logout-icon.png" alt="">Logout
+                                        <% end %>
+                                        <% else %>
+                                        <%= link_to destroy_employee_user_session_path, method: :delete do %>
+                                        <img src="/dashboard/images/logout-icon.png" alt="">Logout
+                                        <% end %>
+                                        <% end %>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                    <div class="main-content">
+                        <!--
+                        Add Scan Points
+                        -->
+                        <div class="start-content">
+                            <div class="intro-page">
+                                <div class="container">
+                                    <div class="welcome-message">
+                                        <div class="text-message">
+                                            <h2>Welcome <%= current_active_user.name.titleize %></h2>
+                                            <p>These are just shortcuts to the most important features that you use</p>
+                                        </div>
+                                        <%= link_to admin_dashboard_path, class: "skip-btn" do %>
+                                        Skip it
+                                        <i class="fa fa-angle-right"></i>
+                                        <% end %>
+                                    </div>
+                                    <div class="features-boxs">
+                                        <div class="row">
+                                            <div class="col-md-3 col-sm-6">
+                                                <a href="#">
+                                                    <div class="box-item">
+                                                        <div class="icon">
+                                                            <img src="/dashboard/images/beacon.png" alt="">
+                                                        </div>
+                                                        <h3>Add Beacon</h3>
+                                                        <p>Save big, play big. Four top-range security, privacy</p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-3 col-sm-6">
+                                                <a href="#">
+                                                    <div class="box-item">
+                                                        <div class="icon">
+                                                            <img src="/dashboard/images/campagin.png" alt="">
+                                                        </div>
+                                                        <h3>Add Campagin</h3>
+                                                        <p>Save big, play big. Four top-range security, privacy</p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-3 col-sm-6">
+                                                <a href="<%= new_admin_shop_path %>">
+                                                    <div class="box-item">
+                                                        <div class="icon">
+                                                            <img src="/dashboard/images/shops.png" alt="">
+                                                        </div>
+                                                        <h3>Add Shop</h3>
+                                                        <p>Save big, play big. Four top-range security, privacy</p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-3 col-sm-6">
+                                                <a href="<%= new_admin_product_path %>">
+                                                    <div class="box-item">
+                                                        <div class="icon">
+                                                            <img src="/dashboard/images/lines.png" alt="">
+                                                        </div>
+                                                        <h3>Add Product</h3>
+                                                        <p>Save big, play big. Four top-range security, privacy</p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-3 col-sm-6">
+                                                <div class="box-item">
+                                                    <div class="icon">
+                                                        <img src="/dashboard/images/panoramas.png" alt="">
+                                                    </div>
+                                                    <h3>View Panoramas</h3>
+                                                    <p>Save big, play big. Four top-range security, privacy</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-sm-6">
+                                                <div class="box-item">
+                                                    <div class="icon">
+                                                        <img src="/dashboard/images/lines.png" alt="">
+                                                    </div>
+                                                    <h3>Edit Theme</h3>
+                                                    <p>Save big, play big. Four top-range security, privacy</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-sm-6">
+                                                <div class="box-item">
+                                                    <div class="icon">
+                                                        <img src="/dashboard/images/lines.png" alt="">
+                                                    </div>
+                                                    <h3>Edit Theme</h3>
+                                                    <p>Save big, play big. Four top-range security, privacy</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 col-sm-6">
+                                                <div class="box-item">
+                                                    <div class="icon">
+                                                        <img src="/dashboard/images/piont-manager.png" alt="">
+                                                    </div>
+                                                    <h3>Point Manager</h3>
+                                                    <p>Save big, play big. Four top-range security, privacy</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>

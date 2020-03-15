@@ -1,0 +1,44 @@
+<%= stylesheet_link_tag 'dashboard', media: 'all', 'data-turbolinks-track' => true %>
+<!------------------------------------------------------------
+Login
+------------------------------------------------------->
+<div class="login-page">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="login-left-side">
+            <div class="logo">
+                #ToDo refactoring
+                <% if request.original_url.include? "employee" %>
+                    <a href="<%=  new_admin_employee_user_path %>"><img src="/dashboard/images/nasnav-logo.png" alt=""></a>
+                <% else %>
+                    <a href="<%=  new_admin_session_path %>"><img src="/dashboard/images/nasnav-logo.png" alt=""></a>
+                <% end %>
+            </div>
+          <div class="login-forms">
+            <h2 class="recover-title">Recover you password</h2>
+            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: {class:"form-horizontal m-t-20", method: :post }) do |f| %>
+            <%= devise_error_messages! %>
+            <div class="form-group">
+              <%= f.email_field :email, class:"form-control username" ,required:"", placeholder:"Email"%>
+            </div>
+            <div class="form-group">
+               <%= f.submit "Recover",class:"form-control",value: "Recover" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="login-right-side">
+        <h2>
+        NasNav is the Next <br> Generation of big businesses
+        </h2>
+        <img src="/dashboard/images/login-right-side-phone-2.jpg" alt="" class="big-phone img-responsive">
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<%= javascript_include_tag 'dashboard', 'data-turbolinks-track' => true %>
+<%= render "devise/shared/links" %>

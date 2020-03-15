@@ -1,0 +1,126 @@
+<% content_for :bc_title do %>
+  Organization Managers
+<% end %>
+
+<% content_for :bc_current do %>
+  Edit Organization Managers
+<% end %>
+
+<% content_for :bc_buttons do %>
+  <a href="<%= admin_organization_managers_path %>"><button type="button" class="btn btn-info"><i class="fa fa-plus-circle"></i> All Managers</button></a>
+<% end %>
+
+<%= render 'shared/breadcrumb' %>
+
+<%= render 'shared/error_messages', object: @organization_manager %>
+
+<div class="row">
+  <div class="col-6">
+    <div class="card">
+      <div class="card-header bg-info">
+        <% if @organization_manager.new_record? %>
+          <h4 class="m-b-0 text-white">Add new organization manager</h4>
+        <% else %>
+          <h4 class="m-b-0 text-white">Edit organization manager</h4>
+        <% end %>
+      </div>
+      <div class="card-body">  
+        <br/>
+        <%= form_for [:admin, @organization_manager], html: {  help: :block } do |f| %>
+          <div class="row">
+            <div class="col-md-12">          
+              <div class="form-group">        
+                <label class="control-label">Name</label>
+                <%= f.text_field :name, required: true, class:"form-control"%>
+                <small>This is very important field, make sure you type it correct!</small>
+              </div>
+            </div>
+
+            <div class="col-md-12">          
+              <div class="form-group">        
+                <label class="control-label">Email</label>
+                <%= f.text_field :email, required: true, class:"form-control"%>
+              </div>
+            </div>
+
+            <div class="col-md-6">          
+              <div class="form-group">        
+                <label class="control-label">Password</label>
+                <%= f.password_field :password, required: true, class:"form-control"%>
+              </div>
+            </div>
+            <div class="col-md-6">          
+              <div class="form-group">        
+                <label class="control-label">Password Confirmation</label>
+                <%= f.password_field :password_confirmation, required: true, class:"form-control"%>
+              </div>
+            </div>
+
+            <div class="col-md-6">          
+              <div class="form-group">        
+                <label class="control-label">Job Title</label>
+                <%= f.text_field :job_title, required: true, class:"form-control"%>
+              </div>
+            </div>
+            <div class="col-md-6">          
+              <div class="form-group">        
+                <label class="control-label">Phone</label>
+                <%= f.text_field :phone_number, required: true, class:"form-control"%>
+              </div>
+            </div>
+
+            <div class="col-md-6">          
+              <div class="form-group">        
+                <label class="control-label">Services</label>
+                <%= f.select :service_type, options_for_select(OrganizationManager.service_types.map {|k, v| [k.humanize.capitalize, k]}), {prompt: 'Please select ...' }, required: true, class:"form-control select2" %>
+              </div>
+            </div>
+            <div class="col-md-6">          
+              <div class="form-group">        
+                <label class="control-label">Avatar</label>
+                <% if @organization_manager.avatar? %>
+                  <%= image_tag(@organization_manager.avatar.thumb) %><br/>
+                  <%= f.file_field :avatar, class: 'form-control' %>
+                <% else %>
+                  <%= f.file_field :avatar, required: true, class: 'form-control' %>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="col-md-6">          
+              <div class="form-group">        
+                <label class="control-label">Organization</label>
+                <%= f.select :organization_id, options_from_collection_for_select(Organization.all, :id, :name, @brand.try(:organization_id)), {prompt: 'Please select ...' }, required: true, class:"form-control select2" %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class=" control-label">Following standards?</label>
+                <br/>
+                <input type="radio" name="organization_manager[following_standards]" id="following" value="true" <%= @organization_manager.following_standards? ? "checked" : ""%>>
+                <label for="following">Yes</label>
+                <input type="radio" name="organization_manager[following_standards]" id="not_following" value="false" <%= @organization_manager.following_standards? ? "" : "checked"%>>
+                <label for="not_following">No</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <%= f.submit 'Submit', class: 'btn btn-lg btn-primary' %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    // For select 2
+    $(".select2").select2();
+  });
+</script>

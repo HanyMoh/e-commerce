@@ -1,0 +1,176 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "product_buy_points",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/one/product_buy_points/products.json",
+      "operations": [
+        {
+          "summary": "All products available to buy by user",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Email",
+              "type": "email",
+              "description": "User Email",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "brand_id",
+              "type": "integer",
+              "description": "Brand id",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::ProductBuyPoints#products",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/product_buy_points.json",
+      "operations": [
+        {
+          "summary": "All user bought products points",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Email",
+              "type": "email",
+              "description": "User Email",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::ProductBuyPoints#index",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/product_buy_points.json",
+      "operations": [
+        {
+          "summary": "Record Product buy points",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Email",
+              "type": "email",
+              "description": "User Email",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "product_id",
+              "type": "integer",
+              "description": "Product ID",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "amount",
+              "type": "integer",
+              "description": "Product Quantity",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::ProductBuyPoints#create",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/product_buy_points/{id}.json",
+      "operations": [
+        {
+          "summary": "Retrieve bought product points",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Email",
+              "type": "email",
+              "description": "User Email",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "id",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::V1::ProductBuyPoints#show",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

@@ -1,0 +1,89 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "follow",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/one/follow/{follow_id}/follow.json",
+      "operations": [
+        {
+          "summary": "follow a given user",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Email",
+              "type": "email",
+              "description": "User Email",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "followee_id",
+              "type": "followee_id",
+              "description": "id of the required user to follow",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::Follow#follow",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/follow/{follow_id}/unfollow.json",
+      "operations": [
+        {
+          "summary": "un-follow a given user",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Email",
+              "type": "email",
+              "description": "User Email",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "followee_id",
+              "type": "followee_id",
+              "description": "id of the required user to un-follow",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::Follow#unfollow",
+          "method": "delete"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

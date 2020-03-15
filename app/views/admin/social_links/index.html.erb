@@ -1,0 +1,17 @@
+<div class="start-content">
+  <div class="row">
+    <div class="col-md-12">
+      facebook: <%= @social_links&.facebook %>
+      <br>
+      twitter: <%= @social_links&.twitter %>
+      <br>
+      Instagram: <%= @social_links&.instagram %>
+      <br>
+    </div>
+    <%= link_to 'Add', new_admin_social_link_path, class: 'btn btn-md btn-primary' %>
+    <% if @social_links %>
+      <%= link_to 'Update', edit_admin_social_link_path(@social_links), class: 'btn btn-md btn-primary' %>
+      <%= link_to 'Delete', admin_social_link_path(@social_links), method: :destroy, class: 'btn btn-md btn-primary' %>
+    <% end %>
+  </div>
+</div>

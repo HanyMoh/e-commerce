@@ -1,0 +1,134 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "carts",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/one/carts/{cart_id}/get_latest_cart.json",
+      "operations": [
+        {
+          "summary": "Get latest active cart",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "shop_id",
+              "type": "integer",
+              "description": "Shop ID",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::Carts#get_latest_cart",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/carts.json",
+      "operations": [
+        {
+          "summary": "Get all user's carts",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::Carts#index",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/carts/{id}.json",
+      "operations": [
+        {
+          "summary": "Get user's cart",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "cart_id",
+              "type": "integer",
+              "description": "Cart ID",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::Carts#show",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/carts/{id}.json",
+      "operations": [
+        {
+          "summary": "Destroy latest shop active cart",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "shop_id",
+              "type": "integer",
+              "description": "Shop ID",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::Carts#destroy",
+          "method": "delete"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

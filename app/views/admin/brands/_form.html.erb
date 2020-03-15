@@ -1,0 +1,173 @@
+<% content_for :bc_title do %>
+  Brands
+<% end %>
+
+<% content_for :bc_current do %>
+  Brand
+<% end %>
+
+<% content_for :bc_buttons do %>
+  <a href="<%= admin_brands_path %>"><button type="button" class="btn btn-info"><i class="fa fa-plus-circle"></i> All Brands</button></a>
+<% end %>
+
+<%= render 'shared/breadcrumb' %>
+
+<%= render 'shared/error_messages', object: @brand %>
+
+<div class="row">
+  <div class="col-6">
+    <div class="card">
+      <div class="card-header bg-info">
+        <% if @brand.new_record? %>
+          <h4 class="m-b-0 text-white">Add new brand </h4>
+        <% else %>
+          <h4 class="m-b-0 text-white">Edit brand</h4>
+        <% end %>
+      </div>
+      <div class="card-body">  
+        <br/>
+        <%= form_for [:admin, @brand], html: { help: :block } do |f| %>
+          <% if current_organization_manager %>
+            <%= f.hidden_field :following_standards, value: current_organization_manager.following_standards? ? "true" : "false" %>
+            <%= f.hidden_field :organization_manager_id, value: current_organization_manager.id %>
+            <%= f.hidden_field :organization_id, value: current_organization_manager.organization.id %>
+          <% end %>
+          <div class="row">
+            <div class="col-md-6">          
+              <div class="form-group">        
+                <label class="control-label">Name</label>
+                <%= f.text_field :name, required: true, class:"form-control"%>
+              </div>
+            </div>
+
+            <div class="col-md-6">          
+              <div class="form-group">        
+                <label class="control-label">Display name</label>
+                <%= f.text_field :display_name, required: true, class:"form-control"%>
+                <small>Example: Brand Stores</small>
+              </div>
+            </div>
+
+            <div class="col-md-12">          
+              <div class="form-group">        
+                <label class="control-label">Category</label>
+                <%= f.select :category_id, options_from_collection_for_select(Category.roots.all, :id, :name, @brand.try(:category_id)), {prompt: 'Please select ...' }, required: true, class:"form-control select2" %>
+              </div>
+            </div>
+            <div class="col-md-12">          
+              <div class="form-group">        
+                <label class="control-label">Description</label>
+                <%= f.text_area :description, required: true, class:"form-control"%>
+              </div>
+            </div>
+
+            <div class="col-md-6">          
+              <div class="form-group">        
+                <label class="control-label">Logo</label>
+                <% if @brand.logo? %>
+                  <%= image_tag(@brand.logo.thumb) %><br/>
+                  <%= f.file_field :logo, class: 'form-control' %>
+                <% else %>
+                  <%= f.file_field :logo, required: true, class: 'form-control' %>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="col-md-6">          
+              <div class="form-group">        
+                <label class="control-label">Dark Logo</label>
+                <% if @brand.dark_logo? %>
+                  <%= image_tag(@brand.dark_logo.thumb) %><br/>
+                  <%= f.file_field :dark_logo, class: 'form-control' %>
+                <% else %>
+                  <%= f.file_field :dark_logo, required: true, class: 'form-control' %>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="col-md-12">          
+              <div class="form-group">        
+                <label class="control-label">Cover/Banner</label>
+                <% if @brand.banner_image? %>
+                  <%= image_tag(@brand.banner_image.thumb) %><br/>
+                  <%= f.file_field :banner_image, class: 'form-control' %>
+                <% else %>
+                  <%= f.file_field :banner_image, required: true, class: 'form-control' %>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="col-md-6">          
+              <div class="form-group">        
+                <label class="control-label">Websites</label>
+                <input type="text" name="brand[websites][]" value="<%= @brand.websites[0] %>" data-role="tagsinput" class="form-control"> 
+              </div>
+            </div>
+
+            <div class="col-md-6">          
+              <div class="form-group">        
+                <label class="control-label">Phones</label>
+                <input type="text" name="brand[phone_numbers][]" value="<%= @brand.phone_numbers[0] %>" data-role="tagsinput" class="form-control"> 
+              </div>
+            </div>
+
+            <div class="col-md-12">          
+              <div class="form-group">        
+                <label class="control-label">Cover/Banner</label>
+                <%= f.check_box :sat, checked: @brand.sat, id: 'sat' %> <label for="sat">Sat</label>
+                <%= f.check_box :sun, checked: @brand.sun, id: 'sun' %> <label for="sun">Sun</label>
+                <%= f.check_box :mon, checked: @brand.mon, id: 'mon' %> <label for="mon">Mon</label>
+                <%= f.check_box :tue, checked: @brand.tue, id: 'tue' %> <label for="tue">Tue</label>
+                <%= f.check_box :wed, checked: @brand.wed, id: 'wed' %> <label for="wed">Wed</label>
+                <%= f.check_box :thu, checked: @brand.thu, id: 'thu' %> <label for="thu">Thu</label>
+                <%= f.check_box :fri, checked: @brand.fri, id: 'fri' %> <label for="fri">Fri</label>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">        
+                <label>From</label>
+                <% if @brand.from.present? %>
+                  <%= f.time_field :from, value: @brand.from.to_formatted_s(:time), class: "form-control" %>
+                <% else %>
+                  <%= f.time_field :from, class: "form-control" %>
+                <% end %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">        
+                <label>To</label>
+                <% if @brand.to.present? %>
+                  <%= f.time_field :to, value: @brand.to.to_formatted_s(:time), class: "form-control" %>
+                <% else %>
+                  <%= f.time_field :to, class: "form-control" %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <%= f.submit 'Submit', class: 'btn btn-lg btn-primary' %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(function() {
+    // For select 2
+    $(".select2").select2();
+  });
+
+  $("form").on("keypress", function (e) {
+    if (e.keyCode == 13) {
+      return false;
+    }
+  });
+</script>

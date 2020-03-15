@@ -1,0 +1,63 @@
+<div class="main-content">
+  <!-- Page Title -->
+  <div class="page-title-bar">
+    <div class="row">
+      <div class="col-xs-6"><h2>Buildings</h2></div>
+      <div class="col-xs-6">
+        <div class="add-new-btn">
+          <a href="<%= new_admin_building_path %>"><img src="/dashboard/images/add-new-icon.png" alt="Add"> Add New</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page Breadcrumb -->
+  <div class="page-breadcrumb">
+    <div class="row">
+      <div class="col-sm-7">
+        <a href="<%= admin_path %>" class="back-angle"><i class="fa fa-long-arrow-left"></i> Back To Dashboard</a>
+      </div>
+      <div class="col-sm-5">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+          <li class="breadcrumb-item active">Buildings</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- View Buildings -->
+  <div class="start-content">
+    <div class="view-buildings">
+      <div class="row">
+        <% @buildings.each do |building| %>
+          <div class="col-md-3 col-sm-6">
+            <div class="main-view-item">
+              <div class="view-header">
+                  <span><a href="<%= admin_building_path(building.id) %>"><%= building.try(:name) %></a></span>
+              </div>
+              <div class="view-body">
+                <ul>
+                  <li><p>Created at</p> <span><%= building.created_at %></span></li>
+                  <li><p>Address</p> <span><%= building.area %></span></li>
+                </ul>
+              </div>
+              <div class="view-footer">
+                 <a href="<%= edit_admin_building_path(building) %>" class="edit"><i class="fa fa-pencil"></i>Edit</a>
+                <%= link_to admin_building_path(building.id), method: :delete, data: {confirm: "Are you sure?"} do %>
+                <i class="fa fa-trash-o"></i>Delete
+                <% end %>
+              </div>
+              <div class="add-new-floor">
+              <%= link_to edit_admin_building_path(building, floor: 't') do %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <!-- /Staff Item -->
+      </div>
+    </div>
+    <%= render partial: 'shared/pagination_section',locals: { collection: @buildings }  %>
+  </div>
+

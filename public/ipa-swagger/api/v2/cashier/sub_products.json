@@ -1,0 +1,238 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "sub_products",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/two/cashier/sub_products.json",
+      "operations": [
+        {
+          "summary": "Get all sub products for current employee or manager",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Token",
+              "required": true
+            }
+          ],
+          "notes": "      Sending `manager token` as <b>X-User-Token</b> will return all sub_products of the current manager organization.<br />\n      Sending `employee user token` as <b>X-User-Token</b> will return all sub_products of the current employee shop.<br />\n",
+          "nickname": "Api::V2::Cashier::SubProducts#index",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/two/cashier/sub_products/{id}.json",
+      "operations": [
+        {
+          "summary": "Show a sub product by id",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Sub Product ID",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::V2::Cashier::SubProducts#show",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/two/cashier/sub_products/{id}.json",
+      "operations": [
+        {
+          "summary": "update sub product",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Sub Product ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "sub_product[shop_id]",
+              "type": "integer",
+              "description": "Shop ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "sub_product[brand_id]",
+              "type": "integer",
+              "description": "Brand ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "sub_product[product_id]",
+              "type": "integer",
+              "description": "Product ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "sub_product[organization_id]",
+              "type": "integer",
+              "description": "Organization ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "sub_product[barcode]",
+              "type": "string",
+              "description": "Barcode",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "sub_product[price]",
+              "type": "float",
+              "description": "Price",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "sub_product[discount]",
+              "type": "float",
+              "description": "Discount",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "sub_product[color]",
+              "type": "string",
+              "description": "Color",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "sub_product[size]",
+              "type": "string",
+              "description": "Size",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "sub_product[quantity]",
+              "type": "integer",
+              "description": "Quantity",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "sub_product[cover_image]",
+              "type": "string",
+              "description": "Cover Image",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "sub_product[gallery]",
+              "type": "string",
+              "description": "Gallery",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V2::Cashier::SubProducts#update",
+          "method": "patch"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/two/cashier/sub_products/{id}.json",
+      "operations": [
+        {
+          "summary": "Deletes an existing Sub Product",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Sub Product Id",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::V2::Cashier::SubProducts#destroy",
+          "method": "delete"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

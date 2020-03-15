@@ -1,0 +1,1 @@
+json.extract! feature, :id, :cart, :campaign, :beacon, :panorama360, :organization_id

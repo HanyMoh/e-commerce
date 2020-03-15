@@ -1,0 +1,65 @@
+<% content_for :search_bar do %>
+  <%= render partial: './shared/search_bar', locals: { search_title: 'Staff', q: @q, path: admin_employee_users_path } %>
+<% end %>
+
+<div class="page-title-bar">
+  <div class="row">
+    <div class="col-xs-6"><h2>Staff</h2></div>
+    <div class="col-xs-6">
+      <div class="add-new-btn">
+        <a href="<%= new_admin_employee_user_path %>"><img src="/dashboard/images/add-new-icon.png" alt="Add">Add new</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-breadcrumb">
+  <div class="row">
+    <div class="col-sm-7">
+      <!-- 
+      <a href="javascript:void(0)" class="back-angle"><i class="fa fa-long-arrow-left"></i> Back To My Brand</a>
+    -->
+    </div>
+    <div class="col-sm-5">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<%= admin_path %>">Dashboard</a></li>
+        <li class="breadcrumb-item active">Staff</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="start-content">
+  <div class="all-staff">
+    <div class="row">
+      <% @employee_users.each do |employee_user| %>
+        <div class="col-md-3 col-sm-6">
+          <div class="main-view-item">
+            <div class="view-header">
+               <%= image_tag employee_user.avatar_url.to_s if employee_user.avatar_url.present?  %>
+              <span>
+                <%= link_to employee_user.name,admin_employee_user_path(employee_user.id) %>         
+              </span>
+            </div>
+            <div class="view-body">
+              <ul>
+                <li><p>Email</p> <span><%= employee_user.email %></span></li>
+                <li><p>phone</p> <span><%= employee_user.phone_number %></span></li>
+                <li><p>Control in</p> <span><%= employee_user.type %></span></li>
+                <li><p>job title</p> <span><%= employee_user.job_title %></span></li>
+                <li><p>Service type</p> <span><%= employee_user.service_type.titleize %></span></li>
+              </ul>
+            </div>
+            <div class="view-footer">
+              <a href="<%= edit_admin_employee_user_path(employee_user.id) %>" class="edit"><i class="fa fa-pencil"></i>Edit</a>
+              <%= link_to admin_employee_user_path(employee_user.id), method: :delete,class:"delete", data: {confirm: "Are you sure?"} do %>
+              <i class="fa fa-trash-o"></i>Delete
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+    <%= render partial: 'shared/pagination_section',locals: { collection: @employee_users }  %>
+</div>

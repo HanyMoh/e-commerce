@@ -1,0 +1,275 @@
+<div class="page-title-bar">
+  <div class="row">
+  </div>
+</div>
+<!-- Page Breadcrumb -->
+<div class="page-breadcrumb">
+  <div class="row">
+    <div class="col-sm-7">
+      <a href="<%= admin_buildings_path %>" class="back-angle"><i class="fa fa-long-arrow-left"></i> Back To Buildings</a>
+    </div>
+    <div class="col-sm-5">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<%= admin_path %>">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="<%= admin_buildings_path %>">Buildings</a></li>
+        <li class="breadcrumb-item active">New Building</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<div class="start-content">
+<%= render 'shared/error_messages', object: @building %>
+<div class="row">
+<div class= "col-md-12">
+    <div id="building-map" style="height:800px; width:100%; background-color: blue;"></div>
+    <input type="text" id="pac-input" class="form-control">
+<div id="building-form">
+  <div class="row">
+    <div class="col-md-12">
+      <h4>Add New Building</h4>
+      <hr>
+      <%= nested_form_for [:admin, @building], html: {id: 'building_form', help: :block } do |f| %>
+        <div class="form-group">
+          <label>Name</label>
+          <%= f.text_field :name, required: true, class:"form-control", placeholder: "Enter name here" %>
+          <small class="just-example">Example: Egypt Mall, City Stars Mall</small>
+        </div>
+
+        <div class="form-group">
+          <label>Adress / Area</label>
+          <%= f.text_field :area, required: true, class:"form-control", placeholder: "Egypt Mall,Cairo,Giza street"%>
+          <small class="just-example">Example: Egypt Mall, City Stars Mall</small>
+        </div>
+
+        <!-- For now we have only Mall type supported -->
+        <%= f.hidden_field :building_type, value: "Mall" %>
+        <!--
+        <div class="form-group">
+          <label>Building Type</label>
+          <%#= f.select :building_type, Building::TYPES, required: true, class: 'form-control' %>
+          <%#= f.text_field :building_type, required: true, class:"form-control", placeholder: "Enter name here" %>
+        </div>
+        -->
+
+        <!-- This will be moved to another form -->
+        <!--
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Floor</label>
+            <div class="form-group">
+              <label>Index</label>
+              <%#= f.text_field :floors_count, id: "increase-btn", name: "increase-btn", class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <label>lable</label>
+              <input type="text" class="form-control" placeholder="Flr">
+            </div>
+          </div>
+        </div>
+        -->
+
+        <% if current_admin %>
+          <div class="form-group">
+            <label>Organization</label>
+            <%= f.select :organization_id, options_from_collection_for_select(Organization.all, :id, :name, @building.try(:organization_id)), {prompt: 'Please select ...' }, required: true, class:"form-control select2" %>
+          </div>
+        <% else %>
+          <%= f.hidden_field :organization_id, value: current_active_user.organization_id %>
+        <% end %>
+
+        <!-- This will be moved to another form -->
+        <!--
+        <div class="col-md-12">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Map Layout</label>
+              <input type="file" class="dropify" data-allowed-file-extensions="png jpg" />
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Floor 1</label>
+              <input type="file" class="dropify" data-allowed-file-extensions="png jpg" />
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Floor 2</label>
+              <input type="file" class="dropify" data-allowed-file-extensions="png jpg" />
+            </div>
+          </div>
+        </div>
+        -->
+        
+        <div class="form-group">
+          <label>longitude</label>
+          <%= f.text_field :longitude, readonly: true, id: 'building_longitude', class: 'form-control' %>
+        </div>
+        <div class="form-group">
+          <label>latitude</label>
+          <%= f.text_field :latitude, readonly: true, id: 'building_latitude', class: 'form-control' %>
+        </div>
+      
+        <!--
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>longitude</label>
+            <input type="text" placeholder="Select on map" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>latitude</label>
+            <input type="text" placeholder="Select on map" class="form-control">
+          </div>
+        </div>
+        -->
+
+        <!-- Upcoming feature -->
+        <!--
+        <div class="form-group">
+          <label>Radius</label>
+          <input type="text" placeholder="45" class="form-control">
+          <p class="just-example">in meters,minimum is 2m</p>
+        </div>
+        -->
+        <div class="form-group">
+          <button class="btn btn-lg btn-primary">Create <i class="fa fa-check"></i></button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+</div>
+
+</div>
+<div class="modal fade" id="floors_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Building Floors</h4>
+      </div>
+      <div class="modal-body">
+        <%= nested_form_for [:admin, @building] do |f| %>
+          <%= f.hidden_field :floor, value: true %>
+          <%= f.fields_for :building_levels do |blf| %>
+            <%= blf.hidden_field :organization_id, value: @building.organization_id %>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label>Floor name</label>
+                  <%= blf.text_field :name, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <label>Floor number</label>
+                  <%= blf.text_field :level, class: 'form-control' %>
+                </div>
+                <div class="form-group">
+                  <label>Floor Plan</label>
+                  <%= blf.file_field :image, class: 'form-control' %>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+            <div class="col-md-12" align="center">
+              <%= blf.link_to_remove "Remove", class: "btn btn-lg btn-danger" %>
+              </div>
+            </div>
+            <hr>
+          <% end %>
+          <%= f.link_to_add "Add another floor", :building_levels, class:"btn btn-info" %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <%= f.submit 'Save Floors', class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</div>
+
+<script>
+  var mapDiv = document.getElementById("building-map");
+  mapDiv.style.display = "block";
+
+  // map code
+  function initMap() {
+    var myLatlng = {lat: <%= @building.latitude ? @building.latitude : 30.0444 %>, lng: <%= @building.longitude ? @building.longitude : 31.2357 %>};
+    var map = new google.maps.Map(document.getElementById('building-map'), {
+      zoom: <%= @building.longitude ? 18 : 8 %>,
+      center: myLatlng
+    });
+
+    google.maps.event.addListener(map, 'click', function(event) {
+    // if the previousMarker exists, remove it
+    if (marker)
+      marker.setMap(null);
+      marker = new google.maps.Marker({
+        position: event.latLng,
+        map: map,
+        draggable: true
+      });
+      updateLocation(event.latLng);
+      marker.addListener('dragend', function(event) {
+        updateLocation(event.latLng);
+      });
+    });
+
+    map.addListener('center_changed', function() {
+    // 3 seconds after the center of the map has changed, pan back to the
+    // marker.
+      window.setTimeout(function() {
+        map.panTo(marker.getPosition());
+      }, 100000);
+    });
+
+    // get places auto-complete when user type in location-text-box
+    var input = (document.getElementById('pac-input'));
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.bindTo('bounds', map);
+    var infowindow = new google.maps.InfoWindow();
+    marker = new google.maps.Marker({
+      map: map,
+      anchorPoint: new google.maps.Point(0, -29),
+      draggable: true
+    });
+
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+      infowindow.close();
+      // marker.setVisible(false);
+      var place = autocomplete.getPlace();
+      if (!place.geometry) {
+        return;
+      }
+      // If the place has a geometry, then present it on a map.
+      if (place.geometry.viewport) {
+        map.fitBounds(place.geometry.viewport);
+      } else {
+        map.setCenter(place.geometry.location);
+        map.setZoom(17); // Why 17? Because it looks good.
+      }
+      marker.setPosition(place.geometry.location);
+      // marker.setVisible(true);
+      // update location
+      updateLocation(place.geometry.location);
+    });
+
+    function updateLocation(evt){
+      $('#building_longitude').val(evt.lng());
+      $('#building_latitude').val(evt.lat());
+      $('#building_longitude').trigger('change');
+      $('#building_latitude').trigger('change');
+    }
+  }
+</script>
+
+<% if params[:floor] %>
+  <script type="text/javascript">
+    $(window).on('load',function(){
+      $('#floors_modal').modal('show');
+    });
+  </script>
+<% end %>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDB5wrYxVqgRMSf8i204K6Fx65Ra2bPIYc&libraries=geometry,places&callback=initMap"
+async defer></script>

@@ -1,0 +1,102 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "buildings",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/one/buildings/{id}/shops.json",
+      "operations": [
+        {
+          "summary": "Get building shops",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Building id",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::Buildings#shops",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/buildings.json",
+      "operations": [
+        {
+          "summary": "All buildings on the earth!",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "building_type",
+              "type": "integer",
+              "description": "Building Type",
+              "required": false,
+              "allowableValues": {
+                "valueType": "LIST",
+                "values": [
+                  "Mall",
+                  "Hospital",
+                  "Other"
+                ]
+              }
+            }
+          ],
+          "nickname": "Api::V1::Buildings#index",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/buildings/{id}.json",
+      "operations": [
+        {
+          "summary": "Get a building",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Building id",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::V1::Buildings#show",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

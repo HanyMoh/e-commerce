@@ -1,0 +1,62 @@
+<div class="container-fluid">
+  <h1>Product: <%= @product.name %></h1>
+  <h2>Brand: <%= @brand.name %></h2>
+  <div align="center">
+    <% if ShopProduct.where(product: @product).any? %>
+      <h3 style="color: green;">This product is live on Navbox</h3> 
+    <% else %>
+      <h3 style="color: red;">This product is not added to Navbox yet</h3>
+    <% end %>
+  </div>
+  <% @shops.each do |shop| %>
+    <h3><%= shop.name %></h3>
+    <br/>
+    <table class="table">
+      <thead>
+        <th>Image</th>
+        <th>Shop</th>
+        <th>Barcode</th>
+        <th>Price</th>
+        <th>Discount</th>
+        <th>Color</th>
+        <th>Size</th>
+        <th>Quantity</th>
+        <th>Actions</th>
+      </thead>
+      <tbody>
+        <% sub_products = @product.sub_products.where(shop: shop) %>
+        <% if sub_products.any? %>
+          <% sub_products.each do |sub_product| %>
+            <tr>
+              <td><%= sub_product.gallery.any? ? image_tag(sub_product.gallery[sub_product.gallery_index].thumb.url, style: 'width: 50px') : 
+                (sub_product.product.cover_image.present? ? image_tag(sub_product.product.cover_image.thumb.url, style: 'width: 50px') : image_tag(sub_product.product.temp_image, style: 'width: 50px') )  %></td>
+              <td><%= sub_product.shop.name %></td>
+              <td><%= sub_product.barcode %></td>
+              <td><%= sub_product.price %></td>
+              <td><%= sub_product.discount %></td>
+              <td><%= sub_product.color %></td>
+              <td><%= sub_product.size %></td>
+              <td><%= sub_product.quantity %></td>
+              <td>
+                <%= link_to "Edit", edit_admin_product_sub_product_path(@product.id,sub_product.id, shop: shop.id), class: 'btn btn-sm btn-warning' %>
+                <%= link_to "Delete", admin_product_sub_product_path(sub_product.product.id,sub_product.id), method: :delete, class: 'btn btn-sm btn-danger',
+                              data: {confirm: "Are you sure?"} %>
+              </td>
+            </tr>
+          <% end %>
+          <tr>
+            <td colspan="9" align="center"><%= link_to "Add product to this store", new_admin_product_sub_product_path(@product.id, shop: shop.id), class: 'btn btn-md btn-info', style: 'width: 200px;'%></td>
+          </tr>
+        <% else %>
+          <tr>
+            <td colspan="9" align="center">You haven't add this product to this store yet</td>
+          </tr>
+          <tr>
+            <td colspan="9" align="center"><%= link_to "Add product to this store", new_admin_product_sub_product_path(@product.id, shop: shop.id), class: 'btn btn-md btn-info', style: 'width: 200px;'%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <br/>
+  <% end %>
+</div>

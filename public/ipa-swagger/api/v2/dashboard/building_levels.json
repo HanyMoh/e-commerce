@@ -1,0 +1,362 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "building_levels",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/two/dashboard/building_levels.json",
+      "operations": [
+        {
+          "summary": "Get all building_levels for admin or current manager",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Token",
+              "required": true
+            }
+          ],
+          "notes": "      Sending `admin token` as <b>X-User-Token</b> will return all buildings in the system.<br />\n      Sending `manager token` as <b>X-User-Token</b> will return all buildings of current manager organization.<br />\n",
+          "nickname": "Api::V2::Dashboard::BuildingLevels#index",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/two/dashboard/building_levels.json",
+      "operations": [
+        {
+          "summary": "Create Building Level",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Token",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "building_level[name]",
+              "type": "string",
+              "description": "Name",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "building_level[level]",
+              "type": "integer",
+              "description": "Level",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "building_level[image]",
+              "type": "string",
+              "description": "Image",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "building_level[3d_image]",
+              "type": "string",
+              "description": "3d image",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "building_level[image_latitude]",
+              "type": "decimal",
+              "description": "Image Latitude",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "building_level[image_longitude]",
+              "type": "decimal",
+              "description": "Image Longitude",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "building_level[building_id]",
+              "type": "integer",
+              "description": "Building ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "building_level[corridors]",
+              "type": "text",
+              "description": "corridors",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "building_level[gates]",
+              "type": "text",
+              "description": "Gates",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "building_level[beacons]",
+              "type": "text",
+              "description": "Beacons",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "building_level[image_position]",
+              "type": "text",
+              "description": "Image Position",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "building_level[image_rotation]",
+              "type": "text",
+              "description": "Image Rotation",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "building_level[organization_id]",
+              "type": "integer",
+              "description": "Organization ID",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V2::Dashboard::BuildingLevels#create",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/two/dashboard/building_levels/{id}.json",
+      "operations": [
+        {
+          "summary": "Show a building_level by id",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Building Level ID",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::V2::Dashboard::BuildingLevels#show",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/two/dashboard/building_levels/{id}.json",
+      "operations": [
+        {
+          "summary": "update Building Level",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Building Level ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "building_level[name]",
+              "type": "string",
+              "description": "Name",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "building_level[level]",
+              "type": "integer",
+              "description": "Level",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "building_level[image]",
+              "type": "string",
+              "description": "Image",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "building_level[3d_image]",
+              "type": "string",
+              "description": "3d image",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "building_level[image_latitude]",
+              "type": "decimal",
+              "description": "Image Latitude",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "building_level[image_longitude]",
+              "type": "decimal",
+              "description": "Image Longitude",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "building_level[building_id]",
+              "type": "integer",
+              "description": "Building ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "building_level[corridors]",
+              "type": "text",
+              "description": "corridors",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "building_level[gates]",
+              "type": "text",
+              "description": "Gates",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "building_level[beacons]",
+              "type": "text",
+              "description": "Beacons",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "building_level[image_position]",
+              "type": "text",
+              "description": "Image Position",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "building_level[image_rotation]",
+              "type": "text",
+              "description": "Image Rotation",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "building_level[organization_id]",
+              "type": "integer",
+              "description": "Organization ID",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V2::Dashboard::BuildingLevels#update",
+          "method": "patch"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/two/dashboard/building_levels/{id}.json",
+      "operations": [
+        {
+          "summary": "Deletes an existing Building Level",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Building Level Id",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::V2::Dashboard::BuildingLevels#destroy",
+          "method": "delete"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

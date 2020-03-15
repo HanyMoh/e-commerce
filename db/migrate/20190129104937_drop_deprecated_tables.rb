@@ -1,0 +1,39 @@
+class DropDeprecatedTables < ActiveRecord::Migration[5.1]
+  def change
+    drop_table :assets
+    drop_table :beacon_tags
+    drop_table :beacon_points
+    drop_table :brand_themes
+    drop_table :building_levels
+    drop_table :buttons
+    drop_table :beacons
+    drop_table :coupons
+    drop_table :timeframes
+    drop_table :campaign_coupons
+    drop_table :media_coupons
+    drop_table :campaign_social_profiles
+    drop_table :contents
+    drop_table :campaigns
+    drop_table :carts
+    drop_table :cart_entries
+    drop_table :currency_ex_rates
+    drop_table :firebase_tokens
+    drop_table :floors
+    drop_table :product_buy_points
+    drop_table :product_redeem_points
+    drop_table :product_repositories
+    drop_table :product_scan_points
+    drop_table :purchase_tokens
+    drop_table :real_visit_logs
+    drop_table :redeems
+    drop_table :scan_logs
+    drop_table :shop_products
+    drop_table :tags
+    drop_table :user_brand_points
+    drop_table :user_codes
+    drop_table :user_points
+    drop_table :virtual_visit_logs
+    drop_table :line_items
+    drop_table :store_carts
+  end
+end

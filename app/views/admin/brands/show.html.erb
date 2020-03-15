@@ -1,0 +1,212 @@
+<% if @status == "show" %>
+  <%= render partial: './shared/popups/create_brand', locals: { brand: @brand } %>
+<% end %>
+
+<!-- Page Title -->
+<div class="page-title-bar">
+  <div class="row">
+    <div class="col-xs-6"><h2><%=@brand.try(:name)%></h2></div>
+    <div class="col-xs-6">
+      <div class="add-new-btn">
+        <a href="<%= new_admin_brand_path %>"><img src="/dashboard/images/add-new-icon.png" alt="Add">New Brand</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Page Breadcrumb -->
+<div class="page-breadcrumb">
+  <div class="row">
+    <div class="col-sm-7">
+        <% unless check_num_of_brands(current_active_user) == 1 %>
+      <a href="<%= admin_brands_path %>" class="back-angle"><i class="fa fa-long-arrow-left"></i> Back To Brands</a>
+        <% end %>
+    </div>
+    <div class="col-sm-5">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<%= admin_path %>">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="<%= admin_brands_path %>">Brands</a></li>
+        <li class="breadcrumb-item active"><a href="javascript:void(0)"><%= @brand.try(:name) %></a></li>
+      </ol>
+    </div>
+  </div>
+</div>
+<div class="start-content">
+  <div class="view-brand">
+    <div class="brand-item">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-2"><h4 class="item-title">Name</h4></div>
+          <div class="col-md-10"><p class="item-info"><%=@brand.try(:name)%></p></div>
+        </div>
+      </div>
+    </div>
+    <div class="brand-item">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-2"><h4 class="item-title">Category</h4></div>
+          <div class="col-md-10"><p class="item-info"><%= @brand.category.name %></p></div>
+        </div>
+      </div>
+    </div>
+    <div class="brand-item">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-2"><h4 class="item-title">Brand Logo</h4></div>
+          <div class="col-md-10">
+            <%= image_tag @brand.logo_url.to_s, style: 'width:100px;',class: 'img-responsive' if @brand.logo_url.present?  %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="brand-item">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-2"><h4 class="item-title">Brand Cover</h4></div>
+          <div class="col-md-10">
+            <%= image_tag @brand.banner_image_url.to_s,class: "img-responsive",alt: "Cover"  if @brand.banner_image_url.present?  %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="brand-item">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-2"><h4 class="item-title">Websites</h4></div>
+          <div class="col-md-10">
+            <p class="item-info">
+              <%= @brand.websites.first.split(',').join(', ') if @brand.websites.first %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="brand-item">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-2"><h4 class="item-title">Phone Numbers</h4></div>
+          <div class="col-md-10">
+            <p class="item-info">
+              <%= @brand.phone_numbers.first.split(',').join(', ') if @brand.phone_numbers.first %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="brand-item">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-2"><h4 class="item-title">Time Works</h4></div>
+          <div class="col-md-10">
+            <p class="item-info">
+            <% if @brand.sat %>
+                <%= "Saturday"%><br/>
+            <% end %>
+            <% if @brand.sun %>
+                <%= "Sunday"%><br/>
+            <% end %>
+            <% if @brand.mon %>
+                <%= "Monday"%></br/>
+            <% end %>
+            <% if @brand.tue %>
+                <%= "Tuesday"%><br/>
+            <% end %>
+            <% if @brand.wed %>
+                <%= "Wednesday"%><br/>
+            <% end %>
+            <% if @brand.thu %>
+                <%= "Thursday"%><br/>
+            <% end %>
+            <% if @brand.fri %>
+                <%= "Friday"%><br/>
+            <% end %>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="brand-item">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-2"><h4 class="item-title">Social Profile</h4></div>
+          <div class="col-md-10">
+            <p class="item-info">
+            <a href="#">
+              <% if @brand.facebook.present?  %>
+                 <i class="fa fa-facebook-square face-icon"></i>
+                 <%= @brand.try(:facebook) %><br/>
+              <% end %>
+              <% if @brand.instagram.present?  %>
+                 <i class="fa fa-instagram face-icon"></i>
+                 <%= @brand.try(:instagram) %><br/>
+              <% end %>
+              <% if @brand.pinterest.present?  %>
+                 <i class="fa fa-pinterest-square face-icon"></i>
+                 <%= @brand.try(:pinterest) %><br/>
+              <% end %>
+              <% if @brand.youtube.present?  %>
+                 <i class="fa fa-youtube-square face-icon"></i>
+                 <%= @brand.try(:youtube) %><br/>
+              <% end %>
+              <% if @brand.google_plus.present?  %>
+                 <i class="fa fa-google-plus-square face-icon"></i>
+                 <%= @brand.try(:google_plus) %><br/>
+              <% end %>
+              <% if @brand.snapchat.present?  %>
+                 <i class="fa fa-snapchat-square face-icon"></i>
+                 <%= @brand.try(:snapchat) %><br/>
+              <% end%>
+            </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="brand-item">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-2"><h4 class="item-title">Description</h4></div>
+          <!-- ToDo refactoring -->
+          <div class="col-md-10"><p class="item-info"><%=@brand.try(:description).html_safe if @brand.description.present?%>
+          </p></div>
+        </div>
+      </div>
+    </div>
+    <div class="brand-item">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="save-all">
+        <a href="<%= edit_admin_brand_path(@brand.id) %>" class="#">
+          <button class="#">Edit Brand <i class="fa fa-mouse-pointer"></i></button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+        $(function() {
+            $(window).on('load', function() {
+               $('.message-popup.success').css('top','0px');
+                setTimeout(function(){ 
+                     $('.message-popup').css('top','-60px');
+                }, 2000);
+            });
+            $(window).on('load', function() {
+               $('.message-popup.failed').css('top','0px');
+                setTimeout(function(){ 
+                     $('.message-popup').css('top','-60px');
+                }, 2000);
+            });
+            $(window).on('load', function() {
+               $('.message-popup.success-deleted').css('top','0px');
+                setTimeout(function(){ 
+                     $('.message-popup').css('top','-60px');
+                }, 2000);
+            });
+             $(window).on('load', function () {
+                $('#createBrand').modal('show');
+            });
+        })
+</script>

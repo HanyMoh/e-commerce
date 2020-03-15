@@ -1,0 +1,1 @@
+json.extract! sub_product, :id, :product_id, :shop_id, :barcode, :price, :discount, :color, :size, :quantity, :brand_id, :organization_id, :gallery, :gallery_index, :popup, :item_id, :cover_image

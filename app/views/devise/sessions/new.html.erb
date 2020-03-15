@@ -1,0 +1,64 @@
+<% content_for :page_title do %>
+  Admin Login - Nasnav
+<% end %>
+<% if !request.path.include?('/users/') %>
+  <%= stylesheet_link_tag 'old_dashboard', media: 'all', 'data-turbolinks-track' => true %>
+  <div class="login-page">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="login-left-side">
+            <div class="logo">
+              <img src="/dashboard/images/nasnav-logo.png" alt="">
+            </div>
+            <div class="login-forms">
+              <h2>Log in now</h2>
+              <p>and start developing your store</p>
+              <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class:"form-horizontal m-t-20"}) do |f| %>
+                <%= devise_error_messages! %>
+                <div class="form-group">
+                  <%= f.email_field :email,placeholder: "Email", autofocus: true, class:"form-control username", type:"email", required:""%>
+                </div>
+                <div class="form-group">
+                  <%= f.password_field :password, autofocus: true, class:"form-control password" ,type:"password", required:"", placeholder:"password", autocomplete: "off"%>
+                </div>
+                <div class="form-group">
+                  <div class="pretty p-icon p-smooth p-round">
+                    <% if devise_mapping.rememberable? -%>
+                      <%= f.check_box :remember_me, id:"checkbox-signup" %>
+                      <div class="state p-info">
+                        <i class="icon fa fa-check"></i>
+                        <label>Remember me</label>
+                      </div>
+                    </div>
+                    <% end -%>
+                  <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                    <%= link_to "Forgot your password?", new_password_path(resource_name),class: "forget-password" %><br />
+                  <% end -%>
+                </div>
+                <div class="form-group">
+                  <input type="submit" class="form-control" value="login">
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="login-right-side">
+            <h2>
+            NasNav is the Next <br> Generation of big businesses
+            </h2>
+            <img src="/dashboard/images/login-right-side-phone.png" alt="" class="big-phone img-responsive">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <%= javascript_include_tag 'dashboard', 'data-turbolinks-track' => true %>
+<% else %>
+  <%= stylesheet_link_tag 'navbox', media: 'all', 'data-turbolinks-track' => true %>
+  <%#= render 'devise/shared/header' %>
+  <%= render 'devise/sessions/login_form' %>
+  <%#= render 'devise/shared/footer' %>
+  <%= javascript_include_tag 'navbox', 'data-turbolinks-track' => true %>
+<% end %>

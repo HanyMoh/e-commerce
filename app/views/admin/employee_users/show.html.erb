@@ -1,0 +1,100 @@
+<!------------------------------------------------------------
+Page Title
+------------------------------------------------------->
+<div class="page-title-bar">
+  <div class="row">
+    <div class="col-xs-6"><h2><%=@employee_user.try(:name)%></h2></div>
+  </div>
+</div>
+<!------------------------------------------------------------
+Page Breadcrumb
+------------------------------------------------------->
+<div class="page-breadcrumb">
+  <div class="row">
+    <div class="col-sm-7">
+      <a href="<%= admin_employee_users_path %>" class="back-angle"><i class="fa fa-long-arrow-left"></i> Back To Staff</a>
+    </div>
+    <div class="col-sm-5">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<%= admin_path %>">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="<%= admin_employee_users_path %>">Staff</a></li>
+        <li class="breadcrumb-item active"><a href="javascript:void(0)"><%=@employee_user.try(:name)%></a></li>
+      </ol>
+    </div>
+  </div>
+</div>
+<div class="start-content">
+  <div class="view-brand">
+    <div class="brand-item">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-2"><h4 class="item-title">Name</h4></div>
+          <div class="col-md-10"><p class="item-info"><%=@employee_user.try(:name)%></p></div>
+        </div>
+      </div>
+    </div>
+    <div class="brand-item">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-2"><h4 class="item-title">Avatar</h4></div>
+          <div class="col-md-10">
+            <%= image_tag @employee_user.avatar_url.to_s, style: 'width:200px;'  if @employee_user.avatar_url.present?  %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="brand-item">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-2"><h4 class="item-title">Job Title</h4></div>
+          <div class="col-md-10">
+            <%=@employee_user.try(:job_title )%>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="brand-item">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-2"><h4 class="item-title">Phone Number</h4></div>
+          <div class="col-md-10">
+            <%=@employee_user.try(:phone_number)%>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="brand-item">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-2"><h4 class="item-title">Email</h4></div>
+          <div class="col-md-10"><p class="item-info"><a href="#"><%=@employee_user.try(:email)%></a></p></div>
+        </div>
+      </div>
+    </div>
+    <div class="brand-item">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-2"><h4 class="item-title">Type</h4></div>
+          <div class="col-md-10"><p class="item-info"><%= @employee_user.try(:type) %></p></div>
+        </div>
+      </div>
+    </div>
+    <div class="brand-item">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-2"><h4 class="item-title">Service type</h4></div>
+          <div class="col-md-10"><p class="item-info"><%= @employee_user.service_type.titleize %></p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="save-all">
+        <a href="<%= edit_admin_employee_user_path(@employee_user.id) %>" class="#">
+          <button class="#">Edit Employee <i class="fa fa-mouse-pointer"></i></button>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

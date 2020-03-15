@@ -1,0 +1,77 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "accounts",
+  "apis": [
+    {
+      "path": "/ipa-employee/ver/sion/one/accounts.json",
+      "operations": [
+        {
+          "summary": "Create Manager Account",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "email",
+              "type": "string",
+              "description": "Manager Email",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "password",
+              "type": "string",
+              "description": "Password",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "password_confirmation",
+              "type": "string",
+              "description": "Password Confirmation",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "name",
+              "type": "string",
+              "description": "Manager Name",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "job_title",
+              "type": "string",
+              "description": "Job Title",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "phone_number",
+              "type": "integer",
+              "description": "Phone number",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "organization_id",
+              "type": "string",
+              "description": "Manager's Organization",
+              "required": true
+            }
+          ],
+          "nickname": "EmployeeApi::V1::Accounts#create",
+          "method": "post"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

@@ -1,0 +1,152 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/ipa-swagger",
+  "apis": [
+    {
+      "path": "/shop360_api/v1/shop360s.{format}",
+      "description": "Shop360 APIs"
+    },
+    {
+      "path": "/api/v2/dev/developers.{format}",
+      "description": "Developers"
+    },
+    {
+      "path": "/api/v2/navbox/orders.{format}",
+      "description": "Navbox"
+    },
+    {
+      "path": "/api/v2/navbox/sessions.{format}",
+      "description": "Navbox"
+    },
+    {
+      "path": "/api/v2/navbox/registrations.{format}",
+      "description": "Navbox"
+    },
+    {
+      "path": "/api/v2/navbox/subscribed_users.{format}",
+      "description": "Dashboard"
+    },
+    {
+      "path": "/api/v2/navbox/categories.{format}",
+      "description": "Navbox"
+    },
+    {
+      "path": "/api/v2/navbox/shops.{format}",
+      "description": "Navbox"
+    },
+    {
+      "path": "/api/v2/navbox/products.{format}",
+      "description": "Products"
+    },
+    {
+      "path": "/api/v2/dashboard/manager_sessions.{format}",
+      "description": "Dashboard"
+    },
+    {
+      "path": "/api/v2/dashboard/admin_sessions.{format}",
+      "description": "Dashboard"
+    },
+    {
+      "path": "/api/v2/dashboard/beacons.{format}",
+      "description": "Dashboard"
+    },
+    {
+      "path": "/api/v2/dashboard/stocks.{format}",
+      "description": "Dashboard"
+    },
+    {
+      "path": "/api/v2/dashboard/organizations.{format}",
+      "description": "Dashboard"
+    },
+    {
+      "path": "/api/v2/dashboard/building_levels.{format}",
+      "description": "Dashboard"
+    },
+    {
+      "path": "/api/v2/dashboard/shops.{format}",
+      "description": "Dashboard"
+    },
+    {
+      "path": "/api/v2/dashboard/registrations.{format}",
+      "description": "Dashboard"
+    },
+    {
+      "path": "/api/v2/dashboard/brands.{format}",
+      "description": "Dashboard"
+    },
+    {
+      "path": "/api/v2/dashboard/developers.{format}",
+      "description": "Dashboard"
+    },
+    {
+      "path": "/api/v2/dashboard/google_analytics.{format}",
+      "description": "Dashboard"
+    },
+    {
+      "path": "/api/v2/dashboard/sub_products.{format}",
+      "description": "Dashboard"
+    },
+    {
+      "path": "/api/v2/dashboard/subscribed_users.{format}",
+      "description": "Dashboard"
+    },
+    {
+      "path": "/api/v2/dashboard/malls.{format}",
+      "description": "Dashboard"
+    },
+    {
+      "path": "/api/v2/dashboard/cities.{format}",
+      "description": "Dashboard"
+    },
+    {
+      "path": "/api/v2/dashboard/countries.{format}",
+      "description": "Dashboard"
+    },
+    {
+      "path": "/api/v2/dashboard/products.{format}",
+      "description": "Dashboard"
+    },
+    {
+      "path": "/api/v2/mobile/products.{format}",
+      "description": "Mobile"
+    },
+    {
+      "path": "/api/v2/mobile/sessions.{format}",
+      "description": "Mobile"
+    },
+    {
+      "path": "/api/v2/cashier/brands.{format}",
+      "description": "Cashier"
+    },
+    {
+      "path": "/api/v2/cashier/shops.{format}",
+      "description": "Cashier"
+    },
+    {
+      "path": "/api/v2/cashier/orders.{format}",
+      "description": "Cashier"
+    },
+    {
+      "path": "/api/v2/cashier/products.{format}",
+      "description": "Cashier"
+    },
+    {
+      "path": "/api/v2/cashier/sub_products.{format}",
+      "description": "Cashier Sub Products"
+    },
+    {
+      "path": "/api/v2/cashier/accounts.{format}",
+      "description": "Cashier"
+    },
+    {
+      "path": "/api/v2/cashier/registrations.{format}",
+      "description": "Registerations"
+    },
+    {
+      "path": "/api/v2/cashier/analytics.{format}",
+      "description": "Cashier"
+    }
+  ],
+  "authorizations": null
+}

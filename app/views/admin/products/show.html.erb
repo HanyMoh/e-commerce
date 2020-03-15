@@ -1,0 +1,204 @@
+<% if @status == "show" %>
+    <%= render :partial => './shared/popups/create_product' %>
+<% end %>
+<!------------------------------------------------------------
+Page Title
+------------------------------------------------------->
+<div class="page-title-bar">
+  <div class="row">
+    <div class="col-xs-6"><h2><%=@product.try(:name)%></h2></div>
+  </div>
+</div>
+<!------------------------------------------------------------
+Page Breadcrumb
+------------------------------------------------------->
+<div class="page-breadcrumb">
+  <div class="row">
+    <div class="col-sm-7">
+      <a href="<%= admin_products_path %>" class="back-angle"><i class="fa fa-long-arrow-left"></i> Back To Products</a>
+    </div>
+    <div class="col-sm-5">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<%= admin_path %>">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="<%= admin_products_path %>">Products</a></li>
+        <li class="breadcrumb-item active"><a href="javascript:void(0)"><%=@product.try(:name)%></a></li>
+      </ol>
+    </div>
+  </div>
+</div>
+<div class="start-content">
+  <div class="view-brand">
+    <div class="brand-item">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-2"><h4 class="item-title">Name</h4></div>
+          <div class="col-md-10"><p class="item-info"><%=@product.try(:name)%></p></div>
+        </div>
+      </div>
+    </div>
+    <% if @product.brand.stock_management == "global" %>
+      <div class="brand-item">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-2"><h4 class="item-title">Barcode</h4></div>
+            <div class="col-md-10"><p class="item-info"><%=@product.try(:barcode)%></p></div>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <div class="brand-item">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-2"><h4 class="item-title">Barcode</h4></div>
+            <div class="col-md-10"><p class="item-info"><%= @product.sub_products.pluck(:barcode).join(', ') %></p></div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <!--
+    <div class="brand-item">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-2"><h4 class="item-title">EAN</h4></div>
+          <div class="col-md-10">
+            <p class="item-info"><%=@product.try(:ean)%></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    -->
+    <div class="brand-item">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-2"><h4 class="item-title">Category</h4></div>
+          <div class="col-md-10">
+            <p class="item-info"><%=@product.category.try(:name)%></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="brand-item">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="col-md-2"><h4 class="item-title">Cover Image</h4></div>
+          <div class="col-md-10">
+            <p class="item-info">
+              <%= image_tag @product.cover_image.to_s, style: 'height:100px;width:100px;',class: 'img-responsive' if @product.cover_image.present?  %>
+            </p></div>
+          </div>
+        </div>
+      </div>
+      <div class="brand-item">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-2"><h4 class="item-title">Description</h4></div>
+            <div class="col-md-10"><p class="item-info"><%= @product.try(:description) %></p></div>
+          </div>
+        </div>
+      </div>
+      <% if @product.brand.stock_management == "global" %>
+        <div class="brand-item">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-2"><h4 class="item-title">Price</h4></div>
+              <div class="col-md-10">
+                <p class="item-info"><%=@product.try(:price)%></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="brand-item">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-2"><h4 class="item-title">Discount</h4></div>
+              <div class="col-md-10">
+                <p class="item-info"><%=@product.try(:discount)%></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% else %>
+        <div class="brand-item">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-2"><h4 class="item-title">Price</h4></div>
+              <div class="col-md-10">
+                <p class="item-info"><%=@product.sub_products.pluck(:price).join(', ')%></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="brand-item">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="col-md-2"><h4 class="item-title">Discount</h4></div>
+              <div class="col-md-10">
+                <p class="item-info"><%=@product.sub_products.pluck(:discount).join(', ')%></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+      <div class="brand-item">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-2"><h4 class="item-title">VR Slider</h4></div>
+            <div class="col-md-10">
+              <% @product.sub_products.each do |sub_product|%>
+                <% sub_product.gallery.each do |pic| %>
+                  <%= image_tag pic.url, style: 'height:100px;width:100px;' if pic %>
+                <% end %>
+              <%end%>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <% if @product.brand.stock_management == "global" %>
+          <div class="save-all">
+            <a href="<%= edit_admin_product_path(@product.id) %>" class="#">
+              <button class="#">Edit Product <i class="fa fa-mouse-pointer"></i></button>
+            </a>
+          </div>
+        <% else %>
+          <div class="save-all">
+            <a href="<%= edit_admin_product_path(@product.id) %>" class="#">
+              <button class="#">Edit Main product info <i class="fa fa-mouse-pointer"></i></button>
+            </a>
+            <a href="<%= admin_product_sub_products_path(@product.id) %>" class="#">
+              <button class="#">Manage shop colors, sizes and quatities <i class="fa fa-mouse-pointer"></i></button>
+            </a>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+<script>
+        $(function() {
+            $(window).on('load', function() {
+               $('.message-popup.success').css('top','0px');
+                setTimeout(function(){ 
+                     $('.message-popup').css('top','-60px');
+                }, 2000);
+            });
+            $(window).on('load', function() {
+               $('.message-popup.failed').css('top','0px');
+                setTimeout(function(){ 
+                     $('.message-popup').css('top','-60px');
+                }, 2000);
+            });
+            $(window).on('load', function() {
+               $('.message-popup.success-deleted').css('top','0px');
+                setTimeout(function(){ 
+                     $('.message-popup').css('top','-60px');
+                }, 2000);
+            });
+             $(window).on('load', function () {
+                $('#createProduct').modal('show');
+            });
+        })
+</script>

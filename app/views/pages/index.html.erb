@@ -1,0 +1,785 @@
+<% content_for :page_title do %>
+  Nasnav
+<% end %>
+<% content_for :meta_tags do %>
+  <% @meta_tags.each do |meta_tag| %>
+    <meta name="<%= meta_tag.name %>" content="<%= meta_tag.content %>">
+  <% end %>
+<% end %>
+
+<div class="page-loader">
+    <div class="loading"></div>
+    <h1>We are loading your experience...</h1>
+</div>
+<div class="web-wrapper-nasnav hidden-xs">
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="images/nasnav/logo.png" alt="logo" draggable="false">
+            </div>
+            <nav>
+                <ul class="nav-items">
+                    <li><a data-scroll href="#whyNasnav">Why</a></li>
+                    <li><a data-scroll href="#AR">AR</a></li>
+                    <li><a data-scroll href="#Shopping">Shopping</a></li>
+                    <li><a data-scroll href="#earnPoints">Earn Points</a></li>
+                </ul>
+            </nav>
+            <div class="toggle-nav">
+                <button class="toggle-btn" id="toggle-menu-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="mobile-menu">
+                    <ul class="nav-items mobile-menu-items">
+                    <li><a data-scroll href="#whyNasnav">Why</a></li>
+                    <li><a data-scroll href="#AR">AR</a></li>
+                    <li><a data-scroll href="#Shopping">Shopping</a></li>
+                    <li><a data-scroll href="#earnPoints">Earn Points</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--/Header -->
+    <!-- Main Section -->
+    <div class="main-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-sm-12">
+                    <div class="main-info">
+                        <h1 class="wow slideInLeft">NasNav is your personal shopping app</h1>
+                        <p>Shopping in 2018 needs something smart and here is something special 
+                           from NasNav an app giving you a way to search for any product inside 
+                           any store at the comfort of your home</p>
+                    </div>
+                    <div class="download-btns">
+                        <div class="buttons">
+                            <a href="#Contact" class="wow bounceInDown"><img src="images/nasnav/apple-btn-logo.png" class="app-store" alt="App Store" draggable="false">Get on Iphone</a>
+                            <a href="#Contact" class="wow bounceInDown" data-wow-duration="2s"><img src="images/nasnav/android-btn-logo.png" class="google-play" alt="google Play" draggable="false">Get on Android</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Main Section -->
+    <!-- Why Nasnav -->
+    <div class="why-nasnav" id="whyNasnav">
+        <div class="container">
+            <div class="section-title">
+                <h1>Why Nasnav ?</h1>
+            </div>
+            <div class="why-boxs">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="box wow bounceInDown" data-wow-duration="0.5s" data-wow-delay=".5s">
+                            <img src="images/nasnav/why-vector-1.png" alt="" class="img-responsive">
+                            <h3>Looking for deals</h3>
+                            <p>
+                            Now you can receive information 
+                            from your favour brands with  
+                            video content or attractive offers
+                            right to your mobile phones.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="box wow bounceInDown" data-wow-duration="1s" data-wow-delay=".5s">
+                            <img src="images/nasnav/why-vector-2.png" alt="" class="img-responsive">
+                            <h3>Virtual World</h3>
+                            <p>
+                            Unlock the power of NasNav by 
+                            scanning through your brand 
+                            products directly from your 
+                            mobile phone.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="box wow bounceInDown" data-wow-duration="1.5s" data-wow-delay=".5s">
+                            <img src="images/nasnav/why-vector-3.png" alt="" class="img-responsive">
+                            <h3>Earn Points</h3>
+                            <p>
+                            Let’s make shopping fun and rewarding 
+                            for you by earning rewards points when 
+                            you walk into any store within the 
+                            app, scan select products, or make 
+                            purchases and collect points.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="box wow bounceInDown" data-wow-duration="2s" data-wow-delay=".5s">
+                            <img src="images/nasnav/why-vector-4.png" alt="" class="img-responsive">
+                            <h3>360 product View</h3>
+                            <p>
+                            Visit any store located in your area 
+                            and view everything inside the shop
+                            while in the comfort of your home 
+                            with 360 panorama and collect 
+                            information on any product.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Why Nasnav -->
+    <!-- Virtual Experience -->
+    <div class="virtual-experience" id="AR">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="phone-wrapper wow bounceInLeft" data-wow-delay=".5s">
+                        <img src="images/nasnav/steps/1.png" alt="Phone" class="img-responsive active change-phone" draggable="false">
+                        <img src="images/nasnav/steps/2.png" alt="Phone" class="img-responsive" draggable="false">
+                        <img src="images/nasnav/steps/3.png" alt="Phone" class="img-responsive" draggable="false">
+                        <img src="images/nasnav/steps/4.png" alt="Phone" class="img-responsive" draggable="false">
+                        <img src="images/nasnav/steps/5.png" alt="Phone" class="img-responsive" draggable="false">
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="virtual-info">
+                        <div class="section-title">
+                            <h1>An easy and enjoyable Experience in <br> the virtual world</h1>
+                        </div>
+                        <div class="icons">
+                            <ul class="preivew-steps">
+                                <li class="active-link"><a href="#"><img src="images/nasnav/virtual-icon-1-active.png" alt=""></a></li>
+                                <li><a href="#"><img src="images/nasnav/virtual-icon-2-active.png" alt=""></a></li>
+                                <li><a href="#"><img src="images/nasnav/virtual-icon-3-active.png" alt=""></a></li>
+                                <li><a href="#"><img src="images/nasnav/virtual-icon-4-active.png" alt=""></a></li>
+                                <li><a href="#"><img src="images/nasnav/virtual-icon-5-active.png" alt=""></a></li>
+                            </ul>
+                        </div>
+                        <div class="steps-list">
+                            <p class="description">
+                            Download NasNav and be able to experience and experiment 
+                            with furniture from their retailer’s. You can place chairs, 
+                            desks and just about anything else in your kitchen, 
+                            backyard or any part of your home to just see how 
+                            it all looks before going to the store. Its our visualization 
+                            app giving you the ability to virtually place products 
+                            from any retailer inside your homes.
+                            </p>
+                            <ul>
+                                <li><span>Edit Size</span></li>
+                                <li><span>Edit Rotate</span></li>
+                                <li><span>3D View</span></li>
+                                <li><span>Edit Place</span></li>
+                                <li><span>Screen Shot</span></li>
+                                <li><span>And More !!</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Virtual Experience -->
+    <!-- Shopping Experience -->
+    <div class="shopping-experience" id="Shopping">
+        <div class="container">
+            <div class="section-title">
+                <h1>Shopping Experience</h1>
+                <p>
+                Search inside the app and walk into any mall to find  products within hundreads of stores 
+                while at home, couldnt be easier than using NasNav app which is one of its kind
+               </p>
+            </div>
+            <div class="shopping-tabs">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#category" aria-controls="category" role="tab" data-toggle="tab" aria-expanded="true">
+                            <img src="images/nasnav/shopping-vectore-1.png" alt="">
+                            <p>Category</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                       <a href="#notifications" aria-controls="notifications" role="tab" data-toggle="tab" aria-expanded="false">
+                            <img src="images/nasnav/shopping-vectore-2.png" alt="">
+                            <p>Notifications</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#view360" aria-controls="view360" role="tab" data-toggle="tab" aria-expanded="false">
+                            <img src="images/nasnav/shopping-vectore-3.png" alt="">
+                            <p>360 Veiw</p>
+                        </a>
+                    </li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="category">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12">
+                                <img src="images/nasnav/shopping/category-phone-1.png" alt="" draggable="false" class="img-responsive">
+                            </div>
+                            <div class="col-md-8 col-sm-12">
+                                <div class="category-tab-info">
+                                <h2>Looking for something nice <br> but not sure where?</h2>
+                                <p>Type the product into the search engine witin nasnav app and she will ask where do you want to shop? Inside a mall or at you local store and then you will have visualization the stores and and products.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-sm-12">
+                                <div class="category-branches">
+                                    <img src="images/nasnav/shopping/category-branh-1.png" alt="" draggable="false">
+                                    <img src="images/nasnav/shopping/category-branh-2.png" alt="" draggable="false">
+                                    <img src="images/nasnav/shopping/category-branh-3.png" alt="" draggable="false">
+                                </div>
+                                <div class="category-how-work">
+                                    <h3>How to work?</h3>
+                                    <ul>
+                                        <li><span>Go to search or categories and choose </span></li>
+                                        <li><span>Go to the mall with 3D technique and choose store</span></li>
+                                        <li><span>Enter the shop and welly start shopping</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <div class="phone-play-video">
+                                    <img src="images/nasnav/shopping/category-phone-2.png" alt=""  draggable="false">
+                                    <div class="play-button">
+                                        <a href="#">
+                                            <i class="fa fa-play"></i>
+                                        </a>
+                                        <p>Play the video</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="notifications">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12">
+                                <img src="images/nasnav/shopping/category-phone-1-1.png" alt=""  draggable="false" class="img-responsive">
+                            </div>
+                            <div class="col-md-8 col-sm-12">
+                                <div class="category-tab-info">
+                                <h2>Elly where you need that help</h2>
+                                <p>The branch manager can manage employees and create 
+                                login in addition Ely distribution tasks to staff consistently 
+                                and very handy</p>
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-sm-12">
+                                <div class="notifi-images">
+                                    <img src="images/nasnav/shopping/category-branh-points.png" alt="">
+                                    <img src="images/nasnav/shopping/category-branh-path.png" alt="">
+                                    <img src="images/nasnav/shopping/category-branh-notifi.png" alt="">
+                                    <p class="above-image">Can you imagine walking into any
+                                        store located in your area and been 
+                                        to view products while in the comfort 
+                                        of your home ? Well now it possible with 
+                                        NasNav app you can view and collect
+                                        information on products at your local 
+                                        store near you
+                                    </p>
+
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <img src="images/nasnav/shopping/category-phone-2-2.png" alt=""  draggable="false" class="img-responsive">
+                            </div>
+                        </div>    
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="view360">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-12">
+                                <img src="images/nasnav/shopping/category-phone-3.png" alt=""  draggable="false" class="img-responsive">
+                            </div>
+                            <div class="col-md-8 col-sm-12">
+                                <div class="category-tab-info">
+                                <h2>Elly where you need that help</h2>
+                                <p>The branch manager can manage employees and create 
+                                login in addition Ely distribution tasks to staff consistently 
+                                and very handy</p>
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-sm-12">
+                                <img src="images/nasnav/shopping/icons.png" alt="">
+                                <span class="floating-span">We always work to provide <br>
+                                assistance For access to your 
+                                store.</span>
+                                <img src="images/nasnav/shopping/explain-shop.png" alt="" class="img-responsive">
+                                <p>Can you imagine walking into any store located in 
+                                    your area and been able to view products while in 
+                                    the comfort of your home ? Well now it possible with 
+                                    NasNav app you can view and collect information on 
+                                    products at your local store near you
+
+                                    </p>
+                            </div>
+                            <div class="col-md-3 col-sm-12">
+                                <img src="images/nasnav/shopping/category-phone-3-3.png" alt="" draggable="false" class="img-responsive">
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/Shopping Experience -->
+    <!-- Earn Points -->
+    <div class="earn-points" id="earnPoints">
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-6">
+                        <div class="points-info">
+                          <h2>The best shopping rewards program in town.</h2>
+                          <p>
+                          Earn points in-store and online, then redeem 
+                          them for a wide selection of gift cards via your 
+                          mobile phone. Just walk to your store and redeem
+                          at the cashier.
+                          </p>
+                        </div>
+                        <div class="steps">
+                            <ul>
+                                <li class="active"><button><img src="images/nasnav/points-store.png" alt="icon" draggable="false">Walk in store</button></li>
+                                <li><button><img src="images/nasnav/points-scanbarcode.png" alt="icon" draggable="false">Scan barcodes</button></li>
+                                <li><button><img src="images/nasnav/points-redeem.png" alt="icon" draggable="false">Lets Redeem</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="item wow bounceInRight" data-wow-delay=".5s">
+                            <img src="images/nasnav/points-1.png" class="img-responsive active" alt="Item" draggable="false">
+                            <img src="images/nasnav/points-2.png" class="img-responsive" alt="Item" draggable="false">
+                            <img src="images/nasnav/points-3.png" class="img-responsive" alt="Item" draggable="false">
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <!--/Earn Points -->
+    <!-- Contact Section -->
+    <div class="contact" id="Contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="bg">
+                        <img src="images/nasnav/contact-section-bg.png" alt="" class="img-responsive" draggable="false">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="text-us">
+                        <div class="titles">
+                            <div class="icons">
+                                <i class="fa fa-android fa-3x" aria-hidden="true"></i>
+                                <i class="fa fa-plus fa-2x" aria-hidden="true"></i>
+                                <i class="fa fa-apple fa-3x" aria-hidden="true"></i>
+                            </div>
+                            <h2>
+                              Start to welcome points through our unique app 
+                              and enjoy shopping in the most smartest way in town.
+                            </h2>
+                            <!-- <p>LETS WORK TOGHTHER</p> -->
+                            <div class="email-input">
+                                <input type="text" class="form-control" placeholder="Enter Your E-mail">
+                                <i class="fa fa-angle-right icon-angle fa-2x"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/Contact Section -->
+    <footer class="nasnav-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="logo">
+                        <img src="images/nasnav/logo.png" alt="Logo" draggable="false">
+                    </div>
+                    <div class="quick-links">
+                        <ul>
+                            <li><a data-scroll href="#whyNasnav">Why</a></li>
+                            <li><a data-scroll href="#AR">AR</a></li>
+                            <li><a data-scroll href="#Shopping">Shopping</a></li>
+                            <li><a data-scroll href="#earnPoints">Earn Points</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="follow-us">
+                        <h2>Follow Us</h2>
+                        <ul>
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="copyrights">
+                      <span><%= link_to "Privacy Policy", privacy_policy_path %></span>
+                      <p>© 2017 nasnav. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<!-- Mobile Wrapper -->
+<div class="mobile-wrapper-user visible-xs">
+    <!-- Header -->
+    <header class="nasnav-header">
+        <div class="container">
+            <div class="logo">
+                <img src="images/nasnav/logo.png" alt="logo" draggable="false">
+            </div>
+            <nav>
+                <ul class="nav-items">
+                    <li><a data-scroll href="#whyNasnav">Why</a></li>
+                    <li><a data-scroll href="#AR">AR</a></li>
+                    <li><a data-scroll href="#Shopping">Shopping</a></li>
+                    <li><a data-scroll href="#earnPoints">Earn Points</a></li>
+                    <li class="getBtn"><a href="#">Get NasNav</a></li>
+                </ul>
+            </nav>
+            <div class="toggle-nav">
+                <button class="toggle-btn" id="toggle-menu-btn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="mobile-menu">
+                    <ul class="nav-items mobile-menu-items">
+                    <li><a data-scroll href="#whyNasnav">Why</a></li>
+                    <li><a data-scroll href="#AR">AR</a></li>
+                    <li><a data-scroll href="#Shopping">Shopping</a></li>
+                    <li><a data-scroll href="#earnPoints">Earn Points</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--/Header -->
+    <!-- Main Section -->
+    <div class="main-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="main-info">
+                        <h1>NasNav is your personal shopping app</h1>
+                        <p>Shopping in 2018 needs something smart and here is something special 
+                           from NasNav an app giving you a way to search for any product inside 
+                           any store at the comfort of your home</p>
+                    </div>
+                    <div class="download-btns">
+                        <div class="buttons">
+                            <a href="#"><img src="images/nasnav/apple-btn-logo.png" class="app-store" alt="App Store" draggable="false">Get on Iphone</a>
+                            <a href="#"><img src="images/nasnav/android-btn-logo.png" class="google-play" alt="google Play" draggable="false">Get on Android</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4 hidden-xs">
+                    <div class="phone">
+                        <img src="images/nasnav/phone-main-section.png" alt="phone" class="img-responsive" draggable="false">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Main Section -->
+    <!-- Why Nasnav -->
+    <div class="why-nasnav">
+        <div class="container">
+            <div class="section-title">
+                <h1>Why Nasnav ?</h1>
+            </div>
+            <div class="why-boxs">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <img src="images/nasnav/why-vector-1.png" alt="" class="img-responsive">
+                            <h3>Looking for deals</h3>
+                            <p>
+                            Now you can receive information 
+                            from your favour brands with  
+                            video content or attractive offers
+                            right to your mobile phones.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <img src="images/nasnav/why-vector-2.png" alt="" class="img-responsive">
+                            <h3>Virtual World</h3>
+                            <p>
+                            Unlock the power of NasNav by 
+                            scanning through your brand 
+                            products directly from your 
+                            mobile phone.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <img src="images/nasnav/why-vector-3.png" alt="" class="img-responsive">
+                            <h3>Earn Points</h3>
+                            <p>
+                            Let’s make shopping fun and rewarding 
+                            for you by earning rewards points when 
+                            you walk into any store within the 
+                            app, scan select products, or make 
+                            purchases and collect points.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="box">
+                            <img src="images/nasnav/why-vector-4.png" alt="" class="img-responsive">
+                            <h3>360 product View</h3>
+                            <p>
+                            Visit any store located in your area 
+                            and view everything inside the shop
+                            while in the comfort of your home 
+                            with 360 panorama and collect 
+                            information on any product.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Why Nasnav -->
+    <!-- Virtual Experience -->
+    <div class="virtual-experience">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="virtual-info">
+                        <div class="section-title">
+                            <h1>An easy and enjoyable Experiencein the virtual world</h1>
+                        </div>
+                        <div class="icons">
+                            <ul class="preivew-steps">
+                                <li><a href="#" class="active"><img src="images/nasnav/virtual-icon-1.png" alt=""></a></li>
+                                <li><a href="#"><img src="images/nasnav/virtual-icon-2.png" alt=""></a></li>
+                                <li><a href="#"><img src="images/nasnav/virtual-icon-3.png" alt=""></a></li>
+                                <li><a href="#"><img src="images/nasnav/virtual-icon-4.png" alt=""></a></li>
+                                <li><a href="#"><img src="images/nasnav/virtual-icon-5.png" alt=""></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div class="phone-wrapper">
+                        <img src="images/nasnav/steps/1.png" alt="Phone" class="img-responsive active" draggable="false">
+                        <img src="images/nasnav/steps/2.png" alt="Phone" class="img-responsive" draggable="false">
+                        <img src="images/nasnav/steps/3.png" alt="Phone" class="img-responsive" draggable="false">
+                        <img src="images/nasnav/steps/4.png" alt="Phone" class="img-responsive" draggable="false">
+                        <img src="images/nasnav/steps/5.png" alt="Phone" class="img-responsive" draggable="false">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Virtual Experience -->
+    <div class="shopping-experience">
+        <div class="container">
+            <div class="section-title">
+                <h1>Shopping Experience</h1>
+                <p>
+                Search inside the app and walk into any mall to find  products within hundreads of stores 
+                while at home, couldnt be easier than using NasNav app which is one of its kind
+               </p>
+            </div>
+<div class="shopping-tabs">
+                <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#category-2" aria-controls="category" role="tab" data-toggle="tab" aria-expanded="true">
+                            <img src="images/nasnav/shopping-vectore-1.png" alt="">
+                            <p>Category</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                       <a href="#notifications-2" aria-controls="notifications" role="tab" data-toggle="tab" aria-expanded="false">
+                            <img src="images/nasnav/shopping-vectore-2.png" alt="">
+                            <p>Notifications</p>
+                        </a>
+                    </li>
+                    <li role="presentation" class="">
+                        <a href="#view360-2" aria-controls="view360-" role="tab" data-toggle="tab" aria-expanded="false">
+                            <img src="images/nasnav/shopping-vectore-3.png" alt="">
+                            <p>360 Veiw</p>
+                        </a>
+                    </li>
+                </ul>
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div role="tabpanel" class="tab-pane active" id="category-1">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-5">
+                                <img src="images/nasnav/shopping/category-phone-1.png" alt="" class="img-responsive" draggable="false">
+                            </div>
+                            <div class="col-md-8 col-sm-6">
+                                <div class="category-tab-info">
+                                <h2>Looking for something nice but not sure where?</h2>
+                                <p>Type the product into the search engine witin nasnav app and she will ask where do you want to shop? Inside a mall or at you local store and then you will have visualization the stores and and products.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="category-branches">
+                                    <img src="images/nasnav/shopping/category-branh-1.png" alt="" draggable="false" class="img-responsive">
+                                    <img src="images/nasnav/shopping/category-branh-2.png" alt="" draggable="false" class="img-responsive">
+                                    <img src="images/nasnav/shopping/category-branh-3.png" alt="" draggable="false" class="img-responsive">
+                                </div>
+                                <div class="category-how-work">
+                                    <h3>How to work?</h3>
+                                    <ul>
+                                        <li><span>Go to search or categories and choose </span></li>
+                                        <li><span>Go to the mall with 3D technique and choose store</span></li>
+                                        <li><span>Enter the shop and welly start shopping</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="phone-play-video">
+                                    <img src="images/nasnav/shopping/category-phone-2.png" alt=""  draggable="false">
+                                    <div class="play-button">
+                                        <a href="#">
+                                        <i class="fa fa-play"></i>
+                                        </a>
+                                        <p>Play the video</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="notifications-2">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-5">
+                                <img src="images/nasnav/shopping/category-phone-1-1.png" alt="" class="img-responsive" draggable="false">
+                            </div>
+                            <div class="col-md-8 col-sm-6">
+                                <div class="category-tab-info">
+                                <h2>Elly where you need that help</h2>
+                                <p>The branch manager can manage employees and create 
+                                login in addition Ely distribution tasks to staff consistently 
+                                and very handy</p>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <img src="images/nasnav/shopping/category-branh-points.png" alt="" class="img-responsive">
+                                <img src="images/nasnav/shopping/category-branh-notifi.png" alt="" class="img-responsive">
+                                <p>Can you imagine walking into any
+                                    store located in your area and been 
+                                    to view products while in the comfort 
+                                    of your home ? Well now it possible with 
+                                    NasNav app you can view and collect
+                                    information on products at your local 
+                                    store near you
+                                    </p>
+                            </div>
+                            <div class="col-md-3">
+                                <img src="images/nasnav/shopping/category-phone-2-2.png" alt="" class="img-responsive" draggable="false">
+                            </div>
+                        </div>    
+                    </div>
+                    <div role="tabpanel" class="tab-pane" id="view360-2">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-5">
+                                <img src="images/nasnav/shopping/category-phone-3.png" alt="" class="img-responsive" draggable="false">
+                            </div>
+                            <div class="col-md-8 col-sm-6">
+                                <div class="category-tab-info">
+                                <h2>Elly where you need that help</h2>
+                                <p>The branch manager can manage employees and create 
+                                login in addition Ely distribution tasks to staff consistently 
+                                and very handy</p>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <img src="images/nasnav/shopping/icons.png" alt="">
+                                <span class="floating-span">We always work to provide <br>
+                                assistance For access to your 
+                                store.</span>
+                                <img src="images/nasnav/shopping/explain-shop-m.png" alt="" class="img-responsive">
+                                <p>Can you imagine walking into any store located in 
+                                    your area and been able to view products while in 
+                                    the comfort of your home ? Well now it possible with 
+                                    NasNav app you can view and collect information on 
+                                    products at your local store near you
+
+                                    </p>
+                            </div>
+                            <div class="col-md-3">
+                                <img src="images/nasnav/shopping/category-phone-3-3.png" alt="" class="img-responsive" draggable="false">
+                            </div>
+                        </div>    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Earn Points -->
+    <div class="earn-points">
+        <div class="container">
+            <div class="row">
+                    <div class="col-xs-12">
+                        <div class="points-info">
+                          <h2>The best shopping rewards program in town.</h2>
+                            <p>
+                            Earn points in-store and online, then redeem 
+                            them for a wide selection of gift cards via your 
+                            mobile phone. Just walk to your store and redeem
+                            at the cashier.
+                            </p>
+                        </div>
+                        <div class="steps">
+                            <ul>
+                                <li class="active"><button><img src="images/nasnav/points-store.png" alt="icon" draggable="false">Walk in store</button></li>
+                                <li><button><img src="images/nasnav/points-scanbarcode.png" alt="icon" draggable="false">Scan barcodes</button></li>
+                                <li><button><img src="images/nasnav/points-redeem.png" alt="icon" draggable="false">Lets Redeem</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="item">
+                            <img src="images/nasnav/points-1.png" class="img-responsive active" alt="Item" draggable="false">
+                            <img src="images/nasnav/points-2.png" class="img-responsive" alt="Item" draggable="false">
+                            <img src="images/nasnav/points-3.png" class="img-responsive" alt="Item" draggable="false">
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <!--/Earn Points -->
+        <footer class="text-center">
+            <div class="container">
+                <div class="text-us">
+                    <div class="icons">
+                        <i class="fa fa-android fa-3x" aria-hidden="true"></i>
+                        <i class="fa fa-plus fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-apple fa-3x" aria-hidden="true"></i>
+                    </div>
+                    <h2>Start to welcome points through our <br>unigue platform and join the future of engagement</h2>
+                    <div class="email-input">
+                        <input type="text" class="form-control" placeholder="Enter Your E-mail">
+                        <input type="submit" class="form-control" value="Text Email">
+                    </div>
+                </div>
+                <div class="social-icons">
+                    <i class="fa fa-facebook fa-2x"></i>
+                    <i class="fa fa-twitter fa-2x"></i>
+                    <i class="fa fa-instagram fa-2x"></i>
+                </div>
+                <p class="copyrights">© 2017 nasnav. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+   <script src="js/wow.min.js"></script>
+    <script src="js/nasnav.js"></script>
+    <script src="js/nasnav_content.js"></script>
+    <script src="js/general.js"></script>
+</body>
+</html>

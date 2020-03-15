@@ -1,0 +1,32 @@
+<% if flash.any? %>
+  <% if flash[:private]["Info"] %>
+    <div class="alert <%= bootstrap_class_for("notice") %> alert-dismissable fade in animated zoomIn">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h3>Info:</h3>
+      <% flash[:private]["Info"].map do |msg| %>
+        <%= msg %> 
+        <br/><br/>
+      <% end %>
+    </div>
+  <% end %>
+  <% if flash[:private]["Warnings"] %>
+    <div class="alert <%= bootstrap_class_for("alert") %> alert-dismissable fade in animated zoomIn">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h3>Warnings: (can be ignored)</h3>
+      <% flash[:private]["Warnings"].map do |msg| %>
+        <%= msg %> 
+        <br/><br/>
+      <% end %>
+    </div>
+  <% end %>
+  <% if flash[:private]["Fatal errors"] %>
+    <div class="alert <%= bootstrap_class_for("error") %> alert-dismissable fade in animated zoomIn">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <h3>Fatal errors: (Can not be ignored!)</h3>
+      <% flash[:private]["Fatal errors"].map do |msg| %>
+        <%= msg %> 
+        <br/><br/>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

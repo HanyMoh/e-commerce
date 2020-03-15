@@ -1,0 +1,155 @@
+<% points = 1 %>
+
+<div class="main-content">
+  <div class="start-content p-top-0 page-title-bar">
+    <div class="row" align="center">
+      <div class="col-md-12" style="margin-top: 50px; margin-bottom: 200px;">
+        <h2>Welcome <%= current_active_user.name.titleize %></h2>
+        <br/>
+        <p>You're few steps away from having new experience</p>
+      </div>
+    <div>
+    <div class="row" style="margin-bottom: 40px;">
+      <div class="col-md-4">
+        Create your first brand
+        <div style="border: 2px solid green; border-radius: 50%; height: 40px; width: 40px; background-color: green; color: white;">
+          <i class="fa fa-check"></i>
+        </div>
+      </div>
+      <div class="col-md-4">
+        Create your first Shop
+        <% if current_active_user.brands.first.shops.any? %>
+          <% shops = true %>
+          <% points += 1 %>
+          <div style="border: 2px solid green; border-radius: 50%; height: 40px; width: 40px; background-color: green; color: white;">
+            <i class="fa fa-check"></i>
+          </div>
+        <% else %>
+          <div style="border: 2px solid black; border-radius: 50%; height: 40px; width: 40px;">
+          </div>
+        <% end %>
+        <br/>
+        <% unless current_active_user.brands.first.shops.any? %>
+          <%= link_to new_admin_shop_path,class: 'btn btn-ms btn-success' do  %>
+            Create Shop
+          <% end %>
+        <% end %>
+      </div>
+      <div class="col-md-4">
+        Add Panorama
+        <% if @panoramas&.any? %>
+          <% points += 1 %>
+          <div style="border: 2px solid green; border-radius: 50%; height: 40px; width: 40px; background-color: green; color: white;">
+            <i class="fa fa-check"></i>
+          </div>
+        <% else %>
+          <div style="border: 2px solid black; border-radius: 50%; height: 40px; width: 40px;">
+          </div>
+        <% end %>
+        <br/>
+      </div>
+    </div>
+    <div class="row" style="margin-bottom: 40px;">
+      <div class="col-md-4">
+        Create your first Theme
+        <div style="border: 2px solid black; border-radius: 50%; height: 40px; width: 40px;">
+        </div>
+        <br/>
+        <a href="#" class="btn btn-ms btn-success">Create Theme</a>
+      </div>
+      <div class="col-md-4">
+        Add your first Product
+        <% if @products.any? %>
+          <% points += 1 %>
+          <div style="border: 2px solid green; border-radius: 50%; height: 40px; width: 40px; background-color: green; color: white;">
+            <i class="fa fa-check"></i>
+          </div>
+        <% else %>
+          <div style="border: 2px solid black; border-radius: 50%; height: 40px; width: 40px;">
+          </div>
+        <% end %>
+        <br/>
+        <% unless @products.any? %>
+          <% if shops == true %>
+            <%= link_to new_admin_product_path,class: 'btn btn-ms btn-success' do  %>
+              Create Product
+            <% end %>
+          <% else %>
+            <button class="btn btn-ms btn-info" style="background-color: grey;">Shop needed</button>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="col-md-4">
+        Get Paid
+        <div style="border: 2px solid black; border-radius: 50%; height: 40px; width: 40px;">
+        </div>
+        <br/>
+        <a href="#" class="btn btn-ms btn-success">Learn More </a>
+      </div>
+    </div>
+    <div class="row" style="margin-bottom: 40px;">
+      <div class="col-md-4">
+        Add your first Beacon
+        <% if @beacons.any? %>
+          <% points += 1 %>
+          <div style="border: 2px solid green; border-radius: 50%; height: 40px; width: 40px; background-color: green; color: white;">
+            <i class="fa fa-check"></i>
+          </div>
+        <% else %>
+          <div style="border: 2px solid black; border-radius: 50%; height: 40px; width: 40px;">
+          </div>
+        <% end %>
+        <br/>
+        <% unless @beacons.any? %>
+          <% if shops == true %>
+            <%= link_to new_admin_beacon_path,class: 'btn btn-ms btn-success' do  %>
+              Add Beacon 
+            <% end %>
+          <% else %>
+            <button class="btn btn-ms btn-info" style="background-color: grey;">Shop needed</button>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="col-md-4">
+        Create your first Campaign
+        <% if @campaigns.any? %>
+            <% points += 1 %>
+          <div style="border: 2px solid green; border-radius: 50%; height: 40px; width: 40px; background-color: green; color: white;">
+            <i class="fa fa-check"></i>
+          </div>
+        <% else %>
+            <div style="border: 2px solid black; border-radius: 50%; height: 40px; width: 40px;">
+            </div>
+        <% end %>
+        <br/>
+        <% unless @campaigns.any? %>
+        <%= link_to new_admin_campaigns_campaign_path,class: 'btn btn-ms btn-success' do  %>
+          Create Campaign 
+        <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <% if points == 8 %>
+        <%= link_to admin_dashboard_path, class: 'btn btn-lg btn-success' do  %>
+          Finish Tutorial
+        <% end %>
+        <% else %>
+          <a href="" class="btn btn-lg btn-info" style="background-color: grey !important;">Finish Tutorial</a>
+        <% end %>
+      </div>
+    </div>
+    <div class="row" style="position: relative; margin-left: 740px; top: -660px;">
+      <div class="col-md-12">
+        <div class="c100 p<%= (points.to_f / 8 * 100).round(0) %>">
+          <span><%= (points.to_f / 8 * 100).round(0) %>%</span>
+          <div class="slice">
+            <div class="bar"></div>
+            <div class="fill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

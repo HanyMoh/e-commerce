@@ -1,0 +1,129 @@
+<% content_for :bc_title do %>
+  Products
+<% end %>
+
+<% content_for :bc_current do %>
+  All Products
+<% end %>
+
+<% content_for :bc_buttons do %>
+  <a href="<%= new_admin_product_path %>"><button type="button" class="btn btn-info"><i class="fa fa-plus-circle"></i> New Product</button></a>
+  <a href="#" data-toggle="modal" data-target="#update_images" class="btn btn-info"><img src="/dashboard/images/add-new-icon.png" alt="Add"> Update Images</a>
+<% end %>
+
+<%= render 'shared/breadcrumb' %>
+
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">Products</h4>
+    <div class="table-responsive m-t-40">
+      <table id="myTable" class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Cover</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Brand</th>
+            <th>Category</th>
+            <th>Added</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @products.newest_first.each do |product| %>
+            <tr>
+              <td><%= image_tag(product.cover_image.thumb, style: 'max-width: 40px') %></td>
+              <td><%= product.name %></td>
+              <td><%= product.description %></td>
+              <td><%= product.brand.name %></td>
+              <td><%= product.category.name %></td>
+              <td><%= time_ago_in_words(product.created_at) %> ago</td>
+              <td>
+                <a href="<%= edit_admin_product_path(product) %>" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                <a href="<%= admin_product_path(product) %>" data-method="delete" data-toggle="tooltip" data-original-title="Delete" data-confirm="Are you sure?"> <i class="fa fa-close text-danger"></i> </a>
+              </td>
+						</tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="update_images" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_tag update_images_admin_products_path, multipart: true do %>
+          <select name="organization_id">
+            <% Organization.all.each do |org| %>
+              <option value="<%= org.id %>"><%= org.name %></option>
+            <% end %>
+          </select>
+          <br/>
+          <input type="radio" name="target" value="product_cover" id="update_1" required="true">
+          <label for="update_1">Main Product</label>
+          <br/>
+          <input type="radio" name="target" value="sub_product_image" id="update_2">
+          <label for="update_2">Sub Products</label>
+          <br/>
+          <input type="radio" name="target" value="zip_file" id="update_3">
+          <label for="update_3">Zip File</label>
+          <br/>
+          <%= file_field_tag 'files[]', multiple: true, required: true %>
+          <br/>
+          <%= submit_tag 'Update' %>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+	$(function() {
+		$('#myTable').DataTable();
+		var table = $('#example').DataTable({
+			"columnDefs": [{
+				"visible": false,
+				"targets": 2
+			}],
+			"order": [
+				[2, 'asc']
+			],
+			"displayLength": 25,
+			"drawCallback": function(settings) {
+				var api = this.api();
+				var rows = api.rows({
+						page: 'current'
+				}).nodes();
+				var last = null;
+				api.column(2, {
+						page: 'current'
+				}).data().each(function(group, i) {
+					if (last !== group) {
+						$(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+						last = group;
+					}
+				});
+			}
+		});
+		// Order by the grouping
+		$('#example tbody').on('click', 'tr.group', function() {
+			var currentOrder = table.order()[0];
+			if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+				table.order([2, 'desc']).draw();
+			} else {
+				table.order([2, 'asc']).draw();
+			}
+		});
+	});
+</script>

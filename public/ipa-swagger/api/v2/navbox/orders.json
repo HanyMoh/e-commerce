@@ -1,0 +1,76 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "orders",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/two/navbox/orders.json",
+      "operations": [
+        {
+          "summary": "Get all orders for admin or current user",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Token",
+              "required": true
+            }
+          ],
+          "notes": "      Sending `user token` as <b>X-User-Token</b> will return all orders For this user.<br />\n",
+          "nickname": "Api::V2::Navbox::Orders#index",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/two/navbox/orders/{id}.json",
+      "operations": [
+        {
+          "summary": "Show an order by id",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Order ID",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::V2::Navbox::Orders#show",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

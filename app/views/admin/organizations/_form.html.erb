@@ -1,0 +1,69 @@
+<% content_for :bc_title do %>
+  Organizations
+<% end %>
+
+<% content_for :bc_current do %>
+  New Organizations
+<% end %>
+
+<% content_for :bc_buttons do %>
+  <a href="<%= admin_organizations_path %>"><button type="button" class="btn btn-info"><i class="fa fa-plus-circle"></i> All Organizations</button></a>
+<% end %>
+
+<%= render 'shared/breadcrumb' %>
+
+<%= render 'shared/error_messages', object: @organization %>
+
+<div class="row">
+  <div class="col-6">
+    <div class="card">
+      <div class="card-header bg-info">
+        <% if @organization.new_record? %>
+          <h4 class="m-b-0 text-white">Add new organization</h4>
+        <% else %>
+          <h4 class="m-b-0 text-white">Edit organization</h4>
+        <% end %>
+      </div>
+      <div class="card-body">  
+        <br/>
+        <%= form_for [:admin, @organization], html: {  help: :block } do |f| %>
+          <div class="row">
+            <div class="col-md-12">          
+              <div class="form-group">        
+                <label class="control-label">Name</label>
+                <%= f.text_field :name, required: true, class:"form-control"%>
+                <small>This is very important field, make sure you type it correct!</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">          
+              <div class="form-group">        
+                <label class="control-label">Description</label>
+                <%= f.text_area :description, class:"form-control"%>
+              </div>           
+            </div>             
+          </div> 
+
+          <div class="row">
+            <div class="col-md-12">          
+              <div class="form-group">        
+                <label class="control-label">Category/Type</label>
+                <%= f.text_field :type, class:"form-control"%>
+              </div>           
+            </div>             
+          </div> 
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <%= f.submit 'Submit', class: 'btn btn-lg btn-primary' %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

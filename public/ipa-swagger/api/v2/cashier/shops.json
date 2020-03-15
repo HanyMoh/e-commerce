@@ -1,0 +1,34 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "shops",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/two/cashier/shops.json",
+      "operations": [
+        {
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Token",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V2::Cashier::Shops#index",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

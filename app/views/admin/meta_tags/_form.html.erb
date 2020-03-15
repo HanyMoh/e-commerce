@@ -1,0 +1,171 @@
+<div class="page-title-bar">
+  <div class="row">
+    <div class="col-xs-6"><h2>SEO</h2></div>
+    <div class="col-xs-6">
+      <div class="add-new-btn">
+        <a href="<%= admin_meta_tags_path %>"><img src="/dashboard/images/add-new-icon.png" alt="Add">All MetaTags</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-breadcrumb">
+  <div class="row">
+    <div class="col-sm-7">
+      <!-- 
+      <a href="javascript:void(0)" class="back-angle"><i class="fa fa-long-arrow-left"></i> Back To My Brand</a>
+      -->
+    </div>
+    <div class="col-sm-5">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<%= admin_path %>">Dashboard</a></li>
+        <li class="breadcrumb-item active">SEO</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<br/>
+
+<div class="start-content">
+  <%= render 'shared/error_messages', object: @meta_tag %>
+  <%= form_for [:admin, @meta_tag], html: { class: 'group-border-dashed', help: :block } do |f| %>
+    <div class="row form-group">
+      <div class="col-md-4 form-group">
+        <label class="control-label">Name</label>
+        <%= f.text_field :name, required: true, class:"form-control"%>
+      </div>
+      <div class="col-md-4 form-group">
+        <label class="control-label">Content</label>
+        <%= f.text_field :content, class:"form-control"%>
+      </div>
+    </div>
+    <% if @meta_tag.new_record? %>
+      <!--
+      <div class="row form-group">
+        <div class="col-md-4">
+          <input onclick="showAll()" type="radio" name="shops_or_products" id="allRadio">
+          <label for="allRadio">All</label>
+        </div>
+        <div class="col-md-4">
+          <input onclick="showBrands()" type="radio" name="shops_or_products" id="shopsRadio">
+          <label for="shopsRadio">Shops</label>
+        </div>
+        <div class="col-md-4">
+          <input onclick="showProducts()" type="Radio" name="shops_or_products" id="productsRadio">
+          <label for="productsRadio">Products</label>
+        </div>
+      </div>
+      <div class="row form-group">
+        <div class="col-md-4">
+          <input onclick="selectAllShops()" type="checkbox" id="select_all_shops">
+          <label for="select_all_shops">Select all shops</label>
+        </div>
+        <div class="col-md-4">
+          <input onclick="selectAllProducts()" type="checkbox" id="select_all_products">
+          <label for="select_all_products">Select all products</label>
+        </div>
+      </div>
+      -->
+      <% if current_admin %>
+        <br/>
+        <div class="row form-group">
+          <div class="col-md-4">
+            <strong>Nasnav</strong>
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-md-4">
+            <input type="checkbox" name="shops[]" value="" id="nasnav_home" class="ch_bo">
+            <label for="nasnav_home">Nasnav homepage</label>
+          </div>
+        </div>
+      <% end %>
+      <br/>
+      <div id="brands">
+        <h2><strong>Shops</strong></h2>
+        <input onclick="selectAllShops();" type="checkbox">
+        <br/>
+        <% @brands.each do |brand| %>
+          <% next if brand.shops.count == 0 %>
+          <div class="row form-group">
+            <div class="col-md-4">
+              <strong><%= brand.name %></strong>
+            </div>
+          </div>
+          <% brand.shops.each do |shop| %>
+            <div class="row form-group">
+              <div class="col-md-4">
+                &nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="shops[]" value="<%= shop.id %>" id="shop_<%= shop.id %>">
+                &nbsp;<label for="shop_<%= shop.id %>"><%= shop.name %></label>
+              </div>
+            </div>
+          <% end %>
+          <br/>
+        <% end %>
+      </div>
+      <!--
+      <div id="products" style="display: none;">
+        <h2><strong>Products</strong></h2>
+        <br/>
+        <%# @brands.each do |brand| %>
+          <%# next if brand.shops.count == 0 %>
+          <div class="row form-group">
+            <div class="col-md-4">
+              <strong>Brand: <%#= brand.name %></strong>
+            </div>
+          </div>
+          <%# brand.shops.each do |shop| %>
+            <%# next if shop.products.count == 0 %>
+            <div class="row form-group">
+              <div class="col-md-4">
+                &nbsp;&nbsp;&nbsp;&nbsp;<strong>Shop: <%#= shop.name %> (<%#= shop.brand.name %>)</strong>
+              </div>
+            </div>
+            <%# shop.products.each do |product| %>
+              <div class="row form-group">
+                <div class="col-md-8">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="products[]" value="<%#= product.id %>" id="product_<%#= product.id %>">
+                  &nbsp;<label for="product_<%#= product.id %>"><%#= product.name %></label>
+                </div>
+              </div>
+            <%# end %>
+            <br/>
+          <%# end %>
+        <%# end %>
+      </div>
+      -->
+    <% end %>
+    <div class="save-all">
+      <button type="submit" name="popup" value="show">Save<i class="fa fa-mouse-check"></i></button>
+      <%= link_to 'cancel', admin_meta_tags_path, class: 'btn btn-lg btn-primary' %>
+    </div>
+    <!--
+    <div class="row form-group">
+      <div class="col-md-4 form-group save-all">
+        <%#= f.submit "submit", class: "submit" %>
+      </div>
+    </div>
+    -->
+  <% end %>
+</div>
+
+<script>
+  function selectAllShops(){
+    var nasnavHome = document.getElementById("nasnav_home"); 
+    
+    <% @brands.each do |brand| %>
+      <% brand.shops.each do |shop| %>
+        var shop<%= shop.id %> = document.getElementById("shop_<%= shop.id %>");
+        if(shop<%= shop.id %>.checked == false) {
+          shop<%= shop.id %>.checked = true;
+        }
+        else {
+          if(shop<%= shop.id %>.checked == true) {
+            shop<%= shop.id %>.checked = false;
+          }
+        };
+      <% end %>
+    <% end %>
+  };
+</script>

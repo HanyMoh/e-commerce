@@ -1,0 +1,242 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "stocks",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/two/dashboard/stocks.json",
+      "operations": [
+        {
+          "summary": "Get all stocks for current admin or manager",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Token",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V2::Dashboard::Stocks#index",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/two/dashboard/stocks.json",
+      "operations": [
+        {
+          "summary": "Creates a new stock",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Token",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "stock[shop_id]",
+              "type": "integer",
+              "description": "Shop ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "stock[product_id]",
+              "type": "integer",
+              "description": "Product ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "stock[organization_id]",
+              "type": "integer",
+              "description": "Organization ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "stock[sub_product_id]",
+              "type": "integer",
+              "description": "Sub Product ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "stock[quantity]",
+              "type": "integer",
+              "description": "Quantity",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "stock[price]",
+              "type": "integer",
+              "description": "Price",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 406,
+              "responseModel": null,
+              "message": "Not Acceptable"
+            }
+          ],
+          "nickname": "Api::V2::Dashboard::Stocks#create",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/two/dashboard/stocks/{id}.json",
+      "operations": [
+        {
+          "summary": "Show a stock",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Product ID",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::V2::Dashboard::Stocks#show",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/two/dashboard/stocks/{id}.json",
+      "operations": [
+        {
+          "summary": "Update existing stock",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Stock Id",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "stock[shop_id]",
+              "type": "integer",
+              "description": "Shop ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "stock[product_id]",
+              "type": "integer",
+              "description": "Product ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "stock[organization_id]",
+              "type": "integer",
+              "description": "Organization ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "stock[sub_product_id]",
+              "type": "integer",
+              "description": "Sub Product ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "stock[quantity]",
+              "type": "integer",
+              "description": "Quantity",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "stock[price]",
+              "type": "integer",
+              "description": "Price",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 406,
+              "responseModel": null,
+              "message": "Not Acceptable"
+            }
+          ],
+          "nickname": "Api::V2::Dashboard::Stocks#update",
+          "method": "patch"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

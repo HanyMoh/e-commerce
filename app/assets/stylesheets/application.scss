@@ -1,0 +1,21 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+
+.img_small{
+  width: 100px;
+  height: 100px;
+}
+.affix {
+    top:100px;
+    position:fixed;
+    right: 0;
+}
+.form-control {
+  color: #09284c !important;
+}
+
+#building-map{
+    height: 400px;
+    width: 400px;
+}

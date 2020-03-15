@@ -1,0 +1,118 @@
+<!-- footer Quick links -->
+<div class="footer-quick-links">
+    <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="footer-map">
+              <iframe width="100%" src="https://maps.google.com/maps?q=<%= @shop.lat %>,<%= @shop.lng %>&hl=es;z=14&amp;output=embed"
+                  frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                  <a href="https://www.maps.ie/create-google-map/">Google map generator</a>
+              </iframe>
+            </div>
+          </div>
+            <div class="col-md-5">
+                <div class="foot-main-links">
+                    <div class="logo">
+                      <% if @brand_theme && @brand_theme.footer_logo.present? %>
+                        <img style="max-width: 170px;" src="<%= @brand_theme.footer_logo %>" alt="<%= @brand.name + " - " + @shop.street + " - " + "Nasnav" %>">
+                      <% else %>
+                        <img style="max-width: 170px;" src="<%= @brand.logo %>" alt="<%= @brand.name + " - " + @shop.street + " - " + "Nasnav" %>">
+                      <% end %>
+                    </div>
+										<div class="foot-categories">
+											<div class="row">
+												<div class="col-md-4">
+													<ul>
+														<% @brand.categories.take(4).each do |cat| %>
+															<li><a href="#"><%= truncate(find_cat(cat, "name"), lenght: 12) %></a></li>
+														<% end %>
+													</ul>
+												</div>
+												<div class="col-md-4">
+												 <% if @brand.categories.count > 4 %>
+														<ul>
+															<% @brand.categories.drop(4).take(4).each do |cat| %>
+																<li><a href="#"><%= find_cat(cat, "name") %></a></li>
+															<% end %>
+														</ul>
+													<% end %>
+												</div>
+												<div class="col-md-4">
+													 <% if @brand.categories.count > 8 %>
+														<ul>
+															<% @brand.categories.drop(8).take(3).each do |cat| %>
+																<li><a href="#"><%= find_cat(cat, "name") %></a></li>
+															<% end %>
+															<% if @brand.categories.count > 11 %>
+																<li>
+																	<div class="list-holder dropdown-select links-dropdown-2">
+																			<label class="selected-item"><span class="icon fa fa-ellipsis-h"></span></label>
+																			<ul class="list">
+																				<% @brand.categories.drop(11).map do |cat| %>
+																					<li class="list-item"><a href="<%= @navbox_url + "/" + find_cat(cat, "id").to_s %>"><%= find_cat(cat, "name") %></a></li>
+																				<% end %>
+																			</ul>
+																	</div>
+																</li>
+														 <% end %>
+														</ul>
+													<% end %>
+												</div>
+											</div>
+										</div>
+
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="social">
+                    <div class="branch">
+                        <div class="list-holder dropdown-select city-dropdown">
+                            <label class="selected-item"><span class="item-text">City Stars</span><span class="icon fa fa-long-arrow-down"></span></label>
+                            <ul class="list">
+                              <% @brand.shops.each do |shop| %>
+                                <li class="list-item active"><a href="<%= '/store/'  + (shop.building ? shop.building.area.parameterize : shop.street.parameterize) + '/' + shop.brand.name.parameterize + '/' + shop.id.to_s %>"><%= shop.name %></a></li>
+                              <% end %>
+                            </ul>
+                        </div>
+                    </div>
+                    <ul>
+                      <% if @brand.facebook? %>
+                        <li><a href="https://<%= @brand.facebook %>" target="_blank"><span class="icon fa fa-facebook"></span></a></li>
+                      <% end %>
+                      <% if @brand.twitter? %>
+                        <li><a href="https://<%= @brand.twitter %>" target="_blank"><span class="icon fa fa-twitter"></span></a></li>
+                      <% end %>
+                      <% if @brand.instagram? %>
+                        <li><a href="https://<%= @brand.instagram %>" target="_blank"><span class="icon fa fa-instagram"></span></a></li>
+                      <% end %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="navbox-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="copyrigts">
+                  <p>&copy; <%= @shop.name %> Store . Inc</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+              <a href="<%= root_path %>">
+                <div class="powered-by">
+                  <p>Powered by <img src="/navbox/images/navbox-images/nasnav.png" alt="Nasnav"></p>
+                </div>
+              </a>
+            </div>
+        </div>
+        <div class="foot-up-top">
+            <a href="#" id="btnTop">
+                <img src="/navbox/images/navbox-images/download-top.png" alt="Nasnav">
+            </a>
+        </div>
+    </div>
+</footer>

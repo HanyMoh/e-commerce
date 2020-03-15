@@ -1,0 +1,1 @@
+json.extract! brand, :id, :name, :description, :category_id, :logo, :banner_image, :organization_id, :following_standards, :facebook, :twitter, :instagram, :stock_management, :sat, :sun, :mon, :tue, :wed, :thu, :fri, :from, :to, :websites, :phone_numbers, :display_name, :dark_logo

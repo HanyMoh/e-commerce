@@ -1,0 +1,48 @@
+<nav class="sidebar-nav">
+  <ul id="sidebarnav">
+    <% if current_admin %>
+      <li class="nav-small-cap">--- Management</li>
+      <% if current_admin %>
+        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">Development </span></a>
+          <ul aria-expanded="false" class="collapse">
+            <li><a href="<%= admin_developers_path %>">Developers </a></li>
+          </ul>
+        </li>
+      <% end %>
+    <% end %>
+
+    <li class="nav-small-cap">--- Administration</li>
+    <% if current_admin %>
+      <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">Categories </span></a>
+        <ul aria-expanded="false" class="collapse">
+          <li><a href="<%= admin_categories_path %>">Manage Categories </a></li>
+        </ul>
+      </li>
+      <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">Organizations </span></a>
+        <ul aria-expanded="false" class="collapse">
+          <li><a href="<%= admin_organizations_path %>">Manage Organizations </a></li>
+        </ul>
+      </li>
+      <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">Managers </span></a>
+        <ul aria-expanded="false" class="collapse">
+          <li><a href="<%= admin_organization_managers_path %>">Organization Managers </a></li>
+        </ul>
+      </li>
+    <% end %>
+    <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">Brands </span></a>
+      <ul aria-expanded="false" class="collapse">
+        <li><a href="<%= admin_brands_path %>">Manage Brands </a></li>
+      </ul>
+    </li>
+    <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">Shops </span></a>
+      <ul aria-expanded="false" class="collapse">
+        <li><a href="<%= admin_shops_path %>">Manage Shops </a></li>
+      </ul>
+    </li>
+    <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">Products </span></a>
+      <ul aria-expanded="false" class="collapse">
+        <li><a href="<%= admin_products_path %>">All Products </a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>

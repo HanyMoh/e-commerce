@@ -1,0 +1,121 @@
+<div class="page-breadcrumb">
+  <div class="row">
+    <div class="col-sm-7">
+      <% if can? :create, Product %>
+        <a href="<%= admin_shops_path %>" class="back-angle"><i class="fa fa-long-arrow-left"></i> Back to Shops</a>
+      <% end %>
+    </div>
+    <div class="col-sm-5">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="<%= admin_shops_path %>">Shops</a></li>
+        <li class="breadcrumb-item active"><a href="#">360 Management</a></li>
+      </ol>
+    </div>
+  </div>
+</div>
+<div class="start-content">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-6">
+          <h3>Current Selection</h3>
+          <% if cookies["manage_360_brand_id"] %>
+            <p>Brand: <%= @brand.name %></p>
+          <% else %>
+            <p>Brand: Not selected</p>
+          <% end %>
+          <% if cookies["manage_360_shop_id"] %>
+            <p>Shop: <%= @shop.name %></p>
+          <% else %>
+            <p>Shop: Not selected</p>
+          <% end %>
+        </div>
+        <div class="col-md-6">
+          <%= link_to "Clear Selections", clear_selections_admin_shops_path, method: :post, class: 'btn btn-md btn-info', style: 'margin-top: 70px; margin-left: -160px;' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="add-products">
+    <div class="row">
+      <div class="col-md-6">
+        <br/>
+        <% if !cookies["manage_360_brand_id"] %>
+          <%= form_tag manage_360_admin_shops_path, method: :get do %>
+            <div class="add-products">
+              <div class="row">
+                <div class="col-md-12">
+                  <label>Select brand</label>
+                  <%= select_tag :brand_id, options_from_collection_for_select(@brands, 'id', 'name') %>
+                  <%= submit_tag "Submit", class: 'btn btn-lg btn-info', style: 'margin-top: 10px;' %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+        <% if cookies["manage_360_brand_id"] && !cookies["manage_360_shop_id"] %>
+          <%= form_tag manage_360_admin_shops_path, method: :get do %>
+            <div class="add-products">
+              <div class="row">
+                <div class="col-md-12">
+                  <label>Select shop</label>
+                  <%= select_tag :shop_id, options_from_collection_for_select(@shops, 'id', 'name') %>
+                  <%= submit_tag "Submit", class: 'btn btn-lg btn-info', style: 'margin-top: 10px;' %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+        <% if cookies["manage_360_brand_id"] && cookies["manage_360_shop_id"] %>
+          <h4>Search for product</h4>
+          <%= form_tag manage_360_admin_shops_path, method: :get do %>
+            <div class="add-products">
+              <div class="row">
+                <div class="col-md-12">
+                  <%= text_field_tag :barcode,"", placeholder: "Enter barcode...", required: true, class: 'form-control' %>
+                  <%= submit_tag "Submit", class: 'btn btn-lg btn-info', style: 'margin-top: 10px;' %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <br/>
+  <% if @sub_products %>
+    <h3>Products in 360 list</h3>
+    <div class="add-products">
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table">
+            <thead>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Barcodes</th>
+              <th>Description</th>
+              <th>Actions</th>
+            </thead>
+            <tbody>
+              <% @sub_products.each do |sub_product| %>
+                <tr>
+                  <td><%= image_tag(sub_product.product.cover_image.thumb.url, style: 'width: 50px') %></td>
+                  <td><%= sub_product.product.name %></td>
+                  <td><%= sub_product.product.category.name %></td>
+                  <td><%= sub_product.barcode %></td>
+                  <td><%= truncate(sub_product.product.description, length: 20) %></td>
+                  <td>
+                    <%= link_to "Edit", edit_admin_product_path(sub_product.product), class: 'btn btn-sm btn-success' %>
+                    <%= link_to "Remove from 360 list", remove_from_360_list_admin_shops_path(sub_product), method: :post, class: 'btn btn-sm btn-danger' %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

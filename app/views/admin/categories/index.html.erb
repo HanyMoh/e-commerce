@@ -1,0 +1,149 @@
+<% content_for :bc_title do %>
+  Categories
+<% end %>
+
+<% content_for :bc_current do %>
+  All Categories
+<% end %>
+
+<% content_for :bc_buttons do %>
+  <a href="<%= new_admin_category_path %>"><button type="button" class="btn btn-info"><i class="fa fa-plus-circle"></i> New Category</button></a>
+<% end %>
+
+<%= render 'shared/breadcrumb' %>
+
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">Categories</h4>
+    <div class="table-responsive m-t-40">
+      <table id="myTable" class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Sub Categories</th>
+            <th>Created</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @categories.newest_first.each do |category| %>
+            <tr>
+              <td><%= category.name %></td>
+              <td>
+                <button class="btn btn-primary <%= category.sub_categories.any? ? 'fa fa-edit' : 'fa fa-plus' %>" data-toggle="modal" data-target="#addSubCategories_<%= category.id %>"> <%= category.sub_categories.any? ? 'View' : 'Add' %> Sub Categories</button>
+              </td>
+              <td><%= time_ago_in_words(category.created_at) %> ago</td>
+              <td>
+                <a href="<%= edit_admin_category_path(category) %>" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                <a href="<%= admin_category_path(category) %>" data-method="delete" data-toggle="tooltip" data-original-title="Delete" data-confirm="Are you sure?"> <i class="fa fa-close text-danger"></i> </a>
+              </td>
+						</tr>
+
+            <!-- Modal -->
+            <div class="modal fade" id="addSubCategories_<%= category.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title" id="myModalLabel"><%= category.name %> Category</h4>
+                  </div>
+                  <div class="modal-body">
+                    <% category.sub_categories.each do |sub_category| %>
+                      <div class="row">
+                        <div class="col-md-8">
+                          <%= sub_category.name %>
+                        </div>
+                        <div class="col-md-2" align="center">
+                          <%= link_to '', edit_admin_category_path(sub_category), class: 'btn btn-xs btn-success fa fa-edit' %>
+                        </div>
+                        <div class="col-md-2" align="center">
+                          <%= link_to '', admin_category_path(sub_category), method: :delete, class: 'btn btn-xs btn-danger fa fa-trash', data: { confirm: 'WARNING: This will delete all the products related to this Cateogry, Are you sure?' } %>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12">
+                          <% sub_category.sub_categories.each do |sub_sub_category| %>
+                            <div class="row">
+                              <div class="col-md-8">
+                                &nbsp;&nbsp;&nbsp;&nbsp;<%= sub_sub_category.name %>
+                              </div>
+                              <div class="col-md-2" align="center">
+                                <%= link_to '', edit_admin_category_path(sub_sub_category), class: 'btn btn-xs btn-success fa fa-edit' %>
+                              </div>
+                              <div class="col-md-2" align="center">
+                                <%= link_to '', admin_category_path(sub_sub_category), method: :delete, class: 'btn btn-xs btn-danger fa fa-trash', data: { confirm: 'WARNING: This will delete all the products related to this Cateogry, Are you sure?' } %>
+                              </div>
+                            </div>
+                            <% sub_sub_category.sub_categories.each do |sub_3_category| %>
+                              <div class="row">
+                                <div class="col-md-8">
+                                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%= sub_3_category.name %>
+                                </div>
+                                <div class="col-md-2">
+                                  <!-- We will stop at sub category level 4 at this time -->
+                                  <%#= link_to '', edit_admin_category_path(sub_3_category), class: 'btn btn-xs btn-success fa fa-edit' %>
+                                </div>
+                                <div class="col-md-2" align="center">
+                                  <%= link_to '', admin_category_path(sub_3_category), method: :delete, class: 'btn btn-xs btn-danger fa fa-trash', data: { confirm: 'WARNING: This will delete all the products related to this Cateogry, Are you sure?' } %>
+                                </div>
+                              </div>
+                            <% end %>
+                            <br/>
+                          <% end %>
+                        </div>
+                      </div>
+                      <br/>
+                    <% end %>
+                  </div>
+                  <br/>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+	$(function() {
+		$('#myTable').DataTable();
+		var table = $('#example').DataTable({
+			"columnDefs": [{
+				"visible": false,
+				"targets": 2
+			}],
+			"order": [
+				[2, 'asc']
+			],
+			"displayLength": 25,
+			"drawCallback": function(settings) {
+				var api = this.api();
+				var rows = api.rows({
+						page: 'current'
+				}).nodes();
+				var last = null;
+				api.column(2, {
+						page: 'current'
+				}).data().each(function(group, i) {
+					if (last !== group) {
+						$(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+						last = group;
+					}
+				});
+			}
+		});
+		// Order by the grouping
+		$('#example tbody').on('click', 'tr.group', function() {
+			var currentOrder = table.order()[0];
+			if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+				table.order([2, 'desc']).draw();
+			} else {
+				table.order([2, 'asc']).draw();
+			}
+		});
+	});
+</script>

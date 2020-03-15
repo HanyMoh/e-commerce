@@ -1,0 +1,1 @@
+json.extract! beacon, :id, :name, :brand_id, :organization_id, :major, :minor, :message_frequency, :shop_id, :range, :status, :uuid

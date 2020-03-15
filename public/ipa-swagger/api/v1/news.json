@@ -1,0 +1,287 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "news",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/one/news/list_all_offer.json",
+      "operations": [
+        {
+          "summary": "All offers",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::News#list_all_offer",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/news/list_all_news.json",
+      "operations": [
+        {
+          "summary": "All news",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::News#list_all_news",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/news/{id}/like.json",
+      "operations": [
+        {
+          "summary": "Like news or offers ",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Email",
+              "type": "email",
+              "description": "User Email",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "news_id",
+              "type": "news_id",
+              "description": "news or offer id ",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::News#like",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/news/{id}/dislike.json",
+      "operations": [
+        {
+          "summary": " DisLike news or offers ",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Email",
+              "type": "email",
+              "description": "User Email",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "news_id",
+              "type": "news_id",
+              "description": "news or offer id ",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::News#dislike",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/news/{id}/comment.json",
+      "operations": [
+        {
+          "summary": " Comment on news or offers ",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Email",
+              "type": "email",
+              "description": "User Email",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "news_id",
+              "type": "news_id",
+              "description": "news or offer id ",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "text",
+              "type": "text",
+              "description": "comment text",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "user_ids",
+              "type": "string",
+              "description": "list of comma separated users ids to be tagged",
+              "required": false
+            }
+          ],
+          "nickname": "Api::V1::News#comment",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/news/{id}/add_to_favourite.json",
+      "operations": [
+        {
+          "summary": "Add this news to Favourite ",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Email",
+              "type": "email",
+              "description": "User Email",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "news_id",
+              "type": "integer",
+              "description": "news or offer id ",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::News#add_to_favourite",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/news/{id}.json",
+      "operations": [
+        {
+          "summary": "Get News details ",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "id",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::V1::News#show",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/category_news/{id}.json",
+      "operations": [
+        {
+          "summary": "All news filtered by category",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "by_category",
+              "type": "integer",
+              "description": "Category ID",
+              "required": true
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 404,
+              "responseModel": null,
+              "message": "Not Found"
+            }
+          ],
+          "nickname": "Api::V1::News#list_all_category_news",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

@@ -1,0 +1,1 @@
+json.extract! developer, :id, :name

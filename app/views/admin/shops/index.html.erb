@@ -1,0 +1,120 @@
+<% content_for :bc_title do %>
+  Shops
+<% end %>
+
+<% content_for :bc_current do %>
+  All Shops
+<% end %>
+
+<% content_for :bc_buttons do %>
+  <a href="<%= new_admin_shop_path %>"><button type="button" class="btn btn-info"><i class="fa fa-plus-circle"></i> New Shop</button></a>
+<% end %>
+
+<%= render 'shared/breadcrumb' %>
+
+<div class="card">
+  <div class="card-body">
+    <h4 class="card-title">Shops</h4>
+    <div class="table-responsive m-t-40">
+      <table id="myTable" class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Organization</th>
+            <th>Address</th>
+            <th>Created</th>
+            <th>360</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @shops.newest_first.each do |shop| %>
+            <tr>
+              <td><%= shop.name %></td>
+              <td><%= shop.organization.name %></td>
+              <td>Soon</td>
+              <td><%= time_ago_in_words(shop.created_at) %> ago</td>
+							<td>
+								<button class="btn btn-sm btn-warning" data-toggle="modal" data-target="#manage_<%= shop.id %>">
+									Manage Floors
+								</button>
+                <%= link_to shop360ms_admin_shops_path(shop.id) do %>
+                  <button class="btn btn-sm btn-info">
+                    Manage 360
+                  </button>
+                <% end %>
+							</td>
+              <td>
+                <a href="<%= edit_admin_shop_path(shop) %>" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
+                <a href="<%= admin_shop_path(shop) %>" data-method="delete" data-toggle="tooltip" data-original-title="Delete" data-confirm="Are you sure?"> <i class="fa fa-close text-danger"></i> </a>
+              </td>
+						</tr>
+
+
+						<!-- sample modal content -->   
+						<div id="manage_<%= shop.id %>" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+							<div class="modal-dialog">      
+								<div class="modal-content">     
+									<div class="modal-header">      
+										<h4 class="modal-title">Floors on <%= shop.name %></h4>
+										<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+									</div>     
+									<div class="modal-body">        
+                    <%= link_to 'Add new floor', new_admin_shop360_shop_floor_path(shop.shop360), class: 'btn btn-sm btn-success' %>
+                    <br/><br/>
+                    <% shop.shop360.shop_floors.each do |shop_floor| %>
+                      <%= link_to "Floor #{shop_floor.number}", edit_admin_shop360_shop_floor_path(shop.shop360, shop_floor.id), class: 'btn btn-sm btn-info' %>
+                      <%= link_to "Delete Floor #{shop_floor.number}", admin_shop360_shop_floor_path(shop.shop360, shop_floor.id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+                      <br/><br/>
+                    <% end %>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /.modal -->
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+	$(function() {
+		$('#myTable').DataTable();
+		var table = $('#example').DataTable({
+			"columnDefs": [{
+				"visible": false,
+				"targets": 2
+			}],
+			"order": [
+				[2, 'asc']
+			],
+			"displayLength": 25,
+			"drawCallback": function(settings) {
+				var api = this.api();
+				var rows = api.rows({
+						page: 'current'
+				}).nodes();
+				var last = null;
+				api.column(2, {
+						page: 'current'
+				}).data().each(function(group, i) {
+					if (last !== group) {
+						$(rows).eq(i).before('<tr class="group"><td colspan="5">' + group + '</td></tr>');
+						last = group;
+					}
+				});
+			}
+		});
+		// Order by the grouping
+		$('#example tbody').on('click', 'tr.group', function() {
+			var currentOrder = table.order()[0];
+			if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+				table.order([2, 'desc']).draw();
+			} else {
+				table.order([2, 'asc']).draw();
+			}
+		});
+	});
+</script>

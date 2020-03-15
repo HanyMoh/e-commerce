@@ -1,0 +1,293 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="NasNav Backend">
+    <meta name="author" content="NasNav">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
+    <title>NasNav Backend</title>
+
+
+    <!-- Core CSS -->
+    <!-- <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="plugins/bootstrap-extension/css/bootstrap-extension.css" rel="stylesheet">
+    <link href="plugins/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet"> -->
+
+    <!-- Custom CSS -->
+    <!-- <link href="css/style.css" rel="stylesheet">
+    <link href="css/color.css" id="theme" rel="stylesheet">
+
+    <link href="plugins/morrisjs/morris.css" rel="stylesheet"> -->
+
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+      <![endif]-->
+
+
+</head>
+
+<body>
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="bg-title">
+                    <!-- .page title -->
+                    <ol class="breadcrumb">
+                        <li><a href="#">Dashboard</a></li>
+                        <li class="active">you are here</li>
+                    </ol>
+
+                    <h4 class="page-title">User Data Analytics</h4>
+                    <select class="form-control pull-right custom-select" style="width: 150px">
+                        <option>Today</option>
+                        <option>Yesterday</option>
+                        <option>Last Week</option>
+                        <option>Last Month</option>
+                        <option>Last Year</option>
+                    </select>
+
+
+                    <!--<a href="#" class="btn btn-outline btn-rounded btn-primary m-l-10">Action Button</a>-->
+                    <!-- /.page title -->
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+                <!-- Start of the content page -->
+
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="white-box">
+                            <div class="box-title">
+                                <h3 class="inline">Chart</h3>
+
+                                <div class="inline pull-right">
+                                    <ul class="list-inline">
+                                        <li class="m-r-15"><h5><i class="fa fa-circle m-r-5" style="color: #00bfc7;"></i>Store Visit</h5> </li>
+                                        <li><h5><i class="fa fa-circle m-r-5" style="color: #fb9678;"></i>VR Visit</h5></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <div id="online-offline-users" style="height: 300px;"></div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="white-box">
+                            <div class="box-title">
+                                <h3 class="inline">Store Visits <%= @real_visits.count || 0 %></h3>
+                            </div>
+
+
+                            <div class="row sales-report">
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <h2>Today</h2>
+                                    <p>Users Live interacts with Beacons</p>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 ">
+                                    <h1 class="text-right text-success m-t-20">32</h1> </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table ">
+                                    <thead>
+                                    <tr>
+                                        <th>User ID</th>
+                                        <th>First Seen</th>
+                                        <th>Last Seen</th>
+                                        <th>Beacon</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+									<% @real_visits.each do |rv| %>
+										<tr>
+											<td class="btn-link"><a href="#"><%= rv['user_id'] %></a></td>
+											<td><%= rv['first_seen'] %></td>
+											<td><%= rv['last_seen'] %></td>
+											<td><a href="#"><%= rv['beacon']['name'] %></a></td>
+										</tr>
+									<% end %>
+                                    </tbody>
+                                </table>
+                                <a href="#" class="btn btn-block btn-default">View All Today's online User</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="white-box">
+                            <div class="box-title">
+                                <h3>VR Visits <%= @vr_visits.count %></h3>
+                            </div>
+
+
+                            <div class="row sales-report">
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <h2>Today</h2>
+                                    <p>Users Live interacts with Beacons</p>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 ">
+                                    <h1 class="text-right text-success m-t-20">32</h1> </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table ">
+                                    <thead>
+                                    <tr>
+                                        <th>User ID</th>
+                                        <th>First Seen</th>
+                                        <th>Last Seen</th>
+                                        <th>Spent Period</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+									<% @vr_visits.each do |vrv| %>
+                                    <tr>
+                                        <td class="btn-link"><a href="#"><%= vrv.user_id %></a></td>
+                                        <td><%= vrv.first_seen %></td>
+                                        <td><%= vrv.last_seen %></td>
+                                        <td><a href="#"><%= vrv.spent_period %></a></td>
+                                    </tr>
+									<% end %>
+                                    </tbody>
+                                </table>
+                                <a href="#" class="btn btn-block btn-default">View All Today's online User</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+                <!-- End of the content page -->
+            </div>
+            <!-- /.container-fluid -->
+            <footer class="footer"> 2017 &copy; NassApp - nassnav.com </footer>
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+
+    <!-- JS -->
+    <!--<script src="plugins/jquery/dist/jquery.min.js"></script>
+    <script src="bootstrap/dist/js/tether.min.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="plugins/bootstrap-extension/js/bootstrap-extension.min.js"></script>
+    <script src="plugins/sidebar-nav/dist/sidebar-nav.min.js"></script>
+    <script src="js/jquery.slimscroll.js"></script>
+    <script src="js/waves.js"></script>-->
+
+
+    <!-- Custom JavaScript -->
+    <!--<script src="js/custom.js"></script>-->
+
+
+
+    <!--Morris JavaScript -->
+    <!--<script src="plugins/raphael/raphael-min.js"></script>
+    <script src="plugins/morrisjs/morris.js"></script> -->
+
+    <!-- Custom Theme JavaScript -->
+    <script>
+        $(document).ready(function () {
+
+
+        Morris.Bar({
+            element: 'online-offline-users',
+            data: [{
+                hour: '8AM',
+                Online: 50,
+                Offline: 14
+            }, {
+                hour: '10AM',
+                Online: 2,
+                Offline: 30
+            }, {
+                hour: '12AM',
+                Online: 56,
+                Offline: 99
+            }, {
+                hour: '1PM',
+                Online: 1,
+                Offline: 2
+            }, {
+                hour: '3PM',
+                Online: 5,
+                Offline: 8
+            }, {
+                hour: '5PM',
+                Online: 10,
+                Offline: 14
+            }, {
+                hour: '7PM',
+                Online: 34,
+                Offline: 55
+            }, {
+                hour: '9PM',
+                Online: 29,
+                Offline: 34
+            }, {
+                hour: '11PM',
+                Online: 33,
+                Offline: 22
+            }, {
+                hour: '12PM',
+                Online: 54,
+                Offline: 112
+            }, {
+                hour: '2AM',
+                Online: 50,
+                Offline: 14
+            }, {
+                hour: '5AM',
+                Online: 50,
+                Offline: 14
+            }
+            ],
+            xkey: 'hour',
+            //xLabels:"period",
+            xLabelAngle: 35,
+            ykeys: ['Online', 'Offline'],
+            labels: ['Online', 'Offline'],
+            pointSize: 2,
+            fillOpacity: 0,
+            barColors:['#00bfc7', '#fb9678'],
+            gridLineColor: '#e0e0e0',
+            lineWidth: 2,
+            hideHover: 'auto',
+            resize: true
+
+        });
+
+
+
+        });
+
+
+    </script>
+
+
+
+
+
+</body>

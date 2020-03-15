@@ -1,0 +1,1 @@
+json.extract! floor, :id, :name, :logo, :building_id, :floor_number, :lat, :long, :angle, :opacity

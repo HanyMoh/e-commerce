@@ -1,0 +1,44 @@
+stages:
+  - build
+  - deploy
+
+build_image:
+  stage: build
+  script:
+    - cp ./database.yml.example ./config/database.yml
+    - ./devops/bin/build.sh
+  only:
+    - develop
+    - devops
+    - master
+  tags:
+    - nasnav_shell
+
+deploy_staging:
+  stage: deploy
+  variables:
+    SWARM_MANAGER: tcp://dev-b.nasnav.com:2376
+    SERVICE_NAME: nasnav
+  script: ./devops/bin/deploy.sh
+  environment:
+    name: develop
+    url: https://develop.nasnav.com
+  only:
+    - develop
+    - devops
+  tags:
+    - nasnav_shell
+
+deploy_production:
+  stage: deploy
+  variables:
+    SWARM_MANAGER: tcp://prd-a.nasnav.com:2376
+    SERVICE_NAME: nasnav
+  script: ./devops/bin/deploy.sh
+  environment:
+    name: master
+    url: https://master.nasnav.com
+  only:
+    - master
+  tags:
+    - nasnav_shell

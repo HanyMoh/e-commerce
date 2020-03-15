@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="google-site-verification" content="Zo510ap0elhpTesQBWIcEqC1a-ZT3nb6mPBQfs6J5EM" />
+
+  <meta charset="utf-8">
+  <!-- App title -->
+  <title><%= yield :page_title %></title>
+   <!-- App Favicon -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%= yield :meta_tags %>
+  <script src="https://use.fontawesome.com/e57dff1861.js"></script>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <%#= render partial: "shared/flash_messages", flash: flash %>
+  <%= yield %>
+</body>
+</html>

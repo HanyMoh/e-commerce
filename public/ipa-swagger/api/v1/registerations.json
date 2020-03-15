@@ -1,0 +1,117 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "registerations",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/one/forget_password.json",
+      "operations": [
+        {
+          "summary": "send email instructions for forget password ",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "user[email]",
+              "type": "email",
+              "description": "User Email",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::Registerations#forget_password",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/registerations.json",
+      "operations": [
+        {
+          "summary": "sign up",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "user[email]",
+              "type": "email",
+              "description": "User Email",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "user[user_name]",
+              "type": "user_name",
+              "description": "User Name",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "user[password]",
+              "type": "password",
+              "description": "User password",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "user[password_confirmation]",
+              "type": "password",
+              "description": "Confirm password",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "user[avatar]",
+              "type": "avatar",
+              "description": "User Avatar",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "user[gender]",
+              "type": "gender",
+              "description": "User Gender",
+              "required": false,
+              "allowableValues": {
+                "valueType": "LIST",
+                "values": [
+                  "Male",
+                  "Female"
+                ]
+              }
+            },
+            {
+              "paramType": "form",
+              "name": "user[birth_date]",
+              "type": "birth_date",
+              "description": "User Birth Date",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 406,
+              "responseModel": null,
+              "message": "Not Acceptable"
+            }
+          ],
+          "nickname": "Api::V1::Registerations#create",
+          "method": "post"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

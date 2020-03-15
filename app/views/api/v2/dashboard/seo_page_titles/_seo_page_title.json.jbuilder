@@ -1,0 +1,1 @@
+json.extract! seo_page_title, :id, :title, :shop_id, :organization_id

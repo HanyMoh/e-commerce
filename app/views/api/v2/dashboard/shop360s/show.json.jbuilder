@@ -1,0 +1,1 @@
+json.partial! "api_v2_dashboard_shop360s/api_v2_dashboard_shop360", api_v2_dashboard_shop360: @api_v2_dashboard_shop360

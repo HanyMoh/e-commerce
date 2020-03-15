@@ -1,0 +1,10 @@
+barcode,item_id,name,category,price,shop_1,shop_18,shop_19,shop_20,discount,color,size
+3351500980802,,Test Product 1,perfumes,1050,2,4,2,3,0,blue,large
+3351500999026,,Test Product 1,Perfumes,1100,3,7,1,2,0,,
+3351500999033,,Test Product 1,Perfumes,1600,4,5,4,2,0,blue,large
+3351500000814,,Test Product 1,Perfumes,1650,5,4,,8,0,blue,large
+3351500002696,,Test Product 2,Perfumes,1200,22,7,6,9,0,blue,large
+3351500002702,,Test Product 3,Perfumes,1750,,,,,0,blue,large
+3351500004911,,Test Product 4,Perfumes,950,10,7,4,8,0,,
+3351500005482,,Test Product 5,Perfumes,1450,9,5,6,11,0,,
+85715411006,,Test Product 6,Perfumes,650,2,3,,3,0,,

@@ -1,0 +1,183 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "malls",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/two/dashboard/countries/{country_id}/cities/{city_id}/malls.json",
+      "operations": [
+        {
+          "summary": "Get all malls of a city",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "city_id",
+              "type": "integer",
+              "description": "City ID",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V2::Dashboard::Malls#index",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/two/dashboard/countries/{country_id}/cities/{city_id}/malls.json",
+      "operations": [
+        {
+          "summary": "Create mall",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "mall[city_id]",
+              "type": "integer",
+              "description": "Country ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "mall[name]",
+              "type": "string",
+              "description": "Mall Name",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "mall[area]",
+              "type": "string",
+              "description": "Mall Area",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "mall[address]",
+              "type": "string",
+              "description": "Mall Area",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V2::Dashboard::Malls#create",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/two/dashboard/countries/{country_id}/cities/{city_id}/malls/{id}.json",
+      "operations": [
+        {
+          "summary": "Update mall",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Mall ID",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "mall[name]",
+              "type": "string",
+              "description": "Mall Name",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "mall[area]",
+              "type": "string",
+              "description": "Mall Area",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "mall[address]",
+              "type": "string",
+              "description": "Mall Area",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V2::Dashboard::Malls#update",
+          "method": "patch"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/two/dashboard/countries/{country_id}/cities/{city_id}/malls/{id}.json",
+      "operations": [
+        {
+          "summary": "Delete mall",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "header",
+              "name": "X-User-Token",
+              "type": "string",
+              "description": "User Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "path",
+              "name": "id",
+              "type": "integer",
+              "description": "Mall ID",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V2::Dashboard::Malls#destroy",
+          "method": "delete"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

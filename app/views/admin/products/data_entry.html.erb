@@ -1,0 +1,66 @@
+<!-- Page Title -->
+<div class="page-title-bar">
+  <div class="row">
+    <div class="col-xs-6"><h2>Data Entry</h2></div>
+  </div>
+</div>
+<!-- Page Breadcrumb -->
+
+<div class="page-breadcrumb">
+  <div class="row">
+    <div class="col-sm-7">
+      <% if can? :create, Product %>
+      <a href="<%= admin_products_path %>" class="back-angle"><i class="fa fa-long-arrow-left"></i> Back to Products</a>
+      <% end %>
+    </div>
+    <div class="col-sm-5">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="<%= admin_path %>">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="<%= admin_products_path %>">Products</a></li>
+        <li class="breadcrumb-item active">Edit</li>
+      </ol>
+    </div>
+  </div>
+</div>
+<div class="start-content">
+  <div class="row">
+    <div class="col-md-6">
+      <h4>Import Products</h4>
+      <%= form_tag import_products_admin_products_path, multipart: true do %>
+        <% if current_admin %>
+          <%= select_tag :organization_id, options_from_collection_for_select(Organization.all, :id, :name) %>
+          <%= select_tag :brand_id, options_from_collection_for_select(Brand.all, :id, :name) %>
+        <% else %>
+          <%= hidden_field_tag :organization_id, '', value: current_active_user.organization.id %>
+          <%= select_tag :brand_id, options_from_collection_for_select(current_active_user.organization.brands, :id, :name) %>
+        <% end %>
+        <%= file_field_tag :file, class: 'form-control' %>
+        <%= submit_tag 'Import', class: 'btn btn-md btn-info' %>
+      <% end %>
+    </div>
+    <div class="col-md-6">
+      <h4>Update Products</h4>
+      <%= form_tag update_products_admin_products_path, multipart: true do %>
+        <% if current_admin %>
+          <%= select_tag :organization_id, options_from_collection_for_select(Organization.all, :id, :name) %>
+          <%= select_tag :brand_id, options_from_collection_for_select(Brand.all, :id, :name) %>
+        <% else %>
+          <%= hidden_field_tag :organization_id, '', value: current_active_user.organization.id %>
+          <%= select_tag :brand_id, options_from_collection_for_select(current_active_user.organization.brands, :id, :name) %>
+        <% end %>
+        <%= file_field_tag :file, class: 'form-control' %>
+        <%= submit_tag 'Update', class: 'btn btn-md btn-info' %>
+        <br/>
+        <input id="item_id" type="checkbox" name="attrs[]" value="item_id"><label for="item_id">Item ID</label>
+        <input id="name" type="checkbox" name="attrs[]" value="name"><label for="name">Name</label>
+        <input id="description" type="checkbox" name="attrs[]" value="description"><label for="description">Description</label>
+        <input id="category" type="checkbox" name="attrs[]" value="category"><label for="category">Category</label>
+        <input id="price" type="checkbox" name="attrs[]" value="price"><label for="price">Price</label>
+        <input id="discount" type="checkbox" name="attrs[]" value="discount"><label for="discount">Discount</label>
+        <input id="quantity" type="checkbox" name="attrs[]" value="quantity"><label for="quantity">Quantity</label>
+        <input id="color" type="checkbox" name="attrs[]" value="color"><label for="color">Color</label>
+        <input id="size" type="checkbox" name="attrs[]" value="size"><label for="size">Size</label>
+      <% end %>
+    </div>
+  </div>
+</div>

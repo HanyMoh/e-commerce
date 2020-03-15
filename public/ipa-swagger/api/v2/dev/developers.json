@@ -1,0 +1,104 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "developers",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/two/dev/generate_sitemap.json",
+      "operations": [
+        {
+          "summary": "Generate Sitemap",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "password",
+              "type": "string",
+              "description": "API Password",
+              "required": true
+            }
+          ],
+          "notes": "      This let you generate links for<br/>\n      <strong>(Fortune, AlImage) including it's shops and products</strong><br/>\n      which exists on the server<br/>\n",
+          "nickname": "Api::V2::Dev::Developers#generate_sitemap",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/two/dev/generate_parameterized_attributes.json",
+      "operations": [
+        {
+          "summary": "Generate Parameterized Attributes",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "password",
+              "type": "string",
+              "description": "API Password",
+              "required": true
+            }
+          ],
+          "notes": "      This generate p_name for the following models<br/>\n      <strong>Organization, Shop, Brand, Product, Mall, Area, Adressess</strong>\n",
+          "nickname": "Api::V2::Dev::Developers#generate_parameterized_attributes",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/two/dev/brand_transfer.json",
+      "operations": [
+        {
+          "summary": "Transfer brand ownership",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "password",
+              "type": "string",
+              "description": "API Password",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "brand_name",
+              "type": "string",
+              "description": "Brand Name",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "organization_manager_id",
+              "type": "integer",
+              "description": "Manager ID",
+              "required": true
+            }
+          ],
+          "notes": "      <b>This is VERY SENSITIVE API, PROCEED WITH CAUTION</b>\n",
+          "nickname": "Api::V2::Dev::Developers#brand_transfer",
+          "method": "post"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

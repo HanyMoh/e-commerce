@@ -1,0 +1,26 @@
+<% if check_exist_of_model(current_active_user,Shop) %>
+    <%= render :partial => './shared/popups/create_shop_2' %>
+<% end %>
+<%= render 'shared/error_messages', object: @product %>
+<% if params[:brand] && !params[:barcode] %>
+  <%= render 'form' %>
+<% elsif params[:brand] && params[:barcode] %>
+  <%= render 'barcode_form' %>
+<% else %>
+  <div class="plus" style="margin-top: 20px;">
+    <div class="col-md-8">
+      <label>Which brand would you like to add products for?</label>
+      <% brands =  !current_admin ? current_active_user.brands : Brand.all %>
+      <%= form_tag new_admin_product_path, method: :get do %>
+        <%= select_tag :brand, options_from_collection_for_select(brands, :id, :name) %>
+        <%= submit_tag "Submit", class: 'btn btn-lg btn-info', style: 'margin-top: 10px;' %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+   $(window).on('load', function () {
+                $('#createBrand').modal('show');
+            })
+</script>

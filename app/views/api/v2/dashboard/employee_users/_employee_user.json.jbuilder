@@ -1,0 +1,1 @@
+json.extract! employee_user, :id, :name, :avatar, :email, :authentication_token, :type, :following_standards, :job_title, :phone_number, :created_by, :organization_id, :service_type, :assigned_brand_ids

@@ -1,0 +1,337 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "campaigns",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/one/campaigns.json",
+      "operations": [
+        {
+          "summary": "Save Campaign",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[name]",
+              "type": "string",
+              "description": "Campaign Name",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[description]",
+              "type": "string",
+              "description": "Campaign Description",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[organization_id]",
+              "type": "integer",
+              "description": "Organization ID",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[shop_id]",
+              "type": "integer",
+              "description": "Shop ID",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[beacons]",
+              "type": "array",
+              "description": "Beacons IDs ex [1] or [1,2]",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[start_time]",
+              "type": "string",
+              "description": "Date format: year-month-day",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[end_time]",
+              "type": "string",
+              "description": "Date format: year-month-day",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[enabled]",
+              "type": "string",
+              "description": "Enable Campaign",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[header_type]",
+              "type": "integer",
+              "description": "round_shape or rectangular_shape",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[header_txt]",
+              "type": "integer",
+              "description": "Header Text",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[header_color]",
+              "type": "string",
+              "description": "Header Color",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[header_txt_type]",
+              "type": "string",
+              "description": "Header Text type",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[header_txt_color]",
+              "type": "string",
+              "description": "Header Text Color",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[product_name]",
+              "type": "string",
+              "description": "Product Name",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[product_type]",
+              "type": "integer",
+              "description": "one or two or three",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[product_img]",
+              "type": "string",
+              "description": "Product Image",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[product_price]",
+              "type": "float",
+              "description": "Product Price",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[product_txt_type]",
+              "type": "string",
+              "description": "Product Text Type",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[product_txt_color]",
+              "type": "string",
+              "description": "Product Text Color",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[product_price_txt_type]",
+              "type": "string",
+              "description": "Product Price Text Type",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[product_price_txt_color]",
+              "type": "string",
+              "description": "Product Price Text Color",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[product_circle_color]",
+              "type": "string",
+              "description": "Product Circle Color",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[bg_type]",
+              "type": "string",
+              "description": "Background Type [ color or gradient or image ]",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[bg_image]",
+              "type": "string",
+              "description": "Background Image",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[bg_color]",
+              "type": "string",
+              "description": "Background Color",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[bg_left_color]",
+              "type": "string",
+              "description": "Background Left Color (Gradient)",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[bg_right_color]",
+              "type": "string",
+              "description": "Background Right Color (Gradient)",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[timeframe_attributes[start_time]]",
+              "type": "string",
+              "description": "Start Time (Time Frame)",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[timeframe_attributes[end_time]]",
+              "type": "string",
+              "description": "End Time (Time Frame)",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[timeframe_attributes[days]]",
+              "type": "string",
+              "description": "Days (all or weekdays or weekends)",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[contents_attributes][][text]",
+              "type": "string",
+              "description": "Content Text",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[contents_attributes][][text_color]",
+              "type": "string",
+              "description": "Content Text Color",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[contents_attributes][][text_type]",
+              "type": "string",
+              "description": "Content Text Type",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[buttons_attributes][][bg_type]",
+              "type": "string",
+              "description": "call_phone or send_email or open_map or play_sound or play_video or open_url or open_page",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[buttons_attributes][][btn_color]",
+              "type": "string",
+              "description": "Button Color",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[buttons_attributes][][youtube_link]",
+              "type": "string",
+              "description": "Youtube Link",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[buttons_attributes][][text]",
+              "type": "string",
+              "description": "Button Text",
+              "required": false
+            },
+            {
+              "paramType": "query",
+              "name": "campaign[buttons_attributes][][text_color]",
+              "type": "string",
+              "description": "Button Text Color",
+              "required": false
+            }
+          ],
+          "responseMessages": [
+            {
+              "code": 201,
+              "responseModel": null,
+              "message": "Created"
+            },
+            {
+              "code": 401,
+              "responseModel": null,
+              "message": "Unauthorized"
+            },
+            {
+              "code": 406,
+              "responseModel": null,
+              "message": "Not Acceptable"
+            }
+          ],
+          "nickname": "Api::V1::Campaigns#create",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/campaigns/{id}.json",
+      "operations": [
+        {
+          "summary": "Get Campaign by beacons",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "beacon_data",
+              "type": "string",
+              "description": "Beacon Major and minor",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::Campaigns#show",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

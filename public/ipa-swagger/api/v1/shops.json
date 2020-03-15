@@ -1,0 +1,106 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "/",
+  "resourcePath": "shops",
+  "apis": [
+    {
+      "path": "/ipa/ver/sion/one/shops/category_shops.json",
+      "operations": [
+        {
+          "summary": "Get shops by category",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "category_name",
+              "type": "string",
+              "description": "Category Name",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::Shops#category_shops",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/shops/shop_visitors.json",
+      "operations": [
+        {
+          "summary": "Get shop current visitors",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "shop_id",
+              "type": "integer",
+              "description": "Shop ID",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::Shops#shop_visitors",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/shops.json",
+      "operations": [
+        {
+          "summary": "Get all shops",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::Shops#index",
+          "method": "get"
+        }
+      ]
+    },
+    {
+      "path": "/ipa/ver/sion/one/shops/{id}.json",
+      "operations": [
+        {
+          "summary": "Get shop details",
+          "parameters": [
+            {
+              "paramType": "header",
+              "name": "X-APP-Token",
+              "type": "string",
+              "description": "App Authentication Token",
+              "required": true
+            },
+            {
+              "paramType": "query",
+              "name": "shop_id",
+              "type": "integer",
+              "description": "Shop ID",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::Shops#show",
+          "method": "get"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}

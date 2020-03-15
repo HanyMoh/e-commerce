@@ -1,0 +1,13 @@
+{
+"TOTAL_MEMORY": 1073741824,
+"dataUrl": "StoreEdit.data.unityweb",
+"asmCodeUrl": "StoreEdit.asm.code.unityweb",
+"asmMemoryUrl": "StoreEdit.asm.memory.unityweb",
+"asmFrameworkUrl": "StoreEdit.asm.framework.unityweb",
+"asmSymbolsUrl": "StoreEdit.asm.symbols.unityweb",
+"graphicsAPI": ["WebGL 2.0", "WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"backgroundUrl": "StoreEdit.jpg",
+"splashScreenStyle": "Dark",
+"backgroundColor": "#082848"
+}

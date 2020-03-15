@@ -1,0 +1,315 @@
+<!------------------------------------------------------------
+Page Title
+------------------------------------------------------->
+<div class="page-title-bar">
+  <div class="row">
+    <div class="col-xs-6"><h2>Products</h2></div>
+    <div class="col-xs-6">
+      <div class="add-new-btn dark-btn">
+      </div>
+    </div>
+  </div>
+</div>
+<!------------------------------------------------------------
+Page Breadcrumb
+------------------------------------------------------->
+<%= render 'admin/products/flash_messages' %>
+<div class="page-breadcrumb">
+  <div class="row">
+    <div class="col-sm-7">
+      <% if can? :create, Product %>
+        <a href="<%= admin_products_path %>" class="back-angle"><i class="fa fa-long-arrow-left"></i> Back to Products</a>
+      <% end %>
+    </div>
+    <div class="col-sm-5">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="<%= admin_products_path %>">Products</a></li>
+        <li class="breadcrumb-item active"><a href="<%= admin_products_path %>">Add Product</a></li>
+      </ol>
+    </div>
+  </div>
+</div>
+<%= render 'shared/error_messages', object: @product %>
+<div class="start-content">
+  <div class="add-products">
+    <div class="row">
+      <div class="col-md-6">
+        <h4>Import your products from a CSV file</h4>
+        <%= form_tag import_products_admin_products_path, method: :post, multipart: true do %>
+          <%= hidden_field_tag :brand, "", value: @brand.id %>
+          <%= file_field_tag :file, required: true, class: 'form-control' %>
+          </br>
+          <div>
+            <input type="radio" name="ignore_or_dont" id="ignore" value="dont_ignore" checked>
+            <label for="ignore">Don't create products which is out of stock</label>
+            <br/>
+            <input type="radio" name="ignore_or_dont" id="dont_ignore" value="do_ignore">
+            <label for="dont_ignore">Create products even if it's out of stock</label>
+          </div>
+          <%= submit_tag "Import", class: 'btn btn-lg btn-info', style: 'margin-top: 10px;' %>
+        <% end %>
+      </div>
+      <div class="col-md-6">
+        <h4>Why don't you analyze your CSV file first ?</h4>
+        <%= form_tag analyze_csv_admin_products_path, method: :post, multipart: true do %>
+          <%= hidden_field_tag :brand, "", value: @brand.id %>
+          <%= file_field_tag :file, required: true, class: 'form-control' %>
+          </br>
+          <%= submit_tag "Analyze", class: 'btn btn-lg btn-info', style: 'margin-top: 10px;' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <%= form_tag new_admin_product_path, method: :get do %>
+    <h4>Enter barcode to search online for this product info</h4>
+    <div class="add-products">
+      <div class="row">
+        <div class="col-md-6">
+          <%= hidden_field_tag :brand, "", value: @brand.id %>
+          <%= text_field_tag :barcode,"883974958450", required: true, class: 'form-control' %>
+          <%= submit_tag "Submit", class: 'btn btn-lg btn-info', style: 'margin-top: 10px;' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <hr>
+  <%= form_for [:admin, @product] do |f| %>
+  <div class="add-products">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="group-header">
+          <h2><img src="/dashboard/images/files.png" alt=""> Files</h2>
+        </div>
+        <!-- temporary removed
+        <div class="form-group">
+          <label>Choose your favorite add-on</label>
+          <select>
+            <option>Manualy</option>
+          </select>
+        </div>
+        -->
+        <!--
+        <form class="form-group">
+          <div class="form-group">
+            <label>Select Brand</label>
+            <%# brands = {} %>
+            <%# current_active_user.brands.each {|brand| brands[brand.name] = brand.id} %>
+            <%#= f.select :brand_id, brands %>
+          </div>
+          -->
+          <!--
+          <div class="col-md-8 form-group">
+            <label>Which Shop would you like to add products for?</label>
+            <%# shops = {} %>
+            <%# shops["All Shops"] = "all" %>
+            <%# Shop.where(brand: current_active_user.brands).each {|shop| shops[shop.name] = shop.id} %>
+            <select name="product[shop_ids][]">
+              <%# shops.map do |shop,id| %>
+                <option value="<%#= id %>"><%#= shop %></option>
+              <%# end %>
+            </select>
+          </div>
+          -->
+        </form>
+        <%= f.hidden_field :brand_id, value: @brand.id %>
+        <div class="form-group">
+          <label>Name</label>
+          <%= f.text_field :name, required: true , class:"form-control", placeholder: "Name here" %>
+        </div>
+        <div class="form-group">
+          <label>Category*</label>
+          <%= f.select 'category_id', options_from_collection_for_select(Category.all, 'id', 'name'), multiple: true, class: "form-control", style: "height:200px;" %>
+        </div>
+        <% if @brand.stock_management == "global" %>
+          <div class="form-group">
+            <label>Barcode</label>
+            <%= f.text_field :barcode, required: true , class:"form-control", placeholder: "Barcode here" %>
+          </div>
+        <% end %>
+        <!--
+        <div class="form-group">
+          <label>EAN</label>
+          <%#= f.text_field :ean, class:"form-control", placeholder: "Optional"%>
+        </div>
+        -->
+        <div class="form-group">
+          <label>Description</label>
+          <%= f.text_area :description, :col=>30,:row=>10, class:"form-control" %>
+        </div>
+        <% if @brand.stock_management == "global" %>
+          <div class="row form-group">
+            <div class="col-md-4 form-group">
+              <label>Available Colors</label>
+              <%= f.text_field :colors, placeholder: "Red Green Blue", class:"form-control" %>
+            </div>
+            <div class="col-md-4 form-group">
+              <label>Available Sizes</label>
+              <%= f.text_field :sizes, placeholder: "M L XL XXXL", class:"form-control" %>
+            </div>
+            <div class="col-md-4 form-group">
+              <label>Available Quantity</label>
+              <%= f.number_field :quantity, min:0, class:"form-control", value: 0 %>
+            </div>
+          </div>
+        <% else %>
+          <% @brand.shops.each do |shop| %>
+            <!--
+            <div class="col-md-12">
+              <div class="row form-group">
+                <div class="col-md-3">
+                  <h4><%= shop.name %></h4>
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-md 8">
+                  <div class="row form-group">
+                    <div class="col-md-3"> 
+                      <input type="text" class="form-control" name="shops[<%= shop.id %>][]" placeholder="Barcode">
+                    </div>
+                    <div class="col-md-3"> 
+                      <input type="number" class="form-control" name="shops[<%= shop.id %>][]" placeholder="Price" value="0">
+                    </div>
+                    <div class="col-md-3"> 
+                      <input type="number" class="form-control" name="shops[<%= shop.id %>][]" placeholder="Discount" value="0">
+                    </div>
+                  </div>
+                  <div class="row form-group">
+                    <div class="col-md-3"> 
+                      <input type="text" class="form-control" name="shops[<%= shop.id %>][]" placeholder="Color">
+                    </div>
+                    <div class="col-md-3"> 
+                      <input type="text" class="form-control" name="shops[<%= shop.id %>][]" placeholder="Size">
+                    </div>
+                    <div class="col-md-3"> 
+                      <input type="number" class="form-control" name="shops[<%= shop.id %>][]" placeholder="Quantity" value="0">
+                    </div>
+                  </div>
+                  <div class="row form-group">
+                    <div class="col-md-9">
+                    <% f.file_field :shops %>
+                    <input type="file" name="shops[<%= shop.id %>][]" class="form-control" id="shops_<%= shop.id %>">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            -->
+            <!--
+            <div class="col-md-3 form-group">
+              <label>Shop</label>
+              <select name="shops[<%#= shop.id %>][]">
+                <option value="<%#= shop.id %>"><%#= shop.name %></option>
+              </select>
+            </div>
+            <div class="col-md-3 form-group">
+              <label>Available Colors</label>
+              <input type="text" class="form-control" name="shops[<%#= shop.id %>][]" placeholder="Red Green #f9f9f9">
+            </div>
+            <div class="col-md-3 form-group">
+              <label>Available Sizes</label>
+              <input type="text" class="form-control" name="shops[<%#= shop.id %>][]" placeholder="M L XL 41 42">
+            </div>
+            <div class="col-md-3 form-group">
+              <label>Available Quantity</label>
+              <input type="text" class="form-control" name="shops[<%#= shop.id %>][]" value="0">
+            </div>
+            -->
+          <% end %>
+        <% end %>
+        <!-- temporary removed
+        <div class="form-group">
+          <label>Colors</label>
+          <div class="colors">
+            <div class="pretty p-icon p-smooth">
+              <input type="checkbox">
+              <div class="state p-success black"><i class="icon fa fa-check"></i>
+                <label></label>
+              </div>
+            </div>
+            <div class="pretty p-icon p-smooth">
+              <input type="checkbox">
+              <div class="state p-primary green"><i class="icon fa fa-check"></i>
+                <label></label>
+              </div>
+            </div>
+            <div class="pretty p-icon p-smooth">
+              <input type="checkbox">
+              <div class="state p-danger red"><i class="icon fa fa-check"></i>
+                <label></label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Size</label>
+          <div class="size-inputs">
+            <div class="row">
+              <div class="input">
+                <div class="col-md-4">
+                  <input type="text" class="form-control" placeholder="UK 4/6">
+                </div>
+                <div class="col-md-4">
+                  <input type="text" class="form-control" placeholder="UK 8  ">
+                </div>
+                <div class="col-md-4">
+                  <input type="text" class="form-control" placeholder="UK 10/12">
+                </div>
+              </div>
+            </div>
+            <button class="add_field_button" id="sizeInput"><i class="fa fa-plus"></i> add more</button>
+          </div>
+        </div>
+        -->
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-6">
+                <label>Cover Image</label>
+                <% if image_exists?(@product,"cover_image") %>
+                  <%= f.file_field :cover_image, class: "dropify", 'data-allowed-file-extensions':"png jpg jpeg" %>
+                <% else %>
+                  <%= f.file_field :cover_image, required: true, class: "dropify", 'data-allowed-file-extensions':"png jpg jpeg" %>
+                <% end %>
+              </div>
+              <% if @brand.stock_management == "global" %>
+                <div class="col-md-6">
+                  <label>VR Slider</label>
+                  <%= f.file_field :vr_slider, multiple: true,class:"dropify",'data-allowed-file-extensions':"png jpg" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% if @brand.stock_management == "global" %>
+          <div class="form-group">
+            <label>Price</label>
+            <%= f.number_field :price, min:0, class:"form-control", value: 0 %>
+          </div>
+          <div class="form-group">
+            <label>Discount</label>
+            <%= f.number_field :discount, min:0, class:"form-control", value: 0%>
+          </div>
+          <div class="group-header">
+            <h2><img src="/dashboard/images/image.png" alt=""> Media</h2>
+          </div>
+        <% else %>
+            <%= f.hidden_field :price, value: 0 %>
+            <%= f.hidden_field :discount, value: 0 %>
+        <% end %>
+        <div class="form-group">
+          <label>Android File <span>( File name will be autimaticly renamed to Android, without extension )</span></label>
+          <input type="file" class="dropify" data-allowed-file-extensions="png jpg">
+        </div>
+        <div class="form-group">
+          <label>AssetBundle File  <span>(  Will be renamed according to the Asset Name you entered )</span></label>
+          <input type="file" class="dropify" data-allowed-file-extensions="png jpg">
+        </div>
+      </div>
+    </div>
+    <div class="save-all">
+      <button type="submit" name="popup" value="show">Save<i class="fa fa-mouse-check"></i></button>
+    </div>
+  </div>
+  <% end %>
+</div>
+

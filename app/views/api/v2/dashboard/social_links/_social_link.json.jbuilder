@@ -1,0 +1,1 @@
+json.extract! social_link, :id, :facebook, :twitter, :instagram, :organization_id

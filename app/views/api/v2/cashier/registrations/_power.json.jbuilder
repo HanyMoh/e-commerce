@@ -1,0 +1,1 @@
+json.extract! power, :id, :money_redeem, :product_redeem, :navbox_scan, :clients_profile, :branch_analytics, :create_campaign, :branch_storage, :home_delivery
